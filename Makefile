@@ -13,6 +13,8 @@ FT_PRINTF = libs/ft_printf
 LIBS = $(LIBFT)/libft.a $(FT_PRINTF)/libftprintf.a $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
 SRCS = ${addprefix srcs/, \
+			graphic/error.c \
+			graphic/setting_window.c \
 			main.c \
 }
 
@@ -28,7 +30,7 @@ $(NAME): libmlx  libft ft_printf $(OBJS)
 	@echo "$(GREEN)cub3d is read!✅$(RESET)"
 
 obj/%.o: srcs/%.c
-	@mkdir -p obj
+	@mkdir -p obj $(dir $@)
 	@cc $(FLAGS) -c $< -o $@
 
 # Building libraries
@@ -64,4 +66,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY = all clean fclean re
+.PHONY: all clean fclean re

@@ -6,17 +6,18 @@
 #    By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 15:13:33 by cshingai          #+#    #+#              #
-#    Updated: 2025/03/04 20:02:39 by cshingai         ###   ########.fr        #
+#    Updated: 2025/03/05 17:40:42 by cshingai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libftprintf.a
 CC		= cc
-FLAGS	= -Wall -Wextra -Werror -c
+FLAGS	= -Wall -Wextra -Werror -c -g3
 INCLUDE	= include
 
 SRC	= ${addprefix src/, \
 			ft_printf.c \
+			ft_printf_fd.c \
 			ft_putchar_fd.c \
 			ft_puthex.c \
 			ft_putnbr_dec.c \
@@ -47,6 +48,7 @@ obj/%.o: src/%.c
 
 obj/%.o: src_bonus/%.c
 	$(shell if [ ! -d obj ]; then mkdir -p obj; fi)
+	@echo "compiling $<"
 	@${CC} ${FLAGS} -I ${INCLUDE} $< -o $@
 	@ar rcs ${NAME} $@
 
