@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 19:23:52 by cshingai          #+#    #+#             */
-/*   Updated: 2024/12/20 21:41:13 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:43:49 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 
 int		ft_putchar(char c);
-void	ft_putchar_fd(char c, int fd);
+void		ft_putchar_fd(char c, int fd);
 int		ft_putnbr(int n);
 int		ft_printf(const char *str, ...);
 int		ft_printf_fd(int fd, const char *str, ...);

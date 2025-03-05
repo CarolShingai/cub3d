@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/05 17:47:44 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/05 20:29:44 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,24 @@
 # include "../libs/ft_printf/src/ft_printf.h"
 # include "../libs/MLX42/include/MLX42/MLX42.h"
 
-# define WIDTH  1024
-# define HEIGHT 1024
+# define WIDTH  1360
+# define HEIGHT 800
 
 typedef struct s_game
 {
-    mlx_t       *mlx;
-    uint32_t    ceiling;
-    uint32_t    floor;
-}   t_game;
-
+	mlx_t		*mlx;
+	int			ceiling;
+	int			floor;
+}	t_game;
 
 
 // error.c
-void ft_error(void);
+void	ft_error(void);
 
 // setting_window.c
-void    setting_window(t_game *game);
+void	setting_window(t_game *game);
+void	draw_background(t_game *game);
+void	draw_ceiling(t_game *game);
+void	draw_floor(t_game *game);
 
 #endif

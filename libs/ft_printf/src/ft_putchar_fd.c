@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 19:13:43 by cshingai          #+#    #+#             */
-/*   Updated: 2024/01/08 17:09:04 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:43:38 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,9 @@ int	ft_putchar(char c)
 {
 	write(1, &c, 1);
 	return (1);
+}
+
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
 }

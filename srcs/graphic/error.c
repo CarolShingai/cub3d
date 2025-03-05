@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 17:17:09 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/05 17:47:23 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:34:00 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void ft_error(void)
 {
-	ft_printf_fd(STDERR_FILENO, "%s", mlx_strerror(mlx_errno));
+	// ft_printf_fd(STDERR_FILENO, "%s", mlx_strerror(mlx_errno));
+
 	exit(EXIT_FAILURE);
 }
