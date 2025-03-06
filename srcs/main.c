@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 17:03:05 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/05 20:28:30 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/05 22:27:12 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,15 @@ void	init_game(t_game *game)
 }
 
 
-int32_t	main(void)
+int32_t	main(int argc, char **argv)
 {
 	// Start mlx
-	t_game	*game;
+	t_game	game;
+	//t_cub3d	params;
 
-	game = malloc(sizeof(t_game));
-	if (!game)
-		return (EXIT_FAILURE);
-	game->ceiling = 0;
-	game->floor = 0;
-	init_game(game);
+	validation(argc, argv);
+	game.ceiling = 0;
+	game.floor = 0;
+	init_game(&game);
 	return (EXIT_SUCCESS);
 }

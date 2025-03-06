@@ -16,6 +16,7 @@ SRCS = ${addprefix srcs/, \
 			graphic/error.c \
 			graphic/setting_window.c \
 			main.c \
+			parsing/validation.c \
 }
 
 OBJS = $(SRCS:srcs/%.c=obj/%.o)

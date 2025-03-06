@@ -3,18 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:48:10 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/05 18:25:13 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/05 22:54:15 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 
 int		ft_atoi(const char *str);
 void	ft_bzero(void *str, size_t n);
@@ -52,5 +57,10 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+//get next line
+char	*get_next_line(int fd);
+char	*ft_build_line(char *line);
+char	*ft_read_line(char *line, int fd);
+char	*get_after_first_newline(char *line);
 
 #endif

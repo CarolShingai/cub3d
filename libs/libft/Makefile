@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+         #
+#    By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 17:34:20 by cshingai          #+#    #+#              #
-#    Updated: 2025/03/04 19:21:48 by cshingai         ###   ########.fr        #
+#    Updated: 2025/03/05 22:54:51 by lsouza-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ FILES = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c 
  ft_putstr_fd.c ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c ft_strlcat.c \
  ft_strlcpy.c ft_strlen.c ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strtrim.c \
  ft_substr.c ft_tolower.c ft_toupper.c ft_strmapi.c ft_split.c ft_realloc.c \
- ft_strcmp.c \
+ ft_strcmp.c get_next_line.c \
 
 OBJ_DIR = obj
 
