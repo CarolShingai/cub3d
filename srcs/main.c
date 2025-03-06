@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 17:03:05 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/05 20:28:30 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/05 21:58:23 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ uint32_t get_rgb(int r, int g, int b)
 
 void	init_game(t_game *game)
 {
-	game->ceiling = get_rgb(0, 255, 0);
-	game->floor = get_rgb(0, 255, 255);
+	game->ceiling = get_rgb(255,255,0);
+	game->floor = get_rgb(0, 0, 255);
 
 	setting_window(game);
 	// mlx_key_hook(game->mlx, &key_action, game);
@@ -35,13 +35,13 @@ void	init_game(t_game *game)
 int32_t	main(void)
 {
 	// Start mlx
-	t_game	*game;
+	t_game	game;
 
-	game = malloc(sizeof(t_game));
-	if (!game)
-		return (EXIT_FAILURE);
-	game->ceiling = 0;
-	game->floor = 0;
-	init_game(game);
+	// game = malloc(sizeof(t_game));
+	// if (!game)
+		// return (EXIT_FAILURE);
+	game.ceiling = 0;
+	game.floor = 0;
+	init_game(&game);
 	return (EXIT_SUCCESS);
 }

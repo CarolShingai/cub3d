@@ -14,7 +14,7 @@ LIBS = $(LIBFT)/libft.a $(FT_PRINTF)/libftprintf.a $(LIBMLX)/build/libmlx42.a -l
 
 SRCS = ${addprefix srcs/, \
 			graphic/error.c \
-			graphic/setting_window.c \
+			graphic/draw_background.c \
 			main.c \
 }
 
@@ -48,7 +48,7 @@ libmlx:
 	@echo "Libmlx is read!"
 
 # cleaning object files
-clean: 
+clean:
 	@echo "Removing objects..."
 	@rm -rf obj
 	@rm -rf $(LIBMLX)/build
