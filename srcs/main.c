@@ -6,12 +6,11 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 17:03:05 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/05 21:58:23 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/06 21:58:01 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
 
 // color RGB
 
@@ -42,6 +41,7 @@ int32_t	main(void)
 		// return (EXIT_FAILURE);
 	game.ceiling = 0;
 	game.floor = 0;
+
 	init_game(&game);
 	return (EXIT_SUCCESS);
 }

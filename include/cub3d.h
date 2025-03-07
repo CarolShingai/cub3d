@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/05 20:29:44 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/06 21:58:59 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@
 # define WIDTH  1360
 # define HEIGHT 800
 
+typedef struct s_vectot
+{
+	float	x;
+	float	y;
+}	t_vector;
+
 typedef struct s_game
 {
 	mlx_t		*mlx;
@@ -40,5 +46,7 @@ void	setting_window(t_game *game);
 void	draw_background(t_game *game);
 void	draw_ceiling(t_game *game);
 void	draw_floor(t_game *game);
+
+
 
 #endif
