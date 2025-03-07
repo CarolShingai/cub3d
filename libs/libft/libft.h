@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:48:10 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/05 22:54:15 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/03/06 23:07:14 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,25 @@
 # define LIBFT_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1
 # endif
 
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+
+typedef struct s_gnl
+{
+	char			c;
+	struct s_gnl	*next;
+}	t_gnl;
+
+typedef struct s_find
+{
+	char	buffer[BUFFER_SIZE];
+	int		pos;
+	int		bytes;
+}	t_find;
 
 int		ft_atoi(const char *str);
 void	ft_bzero(void *str, size_t n);
@@ -57,10 +70,15 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+int		ft_is_space(char c);
 //get next line
-char	*get_next_line(int fd);
-char	*ft_build_line(char *line);
-char	*ft_read_line(char *line, int fd);
-char	*get_after_first_newline(char *line);
+char		*get_next_line(int fd);
+char		*ft_transform(t_gnl *root, int len);
+void		ft_insert_end(t_gnl **root, char c);
+void		ft_dealloc(t_gnl **root);
+int			ft_build_line(t_find *file, t_gnl **root, int bytes);
+int			ft_read_file(int fd, t_find *file, t_gnl **root);
+int			ft_lstchr(t_gnl *root);
+
 
 #endif

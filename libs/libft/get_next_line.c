@@ -6,89 +6,50 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:51:28 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/03/05 22:52:11 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/03/06 23:05:01 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+int	ft_read_file(int fd, t_find *file, t_gnl **root)
+{
+	file->bytes = read(fd, file->buffer, BUFFER_SIZE);
+	if (file->bytes < 0)
+	{
+		ft_dealloc(root);
+		return (0);
+	}
+	if (file->bytes == 0)
+		return (1);
+	file->buffer[file->bytes] = '\0';
+	return (2);
+}
+
 char	*get_next_line(int fd)
 {
-	char		*line_to_return;
-	char		*full_line;
-	static char	*remainder;
+	static t_find	file;
+	t_gnl			*root;
+	int				len;
+	int				verify;
 
-	if (!remainder)
-		remainder = ft_strdup("");
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-	{
-		free(remainder);
-		remainder = NULL;
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	}
-	full_line = ft_read_line(remainder, fd);
-	line_to_return = ft_build_line(full_line);
-	remainder = get_after_first_newline(full_line);
-	free(full_line);
-	if (*line_to_return == '\0' && *remainder == '\0')
+	root = NULL;
+	len = 0;
+	while (ft_lstchr(root) == 0)
 	{
-		free(line_to_return);
-		free(remainder);
-		remainder = NULL;
-		return (NULL);
+		if (file.pos > 0 && file.pos != file.bytes && file.bytes != 0)
+		{
+			len += ft_build_line(&file, &root, file.bytes);
+			continue ;
+		}
+		verify = ft_read_file(fd, &file, &root);
+		if (verify == 0)
+			return (NULL);
+		if (verify == 1)
+			break ;
+		len += ft_build_line(&file, &root, file.bytes);
 	}
-	return (line_to_return);
-}
-
-char	*ft_read_line(char *line, int fd)
-{
-	char	*temp_buffer;
-	int		chars_readed;
-
-	chars_readed = 1;
-	temp_buffer = (char *) malloc((BUFFER_SIZE + 1) * sizeof(char));
-	while (chars_readed != 0 && ft_strchr(line, '\n') == NULL)
-	{
-		chars_readed = read(fd, temp_buffer, BUFFER_SIZE);
-		temp_buffer[chars_readed] = '\0';
-		line = ft_strjoin(line, temp_buffer);
-	}
-	free(temp_buffer);
-	return (line);
-}
-
-char	*ft_build_line(char *line)
-{
-	int		i;
-	int		size_new_line;
-	char	*new_line;
-
-	i = 0;
-	size_new_line = 0;
-	while (line[size_new_line] != '\0' && line[size_new_line] != '\n')
-		size_new_line++;
-	if (line[size_new_line] == '\n')
-		size_new_line += 1;
-	new_line = (char *) malloc((size_new_line + 1) * sizeof(char));
-	while (i < size_new_line)
-	{
-		new_line[i] = line[i];
-		i++;
-	}
-	new_line[i] = '\0';
-	return (new_line);
-}
-
-char	*get_after_first_newline(char *line)
-{
-	int		i;
-	char	*remainder_after_new_line;
-
-	i = 0;
-	while (line[i] != '\0' && line[i] != '\n')
-		i++;
-	if (line[i] == '\n')
-		i += 1;
-	remainder_after_new_line = ft_strdup(line + i);
-	return (remainder_after_new_line);
+	return (ft_transform(root, len));
 }

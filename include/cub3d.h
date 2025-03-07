@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/05 23:07:55 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/03/06 22:48:00 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,21 @@
 
 # define ERROR_ARGS "Number of arguments is invalid."
 # define ERROR_FILE_NAME "File is not cub type."
+# define ERROR_MAP_MISSING "Map is missing."
+# define ERROR_MALLOC "Malloc failed."
+
+enum e_is_map
+{
+	NO_MAP,
+	IS_MAP,
+	END_MAP
+};
+
+enum e_pipe_mode
+{
+	EXTRACT,
+	LOAD
+};
 
 typedef struct s_game
 {
@@ -39,6 +54,9 @@ typedef struct s_game
 typedef struct s_cub3d
 {
 	char	**map;
+	int		map_size;
+	int		fd_extract;
+	int		fd_load;
 }	t_cub3d;
 
 // error.c
@@ -55,5 +73,16 @@ void	error_handling(char *message);
 void	validation(int argc, char **argv);
 void	check_args_and_file(int argc, char **argv);
 void	check_file_name(char *file_name);
+//pipeline
+void	init_cub3d(t_cub3d *cub3d);
+void	run_pipeline(int argc, char **argv);
+//extract
+void	extract(char *file_path, t_cub3d *cub3d);
+void	read_map(t_cub3d *cub3d, int mode, int fd);
+int		file_opening(char *file_path);
+int		check_line(char *line, int is_map);
+//load
+void	load(t_cub3d *cub3d, char *file_path);
+void	set_array(t_cub3d *cub3d);
 
 #endif

@@ -16,7 +16,10 @@ SRCS = ${addprefix srcs/, \
 			graphic/error.c \
 			graphic/setting_window.c \
 			main.c \
-			parsing/validation.c \
+			data_pipeline/validation.c \
+			data_pipeline/extract.c \
+			data_pipeline/pipeline.c \
+			data_pipeline/load.c \
 }
 
 OBJS = $(SRCS:srcs/%.c=obj/%.o)

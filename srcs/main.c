@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 17:03:05 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/05 22:27:12 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/03/06 21:58:24 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,8 @@ int32_t	main(int argc, char **argv)
 {
 	// Start mlx
 	t_game	game;
-	//t_cub3d	params;
 
-	validation(argc, argv);
+	run_pipeline(argc, argv);
 	game.ceiling = 0;
 	game.floor = 0;
 	init_game(&game);
