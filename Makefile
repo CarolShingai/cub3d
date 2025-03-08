@@ -15,6 +15,7 @@ LIBS = $(LIBFT)/libft.a $(FT_PRINTF)/libftprintf.a $(LIBMLX)/build/libmlx42.a -l
 SRCS = ${addprefix srcs/, \
 			graphic/error.c \
 			graphic/draw_background.c \
+			graphic/vector_utils.c \
 			main.c \
 }
 

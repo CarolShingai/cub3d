@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setting_window.c                                   :+:      :+:    :+:   */
+/*   draw_background.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:54:31 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/05 20:23:22 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/07 22:54:33 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	draw_ceiling(t_game *game)
 	mlx_image_to_window(game->mlx, img_ceiling, 0, 0);
 }
 
-void draw_floor(t_game *game)
+void	draw_floor(t_game *game)
 {
 	mlx_image_t *img_floor;
 
@@ -38,11 +38,24 @@ void draw_floor(t_game *game)
 	mlx_image_to_window(game->mlx, img_floor, 0, HEIGHT / 2);
 }
 
-void    setting_window(t_game *game)
+void	setting_window(t_game *game)
 {
 	// mlx_set_setting(MLX_MAXIMIZED, true);
 	game->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
 	if (!game->mlx)
 		ft_error();
 	draw_background(game);
+}
+
+// aqui
+void	draw_rays(t_game *game)
+{
+	int pixel;
+
+	pixel = 0;
+	while (pixel < WIDTH)
+	{
+		mult_vector(game->view.camera_plane, 2 * pixel / (double)WIDTH - 1);
+		pixel++;
+	}
 }
