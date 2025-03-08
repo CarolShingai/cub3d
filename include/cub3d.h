@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/07 23:10:10 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/03/07 23:54:54 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define ERROR_MAP_MISSING "Map is missing."
 # define ERROR_MALLOC "Malloc failed."
 # define DUPLICATE_CONFIG "Duplicate parameter. North, South, East, West, Floor and Ceiling must be unique."
+# define CONFIG_MISSING "North, South, East, West, Floor and Ceiling must be set."
 
 enum e_is_map
 {
@@ -103,5 +104,9 @@ void	set_array(t_cub3d *cub3d);
 //utils
 void	ft_free_array_str(char **split);
 void	ft_free_all(t_cub3d *cub3d);
+void	ft_free_config(t_cub3d *cub3d);
+//analysis
+void	check_all_configs(t_cub3d *cub3d);
+void	data_analysis(t_cub3d *cub3d);
 
 #endif

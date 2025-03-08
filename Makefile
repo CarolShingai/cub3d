@@ -21,6 +21,7 @@ SRCS = ${addprefix srcs/, \
 			data_pipeline/pipeline.c \
 			data_pipeline/load.c \
 			data_pipeline/utils.c \
+			data_pipeline/data_analysis.c \
 }
 
 OBJS = $(SRCS:srcs/%.c=obj/%.o)
