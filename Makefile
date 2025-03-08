@@ -20,6 +20,7 @@ SRCS = ${addprefix srcs/, \
 			data_pipeline/extract.c \
 			data_pipeline/pipeline.c \
 			data_pipeline/load.c \
+			data_pipeline/utils.c \
 }
 
 OBJS = $(SRCS:srcs/%.c=obj/%.o)

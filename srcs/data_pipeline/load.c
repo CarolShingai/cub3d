@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:05:39 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/03/06 23:11:42 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/03/07 22:33:00 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	load(t_cub3d *cub3d, char *file_path)
 
 void	set_array(t_cub3d *cub3d)
 {
-	cub3d->map = malloc(sizeof(char *) * cub3d->map_size);
+	cub3d->map = ft_calloc(sizeof(char *), (cub3d->map_size + 1));
 	if (!cub3d->map)
 		error_handling(ERROR_MALLOC);
 }
