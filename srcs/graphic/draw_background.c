@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:54:31 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/07 22:54:33 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/08 16:56:24 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,12 @@ void	setting_window(t_game *game)
 void	draw_rays(t_game *game)
 {
 	int pixel;
+	t_vector temp;
 
 	pixel = 0;
 	while (pixel < WIDTH)
 	{
-		mult_vector(game->view.camera_plane, 2 * pixel / (double)WIDTH - 1);
+		temp = mult_vector(game->view.camera_plane, 2 * pixel / (double)WIDTH - 1);
 		pixel++;
 	}
 }
