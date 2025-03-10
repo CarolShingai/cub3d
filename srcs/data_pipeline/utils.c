@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 21:39:41 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/03/07 23:58:00 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/03/09 22:05:48 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	ft_free_config(t_cub3d *cub3d)
 	int	i;
 
 	i = 0;
+	if (!cub3d->config)
+		return ;
 	while (i < 7)
 	{
 		if (cub3d->config[i])
@@ -47,14 +49,25 @@ void	ft_free_all(t_cub3d *cub3d)
 	ft_free_array_str(cub3d->map);
 }
 
-int	file_opening(char *file_path)
+int	file_opening(char *file_path, t_cub3d *cub3d)
 {
 	int	fd;
+	char	*message;
 
+	fd = open(file_path, O_RDONLY | __O_DIRECTORY);
+	if (fd >= 0)
+	{
+		close(fd);
+		ft_free_all(cub3d);
+		error_handling(IS_A_DIRECTORY);
+	}
 	fd = open(file_path, O_RDONLY);
 	if (fd < 0)
 	{
-		perror(RED"Error\n"RST);
+		message = ft_strjoin(RED"Error\n"RST, file_path);
+		perror(message);
+		free(message);
+		ft_free_all(cub3d);
 		exit(1);
 	}
 	return (fd);

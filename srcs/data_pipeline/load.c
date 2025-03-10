@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 22:05:39 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/03/07 22:33:00 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/03/09 22:04:38 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	load(t_cub3d *cub3d, char *file_path)
 {
 	set_array(cub3d);
-	cub3d->fd_load = file_opening(file_path);
+	cub3d->fd_load = file_opening(file_path, cub3d);
 	read_map(cub3d, LOAD, cub3d->fd_load);
 	close(cub3d->fd_load);
 }

@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 19:04:39 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/03/07 23:37:43 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/03/09 21:30:23 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	run_pipeline(int argc, char **argv, t_cub3d *cub3d)
 	while (i < 7)
 	{
 		if (cub3d->config[i])
-			printf("config %d %s", i, cub3d->config[i]);
+			printf("config %d %s\n", i, cub3d->config[i]);
 		i++;
 	}
 }

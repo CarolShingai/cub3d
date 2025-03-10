@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:56:06 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/03/07 23:22:42 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/03/09 22:04:31 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	extract(char *file_path, t_cub3d *cub3d)
 {
-	cub3d->fd_extract = file_opening(file_path);
+	cub3d->fd_extract = file_opening(file_path, cub3d);
 	read_map(cub3d, EXTRACT, cub3d->fd_extract);
 }
 

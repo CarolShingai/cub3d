@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/07 23:54:54 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/03/09 22:22:54 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define ERROR_MALLOC "Malloc failed."
 # define DUPLICATE_CONFIG "Duplicate parameter. North, South, East, West, Floor and Ceiling must be unique."
 # define CONFIG_MISSING "North, South, East, West, Floor and Ceiling must be set."
+# define IS_A_DIRECTORY "The map and textures must be files not directories"
+# define VERIFY_NAME "Check the name of the files"
 
 enum e_is_map
 {
@@ -93,7 +95,7 @@ void	run_pipeline(int argc, char **argv, t_cub3d *cub3d);
 //extract
 void	extract(char *file_path, t_cub3d *cub3d);
 void	read_map(t_cub3d *cub3d, int mode, int fd);
-int		file_opening(char *file_path);
+int		file_opening(char *file_path, t_cub3d *cub3d);
 int		check_line(char *line, int map_was, t_cub3d *cub3d, int mode);
 int		check_config(char c1, char c2);
 int		save_config_to_array(char *line, t_cub3d *cub3d, int config);
@@ -108,5 +110,8 @@ void	ft_free_config(t_cub3d *cub3d);
 //analysis
 void	check_all_configs(t_cub3d *cub3d);
 void	data_analysis(t_cub3d *cub3d);
+void	verify_textures_files(t_cub3d *cub3d);
+void	new_line_removal(char **str);
+void	check_textures_file_name(char *file_name, t_cub3d *cub3d);
 
 #endif

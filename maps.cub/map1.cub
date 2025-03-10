@@ -1,8 +1,10 @@
-NO ./textures/air.png
+NO ./textures/test.png
 
-WE  ./textures/water.png
+WE  ./textures/test.png
 
-   EA ./textures/earth.png
+   EA ./textures/test.png   
+
+SO ./textures/test.png
 
 
    C 100,149,237
