@@ -21,7 +21,9 @@ SRCS = ${addprefix srcs/, \
 			data_pipeline/pipeline.c \
 			data_pipeline/load.c \
 			data_pipeline/utils.c \
-			data_pipeline/data_analysis.c \
+			data_pipeline/textures_analysis.c \
+			data_pipeline/color_analysis.c \
+			data_pipeline/map_analysis.c \
 }
 
 OBJS = $(SRCS:srcs/%.c=obj/%.o)

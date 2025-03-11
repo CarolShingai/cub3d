@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/09 22:22:54 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/03/10 22:24:30 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@
 # define CONFIG_MISSING "North, South, East, West, Floor and Ceiling must be set."
 # define IS_A_DIRECTORY "The map and textures must be files not directories"
 # define VERIFY_NAME "Check the name of the files"
+# define CONFIG_COLOR "Color must be in the format R,G,B without spaces. The values must be between 0 and 255."
+# define INVALID_CHAR "Invalid character in the map."
+# define MULTIPLE_PLAYER "Multiple players"
+# define NO_PLAYER "Player not found"
 
 enum e_is_map
 {
@@ -59,6 +63,13 @@ enum e_map_config
 	CEILING
 };
 
+typedef struct s_colors
+{
+	int		red;
+	int		green;
+	int		blue;
+}	t_colors;
+
 typedef struct s_game
 {
 	mlx_t		*mlx;
@@ -68,6 +79,11 @@ typedef struct s_game
 
 typedef struct s_cub3d
 {
+	uint32_t	floor_color;
+	uint32_t	ceiling_color;
+	int			start_pos_x;
+	int			start_pos_y;
+	char		start_dir;
 	char	**config;
 	char	**map;
 	int		map_size;
@@ -107,11 +123,21 @@ void	set_array(t_cub3d *cub3d);
 void	ft_free_array_str(char **split);
 void	ft_free_all(t_cub3d *cub3d);
 void	ft_free_config(t_cub3d *cub3d);
-//analysis
+//textures_analysis
 void	check_all_configs(t_cub3d *cub3d);
 void	data_analysis(t_cub3d *cub3d);
 void	verify_textures_files(t_cub3d *cub3d);
 void	new_line_removal(char **str);
 void	check_textures_file_name(char *file_name, t_cub3d *cub3d);
+//color_analysis
+void	check_color(t_cub3d *cub3d);
+void	error_handling_color(t_cub3d *cub3d, char *message);
+int		check_three_colors(char *str);
+int		convert_color(char *str, int type, t_cub3d *cub3d);
+//map_analysis
+void	map_analysis(t_cub3d *cub3d);
+void	check_map_chars(t_cub3d *cub3d);
+void	error_handling_map(t_cub3d *cub3d, char *message);
+void	insert_start_pos(t_cub3d *cub3d, int i, int j, char c);
 
 #endif

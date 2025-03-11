@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data_analysis.c                                    :+:      :+:    :+:   */
+/*   textures_analysis.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:29:19 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/03/09 22:24:16 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/03/10 19:54:23 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	data_analysis(t_cub3d *cub3d)
 {
 	check_all_configs(cub3d);
 	verify_textures_files(cub3d);
+	check_color(cub3d);
+	map_analysis(cub3d);
 }
 
 void	check_all_configs(t_cub3d *cub3d)
