@@ -16,6 +16,8 @@ SRCS = ${addprefix srcs/, \
 			graphic/error.c \
 			graphic/draw_background.c \
 			graphic/vector_utils.c \
+			graphic/setting_game.c \
+			graphic/draw_wall.c \
 			main.c \
 }
 
@@ -48,6 +50,10 @@ libmlx:
 	@make -C $(LIBMLX)/build -j4 --no-print-directory > /dev/null
 	@echo "Libmlx is read!"
 
+# valgrind
+valgrind: $(NAME)
+	@valgrind --suppressions=./supressions.sup --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes ./$(NAME)
+
 # cleaning object files
 clean:
 	@echo "Removing objects..."
@@ -67,4 +73,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re valgrind

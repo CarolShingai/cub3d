@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 17:03:05 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/06 21:58:01 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/11 16:09:50 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@ uint32_t get_rgb(int r, int g, int b)
 
 void	init_game(t_game *game)
 {
-	game->ceiling = get_rgb(255,255,0);
-	game->floor = get_rgb(0, 0, 255);
-
+	game->ceiling = get_rgb(0,255,255);
+	game->floor = get_rgb(255, 0, 0);
+	//atribuindo valores necessarios para as variveis de dda;
+	set_position(game);
 	setting_window(game);
 	// mlx_key_hook(game->mlx, &key_action, game);
-	mlx_loop(game->mlx);
-	mlx_terminate(game->mlx);
+	// mlx_loop(game->mlx);
+	// mlx_terminate(game->mlx);
 }
 
 
