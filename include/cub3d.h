@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/11 22:33:06 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:05:43 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include "../libs/ft_printf/src/ft_printf.h"
 # include "../libs/MLX42/include/MLX42/MLX42.h"
 
-# define WIDTH  1360
-# define HEIGHT 800
+# define WIDTH  800
+# define HEIGHT 600
 
 typedef struct s_vector
 {
@@ -87,7 +87,7 @@ void	draw_ceiling(t_game *game);
 void	draw_floor(t_game *game);
 void	draw_rays(t_game *game);
 void	calcule_delta_dist(t_dda *ray);
-void	calcule_dist_to_side(t_dda *ray, t_view player);
+void	calcule_dist_to_side(t_dda *ray, t_game *game);
 void	algorithm_dda(t_dda *ray, t_game *game);
 
 // vector_utils.c
@@ -104,5 +104,6 @@ void	initial_plane(t_game *game);
 void    draw_wall(t_dda ray, t_game *game, int pixel);
 // draw_view.c
 void	draw_view(void *param);
+void	update_ray_map(t_game *game, t_dda *ray);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 19:04:11 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/11 22:17:27 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/12 19:05:21 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	draw_wall(t_dda ray, t_game *game, int pixel)
 
 	wall.wall_height = HEIGHT / ray.perpen_dist;
 	// printf("wall_height: %d\n", wall.wall_height);
-	wall.line_starty = (HEIGHT / 2 - wall.wall_height / 2);
+	wall.line_starty = fmax(0, (HEIGHT / 2 - wall.wall_height / 2));
 	// printf("line_starty: %d\n", wall.line_starty);
-	wall.line_endy = (HEIGHT / 2 + wall.wall_height / 2);
+	wall.line_endy = fmin(HEIGHT, (HEIGHT / 2 + wall.wall_height / 2));
 	// printf("line_endy: %d\n", wall.line_endy);
 	y = wall.line_starty;
 	while (y < wall.line_endy)

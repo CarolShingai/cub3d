@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 21:55:26 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/11 15:53:30 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:08:59 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	set_position(t_game *game)
 {
 	//alterar depois
 	game->pov = 'E';
-	game->view.player_pos.x = 8.5;
-	game->view.player_pos.y = 2.5;
+	game->view.player_pos.x = 7.5;
+	game->view.player_pos.y = 1.5;
 	static char *map[] = {
         "111111111111111111111111",
         "1000000E0000111100000001",
