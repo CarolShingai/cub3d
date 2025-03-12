@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/11 19:01:19 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/11 22:33:06 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,7 @@ void	initial_plane(t_game *game);
 
 // draw_wall.c
 void    draw_wall(t_dda ray, t_game *game, int pixel);
+// draw_view.c
+void	draw_view(void *param);
 
 #endif
