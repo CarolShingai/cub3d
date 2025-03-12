@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 21:39:41 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/03/09 22:05:48 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/03/11 22:03:30 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ void	ft_free_config(t_cub3d *cub3d)
 {
 	int	i;
 
-	i = 0;
+	i = NORTH;
 	if (!cub3d->config)
 		return ;
-	while (i < 7)
+	while (i <= CEILING)
 	{
 		if (cub3d->config[i])
 			free(cub3d->config[i]);
@@ -87,4 +87,10 @@ void	error_handling_extract(int is_map, t_cub3d *cub3d, int fd, int mode)
 		ft_free_config(cub3d);
 		error_handling(ERROR_MAP_MISSING);
 	}
+}
+
+void	error_handling_and_free(t_cub3d *cub3d, char *message)
+{
+	ft_free_all(cub3d);
+	error_handling(message);
 }

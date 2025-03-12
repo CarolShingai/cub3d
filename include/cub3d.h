@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/10 22:24:30 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/03/11 22:05:58 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define INVALID_CHAR "Invalid character in the map."
 # define MULTIPLE_PLAYER "Multiple players"
 # define NO_PLAYER "Player not found"
+# define MAP_NOT_CLOSED "Map is not closed"
 
 enum e_is_map
 {
@@ -102,7 +103,6 @@ void	draw_floor(t_game *game);
 
 //validation
 void	error_handling(char *message);
-void	validation(int argc, char **argv);
 void	check_args_and_file(int argc, char **argv);
 void	check_file_name(char *file_name);
 //pipeline
@@ -131,13 +131,14 @@ void	new_line_removal(char **str);
 void	check_textures_file_name(char *file_name, t_cub3d *cub3d);
 //color_analysis
 void	check_color(t_cub3d *cub3d);
-void	error_handling_color(t_cub3d *cub3d, char *message);
+void	error_handling_and_free(t_cub3d *cub3d, char *message);
 int		check_three_colors(char *str);
 int		convert_color(char *str, int type, t_cub3d *cub3d);
 //map_analysis
 void	map_analysis(t_cub3d *cub3d);
 void	check_map_chars(t_cub3d *cub3d);
-void	error_handling_map(t_cub3d *cub3d, char *message);
-void	insert_start_pos(t_cub3d *cub3d, int i, int j, char c);
+void	check_and_set_player(t_cub3d *cub3d, int i, int j, int *player);
+void	check_map_walls(t_cub3d *cub3d);
+int		check_arround_zeros(t_cub3d *cub3d, int i, int j);
 
 #endif

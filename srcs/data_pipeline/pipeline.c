@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 19:04:39 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/03/10 18:26:52 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/03/11 21:50:40 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	run_pipeline(int argc, char **argv, t_cub3d *cub3d)
 	int i = 0;
 
 	init_cub3d(cub3d);
-	validation(argc, argv);
+	check_args_and_file(argc, argv);
 	extract(argv[1], cub3d);
 	close(cub3d->fd_extract);
 	printf("%d\n", cub3d->map_size);

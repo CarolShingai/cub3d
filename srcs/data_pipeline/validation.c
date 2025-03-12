@@ -6,16 +6,11 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:11:41 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/03/09 22:22:29 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/03/11 21:53:36 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-void	validation(int argc, char **argv)
-{
-	check_args_and_file(argc, argv);
-}
 
 void	check_args_and_file(int argc, char **argv)
 {

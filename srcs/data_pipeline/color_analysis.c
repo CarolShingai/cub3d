@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 18:20:40 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/03/10 19:38:17 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/03/11 21:58:38 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,11 @@ void	check_color(t_cub3d *cub3d)
 			error_handling(CONFIG_MISSING);
 		new_line_removal(&cub3d->config[i]);
 		if (!check_three_colors(cub3d->config[i]))
-			error_handling_color(cub3d, CONFIG_COLOR);
+			error_handling_and_free(cub3d, CONFIG_COLOR);
 		if (!convert_color(cub3d->config[i], i, cub3d))
-			error_handling_color(cub3d, CONFIG_COLOR);
+			error_handling_and_free(cub3d, CONFIG_COLOR);
 		i++;
 	}
-}
-
-void	error_handling_color(t_cub3d *cub3d, char *message)
-{
-	ft_free_all(cub3d);
-	error_handling(message);
 }
 
 int	check_three_colors(char *str)
