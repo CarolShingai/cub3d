@@ -18,6 +18,7 @@ SRCS = ${addprefix srcs/, \
 			graphic/vector_utils.c \
 			graphic/setting_game.c \
 			graphic/draw_wall.c \
+			graphic/algorithm_dda.c \
 			main.c \
 }
 

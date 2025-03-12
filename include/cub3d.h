@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/11 05:55:38 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/11 19:01:19 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_view
 typedef struct s_game
 {
 	mlx_t		*mlx;
+	mlx_image_t	*img;
 	t_view		view;
 	char		pov;
 	int			ceiling;
