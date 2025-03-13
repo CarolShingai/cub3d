@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 17:03:05 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/12 18:26:32 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/13 02:18:22 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ uint32_t get_rgb(int r, int g, int b)
 
 void	init_game(t_game *game)
 {
-	game->ceiling = get_rgb(0,255,255);
+	game->ceiling = get_rgb(255, 255,255);
 	game->floor = get_rgb(255, 0, 0);
 	//atribuindo valores necessarios para as variveis de dda;
 	set_position(game);

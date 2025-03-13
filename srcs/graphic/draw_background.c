@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:54:31 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/12 18:45:13 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/13 02:17:31 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	setting_window(t_game *game)
 	game->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
 	if (!game->mlx)
 		ft_error();
-		// draw_background(game);
+	draw_background(game);
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-	mlx_image_to_window(game->mlx, game->img, 0, 0);
 	draw_rays(game);
+	mlx_image_to_window(game->mlx, game->img, 0, 0);
 }

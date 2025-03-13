@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/12 18:05:43 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/12 23:58:57 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include "../libs/ft_printf/src/ft_printf.h"
 # include "../libs/MLX42/include/MLX42/MLX42.h"
 
-# define WIDTH  800
-# define HEIGHT 600
+# define WIDTH  1000
+# define HEIGHT 800
 
 typedef struct s_vector
 {

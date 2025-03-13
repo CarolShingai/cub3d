@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 19:04:02 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/12 18:25:23 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/13 02:40:24 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,14 @@ void	algorithm_dda(t_dda *ray, t_game *game)
 		}
 	}
 	if (ray->hit_side == 0)
-		ray->perpen_dist = (-1) 
-		* fabs(ray->map.x - game->view.player_pos.x + ((1.0-ray->step.x)/2))/ray->ray_dir.x;
+    	ray->perpen_dist = (ray->map.x - game->view.player_pos.x 
+			+ (1.0 - ray->step.x) / 2) / ray->ray_dir.x;
 	else
-		ray->perpen_dist = (-1) 
-		* fabs(ray->map.y - game->view.player_pos.y + ((1.0-ray->step.y)/2))/ray->ray_dir.y;
+    	ray->perpen_dist = (ray->map.y - game->view.player_pos.y 
+			+ (1.0 - ray->step.y) / 2) / ray->ray_dir.y;
+	// printf("hit_side: %d", ray->hit_side);
 	// printf("map[%d][%d]\n", ray->map.x, ray->map.y);
+	// printf("ray_dirx: %f raydiry: %f\n", ray->ray_dir.x, ray->ray_dir.y);
 	// printf("perp: %f\n", ray->perpen_dist);
 }
 
