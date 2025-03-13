@@ -14,7 +14,12 @@ LIBS = $(LIBFT)/libft.a $(FT_PRINTF)/libftprintf.a $(LIBMLX)/build/libmlx42.a -l
 
 SRCS = ${addprefix srcs/, \
 			graphic/error.c \
-			graphic/setting_window.c \
+			graphic/draw_background.c \
+			graphic/vector_utils.c \
+			graphic/setting_game.c \
+			graphic/draw_wall.c \
+			graphic/algorithm_dda.c \
+			graphic/draw_view.c \
 			main.c \
 			data_pipeline/validation.c \
 			data_pipeline/extract.c \
@@ -55,8 +60,12 @@ libmlx:
 	@make -C $(LIBMLX)/build -j4 --no-print-directory > /dev/null
 	@echo "Libmlx is read!"
 
+# valgrind
+valgrind: $(NAME)
+	@valgrind --suppressions=./supressions.sup --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes ./$(NAME)
+
 # cleaning object files
-clean: 
+clean:
 	@echo "Removing objects..."
 	@rm -rf obj
 	@rm -rf $(LIBMLX)/build
@@ -74,4 +83,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re valgrind

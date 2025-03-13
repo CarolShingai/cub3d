@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 17:03:05 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/12 20:28:06 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/03/13 18:46:17 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
 
 // color RGB
 
@@ -29,6 +28,7 @@ void	init_game(t_game *game, t_cub3d *cub3d)
 
 	setting_window(game);
 	// mlx_key_hook(game->mlx, &key_action, game);
+	mlx_loop_hook(game->mlx, &draw_view, game);
 	mlx_loop(game->mlx);
 	ft_free_all(cub3d);
 	mlx_terminate(game->mlx);
