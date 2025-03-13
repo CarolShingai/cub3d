@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/11 22:05:58 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/03/12 19:19:40 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ typedef struct s_game
 
 typedef struct s_cub3d
 {
-	uint32_t	floor_color;
-	uint32_t	ceiling_color;
+	t_colors	floor_color;
+	t_colors	ceiling_color;
 	int			start_pos_x;
 	int			start_pos_y;
 	char		start_dir;
@@ -100,6 +100,7 @@ void	setting_window(t_game *game);
 void	draw_background(t_game *game);
 void	draw_ceiling(t_game *game);
 void	draw_floor(t_game *game);
+uint32_t get_rgb(int r, int g, int b);
 
 //validation
 void	error_handling(char *message);

@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 17:03:05 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/07 22:44:49 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/03/12 20:28:06 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@
 
 uint32_t get_rgb(int r, int g, int b)
 {
-	return (255 << 24 | r << 16 | g << 8 | b);
+	return (r << 24 | g << 16 | b << 8 | 255);
 }
 
 void	init_game(t_game *game, t_cub3d *cub3d)
 {
-	game->ceiling = get_rgb(0, 255, 0);
-	game->floor = get_rgb(0, 255, 255);
+	game->floor = get_rgb(cub3d->floor_color.red, cub3d->floor_color.green,
+		cub3d->floor_color.blue);
+	game->ceiling = get_rgb(cub3d->ceiling_color.red, cub3d->ceiling_color.green,
+		cub3d->ceiling_color.blue);
 
 	setting_window(game);
 	// mlx_key_hook(game->mlx, &key_action, game);
