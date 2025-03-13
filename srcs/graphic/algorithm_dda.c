@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 19:04:02 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/13 02:40:24 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/13 19:19:53 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	calcule_dist_to_side(t_dda *ray, t_game *game)
 void	algorithm_dda(t_dda *ray, t_game *game)
 {
 	ray->hit_side = -1;
-	while (game->map[ray->map.y][ray->map.x] != '1')
+	while (game->cub3d.map[ray->map.y][ray->map.x] != '1')
 	{
 		if (ray->dist_to_side.x < ray->dist_to_side.y)
 		{
@@ -99,10 +99,10 @@ void	algorithm_dda(t_dda *ray, t_game *game)
 		}
 	}
 	if (ray->hit_side == 0)
-    	ray->perpen_dist = (ray->map.x - game->view.player_pos.x 
+    	ray->perpen_dist = (ray->map.x - game->view.player_pos.x
 			+ (1.0 - ray->step.x) / 2) / ray->ray_dir.x;
 	else
-    	ray->perpen_dist = (ray->map.y - game->view.player_pos.y 
+    	ray->perpen_dist = (ray->map.y - game->view.player_pos.y
 			+ (1.0 - ray->step.y) / 2) / ray->ray_dir.y;
 	// printf("hit_side: %d", ray->hit_side);
 	// printf("map[%d][%d]\n", ray->map.x, ray->map.y);

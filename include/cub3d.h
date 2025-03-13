@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/13 18:49:31 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/13 19:18:58 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,17 +110,6 @@ typedef struct s_view
 	t_vector	camera_plane;
 }	t_view;
 
-typedef struct s_game
-{
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-	t_view		view;
-	char		pov;
-	int			ceiling;
-	int			floor;
-	char		**map;
-}	t_game;
-
 typedef struct s_cub3d
 {
 	t_colors	floor_color;
@@ -134,6 +123,18 @@ typedef struct s_cub3d
 	int		fd_extract;
 	int		fd_load;
 }	t_cub3d;
+
+typedef struct s_game
+{
+	mlx_t		*mlx;
+	mlx_image_t	*img;
+	t_view		view;
+	t_cub3d		cub3d;
+	char		pov;
+	int			ceiling;
+	int			floor;
+}	t_game;
+
 
 
 
