@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/13 19:18:58 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/14 18:59:52 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ typedef struct s_view
 	t_vector	player_pos;
 	t_vector	player_dir;
 	t_vector	camera_plane;
+	double		mov_speed;
+	double		rotate_speed;		
 }	t_view;
 
 typedef struct s_cub3d
@@ -187,10 +189,13 @@ void	check_map_chars(t_cub3d *cub3d);
 void	check_and_set_player(t_cub3d *cub3d, int i, int j, int *player);
 void	check_map_walls(t_cub3d *cub3d);
 int		check_arround_zeros(t_cub3d *cub3d, int i, int j);
+
+//algorithm_dda
 void	draw_rays(t_game *game);
 void	calcule_delta_dist(t_dda *ray);
 void	calcule_dist_to_side(t_dda *ray, t_game *game);
 void	algorithm_dda(t_dda *ray, t_game *game);
+void	update_ray_map(t_game *game, t_dda *ray);
 
 // vector_utils.c
 t_vector	add_vector(t_vector v1, t_vector v2);
@@ -206,6 +211,10 @@ void	initial_plane(t_game *game);
 void    draw_wall(t_dda ray, t_game *game, int pixel);
 // draw_view.c
 void	draw_view(void *param);
-void	update_ray_map(t_game *game, t_dda *ray);
+// key_hook
+void	key_action(mlx_key_data_t keydata, void *param);
+void	close_game(t_game *game);
+int		player_keys(keys_t key);
+
 
 #endif
