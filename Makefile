@@ -62,7 +62,8 @@ libmlx:
 
 # valgrind
 valgrind: $(NAME)
-	@valgrind --suppressions=./supressions.sup --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes ./$(NAME)
+	@valgrind --suppressions=./supressions.sup --leak-check=full \
+	--show-leak-kinds=all --track-origins=yes --track-fds=yes ./$(NAME) ./maps.cub/map2.cub
 
 # cleaning object files
 clean:

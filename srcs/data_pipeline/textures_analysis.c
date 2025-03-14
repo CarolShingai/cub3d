@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures_analysis.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:29:19 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/03/10 19:54:23 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/03/14 03:47:59 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	check_all_configs(t_cub3d *cub3d)
 	{
 		if (!cub3d->config[i])
 		{
-			printf("config %d %s\n", i, cub3d->config[i]);
+			// printf("config %d %s\n", i, cub3d->config[i]);
 			ft_free_all(cub3d);
 			error_handling(CONFIG_MISSING);
 		}
