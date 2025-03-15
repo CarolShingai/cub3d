@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 19:04:11 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/13 19:52:00 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/14 20:35:13 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	draw_wall(t_dda ray, t_game *game, int pixel)
 		color = get_rgb(255, 100, 255);
 	while (y < wall.line_endy)
 	{
-		mlx_put_pixel(game->img, pixel, y, color);
+		mlx_put_pixel(game->imgs.img, pixel, y, color);
 		y++;
 	}
-	// printf("y:%d pixel:%d\n", y, pixel);
+	printf("y:%d pixel:%d\n", y, pixel);
 }

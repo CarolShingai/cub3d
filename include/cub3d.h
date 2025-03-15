@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/14 18:59:52 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/14 20:20:32 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,13 @@ enum e_map_config
 	CEILING
 };
 
+typedef struct s_imgs
+{
+	mlx_image_t	*img;
+	mlx_image_t	*img_ceiling;
+	mlx_image_t	*img_floor;
+}	t_imgs;
+
 typedef struct s_colors
 {
 	int		red;
@@ -109,7 +116,7 @@ typedef struct s_view
 	t_vector	player_dir;
 	t_vector	camera_plane;
 	double		mov_speed;
-	double		rotate_speed;		
+	double		rotate_speed;
 }	t_view;
 
 typedef struct s_cub3d
@@ -129,15 +136,14 @@ typedef struct s_cub3d
 typedef struct s_game
 {
 	mlx_t		*mlx;
-	mlx_image_t	*img;
+	t_imgs		imgs;
 	t_view		view;
 	t_cub3d		cub3d;
 	char		pov;
 	int			ceiling;
 	int			floor;
+	double		*frame_time;
 }	t_game;
-
-
 
 
 // error.c
@@ -202,6 +208,8 @@ t_vector	add_vector(t_vector v1, t_vector v2);
 t_vector	sub_vector(t_vector v1, t_vector v2);
 t_vector	create_vector(float x, float y);
 t_vector	mult_vector(t_vector vector, double mult);
+t_vector	copy_vector(t_vector v);
+t_vector	rotate(t_vector v, double angle);
 
 // setting_game.c
 void	set_position(t_game *game);
@@ -211,10 +219,14 @@ void	initial_plane(t_game *game);
 void    draw_wall(t_dda ray, t_game *game, int pixel);
 // draw_view.c
 void	draw_view(void *param);
+void	remove_frames(t_game *game);
 // key_hook
 void	key_action(mlx_key_data_t keydata, void *param);
 void	close_game(t_game *game);
 int		player_keys(keys_t key);
+// moviments.c
+void	moviments(t_game *game, keys_t key);
+void	camera_rotation(t_game *game, double angle);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 17:03:05 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/13 19:37:26 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/14 19:49:13 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	init_game(t_game *game, t_cub3d *cub3d)
 
 	set_position(game);
 	setting_window(game);
-	// mlx_key_hook(game->mlx, &key_action, game);
+	mlx_loop_hook(game->mlx, &draw_view, game);
 	mlx_loop(game->mlx);
 	ft_free_all(cub3d);
 	mlx_terminate(game->mlx);
