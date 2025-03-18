@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 18:44:27 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/17 22:03:27 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:32:13 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,9 @@
 void	moviments(t_game *game, keys_t key)
 {
 	t_vector	new_pos;
-	double		m_speed;
-	int			flag;
 
-	m_speed = game->view.mov_speed;
 	new_pos = create_vector(game->view.player_pos.x, game->view.player_pos.y);
-	flag = 1;
-	get_new_pos(game, key, &new_pos, &flag);
+	get_new_pos(game, key, &new_pos);
 	if (!collision(game, &new_pos))
 	{
 		game->view.player_pos.x = new_pos.x;
@@ -31,50 +27,48 @@ void	moviments(t_game *game, keys_t key)
 		camera_rotation(game, key, game->view.rotate_speed);
 }
 
-void	get_new_pos(t_game *game, keys_t key, t_vector *new_pos, int *flag)
+void	get_new_pos(t_game *game, keys_t key, t_vector *new_pos)
 {
 	double		m_speed;
 
 	m_speed = game->view.mov_speed;
-	if (key == MLX_KEY_S || key == MLX_KEY_A)
-		*flag = -1;
 	if (key == MLX_KEY_W || key == MLX_KEY_S)
-		horizontal_moviments(game, key, m_speed, new_pos);
-	else if (key == MLX_KEY_A || key == MLX_KEY_D)
 		vertical_moviments(game, key, m_speed, new_pos);
+	else if (key == MLX_KEY_A || key == MLX_KEY_D)
+		horizontal_moviments(game, key, m_speed, new_pos);
 }
 
-void	horizontal_moviments(t_game *game, keys_t key, double m_speed, t_vector *new_pos)
+void	vertical_moviments(t_game *game, keys_t key, double m_speed, t_vector *new_pos)
 {
 	if (key == MLX_KEY_W)
 	{
 		new_pos->x += game->view.player_dir.x * m_speed;
 		new_pos->y += game->view.player_dir.y * m_speed;
-		printf("Player pos x: %f y: %f\n", game->view.player_pos.x, game->view.player_pos.y);
-		printf("New pos x: %f y: %f\n", new_pos->x, new_pos->y);
+		// printf("Player pos x: %f y: %f\n", game->view.player_pos.x, game->view.player_pos.y);
+		// printf("New pos x: %f y: %f\n", new_pos->x, new_pos->y);
 	}
 	else if (key == MLX_KEY_S)
 	{
 		new_pos->x -= game->view.player_dir.x * m_speed;
 		new_pos->y -= game->view.player_dir.y * m_speed;
-		printf("Player pos x: %f y: %f\n", game->view.player_pos.x, game->view.player_pos.y);
-		printf("New pos x: %f y: %f\n", new_pos->x, new_pos->y);
+		// printf("Player pos x: %f y: %f\n", game->view.player_pos.x, game->view.player_pos.y);
+		// printf("New pos x: %f y: %f\n", new_pos->x, new_pos->y);
 	}
 }
 
-void	vertical_moviments(t_game *game, keys_t key, double m_speed, t_vector *new_pos)
+void	horizontal_moviments(t_game *game, keys_t key, double m_speed, t_vector *new_pos)
 {
 	if (key == MLX_KEY_A)
 	{
 		new_pos->x -= game->view.camera_plane.x * m_speed;
 		new_pos->y -= game->view.camera_plane.y * m_speed;
-		printf("x: %f y: %f\n", game->view.player_pos.x, game->view.player_pos.y);
+		// printf("x: %f y: %f\n", game->view.player_pos.x, game->view.player_pos.y);
 	}
 	else if (key == MLX_KEY_D)
 	{
 		new_pos->x += game->view.camera_plane.x * m_speed;
 		new_pos->y += game->view.camera_plane.y * m_speed;
-		printf("x: %f y: %f\n", game->view.player_pos.x, game->view.player_pos.y);
+		// printf("x: %f y: %f\n", game->view.player_pos.x, game->view.player_pos.y);
 	}
 }
 
@@ -84,5 +78,5 @@ void	camera_rotation(t_game *game, keys_t key, double angle)
 		angle = -angle;
 	game->view.player_dir = rotate(game->view.player_dir, angle);
 	game->view.camera_plane = rotate(game->view.camera_plane, angle);
-	printf("x: %f y: %f\n", game->view.camera_plane.x, game->view.camera_plane.y);
+	// printf("x: %f y: %f\n", game->view.camera_plane.x, game->view.camera_plane.y);
 }

@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/17 21:37:05 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:29:57 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,7 +228,7 @@ int		player_keys(keys_t key);
 void	moviments(t_game *game, keys_t key);
 void	horizontal_moviments(t_game *game, keys_t key, double m_speed, t_vector *new_pos);
 void	vertical_moviments(t_game *game, keys_t key, double m_speed, t_vector *new_pos);
-void	get_new_pos(t_game *game, keys_t key, t_vector *new_pos, int *flag);
+void	get_new_pos(t_game *game, keys_t key, t_vector *new_pos);
 void	camera_rotation(t_game *game, keys_t key, double angle);
 // moviments_restrition.c
 int		collision(t_game *game, t_vector *new_pos);
