@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 21:55:26 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/14 20:22:14 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/17 19:03:25 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	set_position(t_game *game)
 	game->pov = game->cub3d.start_dir;
 	game->view.player_pos.x = game->cub3d.start_pos_x + 0.5;
 	game->view.player_pos.y = game->cub3d.start_pos_y + 0.5;
-	game->view.mov_speed = 0.1;
-	game->view.rotate_speed = 0.5;
+	game->view.mov_speed = 0.15;
+	game->view.rotate_speed = 0.3;
 	initial_plane(game);
 }

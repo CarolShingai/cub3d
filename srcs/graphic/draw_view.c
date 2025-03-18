@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 22:29:08 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/14 22:00:44 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/17 19:01:35 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,28 @@
 
 void	draw_view(void *param)
 {
-	t_game *game;
+	t_game	*game;
+	int		time_frame;
 
+	time_frame = 0;
+	time_frame++;
 	game = (t_game *)param;
-	mlx_key_hook(game->mlx, &key_action, game);
+	clear_image(game->imgs.img, 0x000000);
 	draw_rays(game);
-	remove_frames(game);
 }
 
-void	remove_frames(t_game *game)
+void	clear_image(mlx_image_t *img, uint32_t color)
 {
-	int frame_count;
+	size_t		total;
+	size_t		i;
+	uint32_t	*pixels;
 
-	game->frame_time = &game->mlx->delta_time;
-	frame_count = 0;
-	frame_count++;
-	if (frame_count % 100 == 0)
+	total = (size_t)img->width * img->height;
+	i = 0;
+	pixels = (uint32_t *)img->pixels;
+	while (i < total)
 	{
-		mlx_delete_image(game->mlx, game->imgs.img);
-		// mlx_delete_image(game->mlx, game->imgs.img_ceiling);
-		// mlx_delete_image(game->mlx, game->imgs.img_floor);
-		game->imgs.img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-		frame_count = 0;
+		pixels[i] = color;
+		i = i + 1;
 	}
 }

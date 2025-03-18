@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/14 20:20:32 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/17 21:37:05 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,14 +219,19 @@ void	initial_plane(t_game *game);
 void    draw_wall(t_dda ray, t_game *game, int pixel);
 // draw_view.c
 void	draw_view(void *param);
-void	remove_frames(t_game *game);
+void	clear_image(mlx_image_t *img, uint32_t color);
 // key_hook
 void	key_action(mlx_key_data_t keydata, void *param);
 void	close_game(t_game *game);
 int		player_keys(keys_t key);
 // moviments.c
 void	moviments(t_game *game, keys_t key);
-void	camera_rotation(t_game *game, double angle);
+void	horizontal_moviments(t_game *game, keys_t key, double m_speed, t_vector *new_pos);
+void	vertical_moviments(t_game *game, keys_t key, double m_speed, t_vector *new_pos);
+void	get_new_pos(t_game *game, keys_t key, t_vector *new_pos, int *flag);
+void	camera_rotation(t_game *game, keys_t key, double angle);
+// moviments_restrition.c
+int		collision(t_game *game, t_vector *new_pos);
 
 
 #endif
