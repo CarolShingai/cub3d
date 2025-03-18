@@ -1,4 +1,4 @@
-NAME = cub3d
+NAME = cub3D
 
 MAKEFLAGS += --no-print-directory
 FLAGS = -Wall -Wextra -Werror -Wunreachable-code -Ofast -g3
