@@ -1,10 +1,9 @@
-NO ./textures/test.png
+NO ./textures/StoneWall/wall1.png
+SO ./textures/StoneWall/wall2.png
 
-SO ./textures/test.png
+WE  ./textures/StoneWall/wall3.png
 
-WE  ./textures/test.png
-
-   EA ./textures/test.png
+   EA ./textures/StoneWall/wall4.png
 
 
    C 135,206,235

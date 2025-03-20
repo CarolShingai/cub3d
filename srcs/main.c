@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 17:03:05 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/17 18:31:45 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/19 20:50:47 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	init_game(t_game *game, t_cub3d *cub3d)
 	game->floor = get_rgb(cub3d->floor_color.blue, cub3d->floor_color.green, cub3d->floor_color.red);
 
 	set_position(game);
+	load_texture(game);
 	setting_window(game);
 	mlx_loop_hook(game->mlx, &draw_view, game);
 	mlx_key_hook(game->mlx, &key_action, game);

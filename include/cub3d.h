@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/18 15:29:57 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/20 15:23:59 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,11 @@ typedef struct s_dda
 	t_vector	ray_dir;
 	t_vector	delta_dist;
 	t_vector	dist_to_side;
+	t_vector	hit_pos;
 	t_cord		map;
 	t_cord		step;
 	int			hit_side;
+	int			side;
 	float		perpen_dist;
 }	t_dda;
 
@@ -108,6 +110,8 @@ typedef struct s_wall
 	int		wall_height;
 	int		line_starty;
 	int		line_endy;
+	int		tex_x;
+	int		tex_y;
 }	t_wall;
 
 typedef struct s_view
@@ -139,6 +143,10 @@ typedef struct s_game
 	t_imgs		imgs;
 	t_view		view;
 	t_cub3d		cub3d;
+	mlx_texture_t	*north;
+	mlx_texture_t	*south;
+	mlx_texture_t	*east;
+	mlx_texture_t	*west;
 	char		pov;
 	int			ceiling;
 	int			floor;
@@ -216,7 +224,11 @@ void	set_position(t_game *game);
 void	initial_plane(t_game *game);
 
 // draw_wall.c
-void    draw_wall(t_dda ray, t_game *game, int pixel);
+void	draw_wall(t_dda *ray, t_game *game, int pixel);
+void	set_wall_position(t_dda *ray);
+mlx_texture_t	*get_texture(t_dda *ray, t_game *game);
+void	calc_tex_position(t_wall *wall, t_dda *ray, mlx_texture_t *wall_img, t_game *game);
+uint32_t	get_pixel_color(mlx_texture_t *tex, int x, int y);
 // draw_view.c
 void	draw_view(void *param);
 void	clear_image(mlx_image_t *img, uint32_t color);
@@ -232,6 +244,10 @@ void	get_new_pos(t_game *game, keys_t key, t_vector *new_pos);
 void	camera_rotation(t_game *game, keys_t key, double angle);
 // moviments_restrition.c
 int		collision(t_game *game, t_vector *new_pos);
+// texture.c
+mlx_texture_t	*init_texture(char *path);
+void	load_texture(t_game *game);
+void	clear_textures(t_game *game);
 
 
 #endif

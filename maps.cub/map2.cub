@@ -1,10 +1,10 @@
-NO ./textures/test.png
+NO textures/Lumon_case/North.png
 
-SO ./textures/test.png
+SO textures/Lumon_case/South.png
 
-WE  ./textures/test.png
+WE  textures/Lumon_case/West.png
 
-   EA ./textures/test.png
+   EA textures/Lumon_case/East.png
 
 
    C 100,149,237
