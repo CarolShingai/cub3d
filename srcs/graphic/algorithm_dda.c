@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 19:04:02 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/13 19:19:53 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/20 04:14:46 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	draw_rays(t_game *game)
 		// algorithm dda
 		algorithm_dda(&ray, game);
 		// renderizar parede
-		draw_wall(ray, game, pixel);
+		draw_wall(&ray, game, pixel);
 		pixel++;
 	}
 }

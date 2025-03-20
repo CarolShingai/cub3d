@@ -23,6 +23,7 @@ SRCS = ${addprefix srcs/, \
 			graphic/moviments.c \
 			graphic/moviments_restriction.c \
 			graphic/key_hook.c \
+			graphic/texture.c \
 			main.c \
 			data_pipeline/validation.c \
 			data_pipeline/extract.c \
