@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/20 18:52:17 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/20 22:11:52 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_imgs
 	mlx_image_t	*img;
 	mlx_image_t	*img_ceiling;
 	mlx_image_t	*img_floor;
+	mlx_image_t	*img_map;
 }	t_imgs;
 
 typedef struct s_colors
@@ -143,6 +144,7 @@ typedef struct s_game
 {
 	mlx_t		*mlx;
 	t_imgs		imgs;
+	t_imgs		minimap;
 	t_view		view;
 	t_cub3d		cub3d;
 	mlx_texture_t	*north;
@@ -246,10 +248,15 @@ void	get_new_pos(t_game *game, keys_t key, t_vector *new_pos);
 void	camera_rotation(t_game *game, keys_t key, double angle);
 // moviments_restrition.c
 int		collision(t_game *game, t_vector *new_pos);
+int		check_collision_mov(t_game *game, t_vector *new_pos, float margin);
+int		check_collision_camera(t_game *game, t_vector *new_pos, float margin);
 // texture.c
 mlx_texture_t	*init_texture(char *path);
 void	load_texture(t_game *game);
 void	clear_textures(t_game *game);
 
 
+
+// minimap_bonus.c
+void	draw_map(t_game *game);
 #endif

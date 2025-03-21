@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:54:31 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/20 18:44:47 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/20 22:24:03 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	draw_floor(t_game *game)
 
 void	setting_window(t_game *game)
 {
-	// mlx_set_setting(MLX_MAXIMIZED, true);
 	game->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
 	if (!game->mlx)
 		ft_error();

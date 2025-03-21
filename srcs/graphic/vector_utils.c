@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 18:57:02 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/14 18:37:11 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/20 21:04:12 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,6 @@ t_vector	add_vector(t_vector v1, t_vector v2)
 
 	new_vector.x = v1.x + v2.x;
 	new_vector.y = v1.y + v2.y;
-	return (new_vector);
-}
-
-t_vector	sub_vector(t_vector v1, t_vector v2)
-{
-	t_vector	new_vector;
-
-	new_vector.x = v1.x - v2.x;
-	new_vector.y = v1.y - v2.y;
 	return (new_vector);
 }
 
