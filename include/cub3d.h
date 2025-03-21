@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/20 15:23:59 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/20 18:52:17 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ typedef struct s_wall
 	int		line_endy;
 	int		tex_x;
 	int		tex_y;
+	int		tex_pos;
+	int		tex_step;
 }	t_wall;
 
 typedef struct s_view

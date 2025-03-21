@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 19:04:02 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/20 04:14:46 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/20 17:58:24 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ void	draw_rays(t_game *game)
 		multiplier = 2 * pixel / (float)WIDTH - 1;
 		camera_pixel = mult_vector(game->view.camera_plane, multiplier);
 		ray.ray_dir = add_vector(game->view.player_dir, camera_pixel);
-		// printf("vector x:%f y:%f\n", game->view.player_dir.x, game->view.player_dir.y);
-		// printf("ray_dirx: %f raydiry: %f\n", ray.ray_dir.x, ray.ray_dir.y);
-		// calcule of distance between column and lines
 		calcule_delta_dist(&ray);
 		calcule_dist_to_side(&ray, game);
 		// printf("distx: %f disty: %f\n", ray.dist_to_side.x, ray.dist_to_side.y);

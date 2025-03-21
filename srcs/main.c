@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 17:03:05 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/19 20:50:47 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/20 17:52:06 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	init_game(t_game *game, t_cub3d *cub3d)
 	game->ceiling = get_rgb(cub3d->ceiling_color.blue, cub3d->ceiling_color.green, cub3d->ceiling_color.red);
 	game->floor = get_rgb(cub3d->floor_color.blue, cub3d->floor_color.green, cub3d->floor_color.red);
 
+	//
 	set_position(game);
 	load_texture(game);
 	setting_window(game);

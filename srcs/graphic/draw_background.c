@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:54:31 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/14 20:24:58 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/20 18:44:47 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	draw_background(t_game *game)
 void	draw_ceiling(t_game *game)
 {
 	game->imgs.img_ceiling = mlx_new_image(game->mlx, WIDTH, HEIGHT / 2);
-	ft_memset_32(game->imgs.img_ceiling->pixels, game->ceiling, WIDTH * HEIGHT / 2);
+	ft_memset_32(game->imgs.img_ceiling->pixels,
+		game->ceiling, WIDTH * HEIGHT / 2);
 	mlx_image_to_window(game->mlx, game->imgs.img_ceiling, 0, 0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 19:04:11 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/20 15:26:40 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/20 21:02:00 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	draw_wall(t_dda *ray, t_game *game, int pixel)
 	calc_tex_position(&wall, ray, wall_img, game);
 	while (y < wall.line_endy)
 	{
-		wall.tex_y = (int)((y - wall.line_starty) 
+		wall.tex_y = (int)((y - (HEIGHT / 2 - wall.wall_height / 2))
 		/ (double)wall.wall_height * wall_img->height);
-		// wall.tex_y = fmax(0, fmin(wall.tex_y, wall_img->height - 1));
+		wall.tex_y = fmax(0, fmin(wall.tex_y, wall_img->height - 1));
 		color = get_pixel_color(wall_img, wall.tex_x, wall.tex_y);
 		mlx_put_pixel(game->imgs.img, pixel, y, color);
 		y++;
@@ -54,7 +54,7 @@ void	set_wall_position(t_dda *ray)
 			ray->side = EAST;
 	}
 }
-	
+
 mlx_texture_t	*get_texture(t_dda *ray, t_game *game)
 {
 	if (ray->side == NORTH)
@@ -84,7 +84,7 @@ uint32_t	get_pixel_color(mlx_texture_t *tex, int x, int y)
     int		tex_pos;
     uint8_t	*color;
     uint32_t	final_color;
-    
+
     if (x < 0 || x >= (int)tex->width || y < 0 || y >= (int)tex->height)
         return (0);
     tex_pos = (y * tex->width + x) * tex->bytes_per_pixel;

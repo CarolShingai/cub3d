@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 10:59:02 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/20 16:15:44 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/20 17:59:06 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@ void	key_action(mlx_key_data_t keydata, void *param)
 	game = (t_game *)param;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		close_game(game);
-	if (player_keys(keydata.key) && (keydata.action == MLX_PRESS))
+	if (player_keys(keydata.key) && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT))
 		moviments(game, keydata.key);
-	// if (player_keys(keydata.key) && (keydata.action == MLX_RELEASE))
-	// moviments(game, keydata.key);
 }
 
 void	close_game(t_game *game)
