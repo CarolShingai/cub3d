@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 19:04:11 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/20 22:25:29 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/21 05:00:21 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	draw_wall(t_dda *ray, t_game *game, int pixel)
 {
-	int				tile;
 	uint32_t		color;
 	mlx_texture_t	*wall_img;
 	t_wall			wall;
@@ -59,13 +58,13 @@ void	set_wall_position(t_dda *ray)
 mlx_texture_t	*get_texture(t_dda *ray, t_game *game)
 {
 	if (ray->side == NORTH)
-		return (game->north);
+		return (game->texture.north);
 	else if (ray->side == SOUTH)
-		return (game->south);
+		return (game->texture.south);
 	else if (ray->side == WEST)
-		return (game->west);
+		return (game->texture.west);
 	else if (ray->side == EAST)
-		return (game->east);
+		return (game->texture.east);
 	else
 		return (NULL);
 }

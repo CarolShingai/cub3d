@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/20 22:11:52 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/21 17:43:17 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,13 @@
 # define MULTIPLE_PLAYER "Multiple players"
 # define NO_PLAYER "Player not found"
 # define MAP_NOT_CLOSED "Map is not closed"
+# define TEXTURE_ERROR "ERROR! Problem with the texture image."
+# define IMAGE_ERROR "ERROR! Problem loading the image."
+# define MLX "ERROR! Problem with mlx."
+
+
+
+# define TILE 15
 
 enum e_is_map
 {
@@ -70,8 +77,19 @@ typedef struct s_imgs
 	mlx_image_t	*img;
 	mlx_image_t	*img_ceiling;
 	mlx_image_t	*img_floor;
-	mlx_image_t	*img_map;
+	mlx_image_t	*minimap;
+	mlx_image_t	*miniwall_x;
+	mlx_image_t	*miniwall_y;
 }	t_imgs;
+
+typedef struct s_texture
+{
+	mlx_texture_t	*north;
+	mlx_texture_t	*south;
+	mlx_texture_t	*east;
+	mlx_texture_t	*west;
+}	t_texture;
+
 
 typedef struct s_colors
 {
@@ -147,10 +165,7 @@ typedef struct s_game
 	t_imgs		minimap;
 	t_view		view;
 	t_cub3d		cub3d;
-	mlx_texture_t	*north;
-	mlx_texture_t	*south;
-	mlx_texture_t	*east;
-	mlx_texture_t	*west;
+	t_texture	texture;
 	char		pov;
 	int			ceiling;
 	int			floor;
@@ -159,7 +174,7 @@ typedef struct s_game
 
 
 // error.c
-void	ft_error(void);
+void	ft_error(char *msg);
 
 // setting_window.c
 void	setting_window(t_game *game);
@@ -259,4 +274,10 @@ void	clear_textures(t_game *game);
 
 // minimap_bonus.c
 void	draw_map(t_game *game);
+void	insert_minimap(t_game *game);
+mlx_image_t	*create_image(mlx_t *mlx, char *path);
+int	is_horizontal_wall(t_game *game, int x, int y);
+int is_vertical_wall(t_game *game, int x, int y);
+void	draw_player_square(t_game *game, int map_x, int map_y);
+
 #endif

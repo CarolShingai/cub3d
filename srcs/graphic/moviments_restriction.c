@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 20:24:32 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/20 21:36:51 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/21 05:07:59 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ int	check_collision_mov(t_game *game, t_vector *new_pos, float margin)
 				- game->view.player_pos.x));
 	y = (int)(new_pos->y + margin * verify_signal(new_pos->y
 				- game->view.player_pos.y));
-	if (collision(game, new_pos))
-	{
-		new_pos->x = game->view.player_pos.x;
-		new_pos->y = game->view.player_pos.y;
+	if (game->cub3d.map[(int)new_pos->y][x] == '1'
+		|| game->cub3d.map[(int)new_pos->y][x] == ' ')
 		return (1);
-	}
+	if (game->cub3d.map[y][(int)new_pos->x] == '1'
+		|| game->cub3d.map[y][(int)new_pos->x] == ' ')
+		return (1);
 	return (0);
 }
 
@@ -58,11 +58,11 @@ int	check_collision_camera(t_game *game, t_vector *new_pos, float margin)
 			* verify_signal(game->view.camera_plane.x));
 	y_cam = (int)(new_pos->y + margin
 			* verify_signal(game->view.camera_plane.y));
-	if (collision(game, new_pos))
-	{
-		new_pos->x = game->view.player_pos.x;
-		new_pos->y = game->view.player_pos.y;
+	if (game->cub3d.map[(int)new_pos->y][x_cam] == '1'
+		|| game->cub3d.map[(int)new_pos->y][x_cam] == ' ')
 		return (1);
-	}
+	if (game->cub3d.map[y_cam][(int)new_pos->x] == '1'
+		|| game->cub3d.map[y_cam][(int)new_pos->x] == ' ')
+		return (1);
 	return (0);
 }
