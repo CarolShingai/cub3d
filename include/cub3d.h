@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/21 17:43:17 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/21 21:05:20 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_imgs
 	mlx_image_t	*minimap;
 	mlx_image_t	*miniwall_x;
 	mlx_image_t	*miniwall_y;
+	mlx_image_t	*player;
 }	t_imgs;
 
 typedef struct s_texture
@@ -166,6 +167,7 @@ typedef struct s_game
 	t_view		view;
 	t_cub3d		cub3d;
 	t_texture	texture;
+	t_dda		ray;
 	char		pov;
 	int			ceiling;
 	int			floor;
@@ -278,6 +280,6 @@ void	insert_minimap(t_game *game);
 mlx_image_t	*create_image(mlx_t *mlx, char *path);
 int	is_horizontal_wall(t_game *game, int x, int y);
 int is_vertical_wall(t_game *game, int x, int y);
-void	draw_player_square(t_game *game, int map_x, int map_y);
+int	is_player(t_game *game, int x, int y);
 
 #endif

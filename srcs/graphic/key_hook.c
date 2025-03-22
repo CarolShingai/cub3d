@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 10:59:02 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/20 21:20:00 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/21 21:24:08 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,14 @@ void	key_action(mlx_key_data_t keydata, void *param)
 		close_game(game);
 	if (player_keys(keydata.key) && (keydata.action == MLX_PRESS
 			|| keydata.action == MLX_REPEAT))
-		moviments(game, keydata.key);
+			moviments(game, keydata.key);
+	if (keydata.key == MLX_KEY_M && keydata.action == MLX_PRESS)
+	{
+		insert_minimap(game);
+		draw_map(game);
+	}
+	if (keydata.key == MLX_KEY_M && keydata.action == MLX_RELEASE)
+		remove_map(game);
 }
 
 void	close_game(t_game *game)
@@ -32,9 +39,17 @@ void	close_game(t_game *game)
 
 int	player_keys(keys_t key)
 {
-	if (key == MLX_KEY_W || key == MLX_KEY_S || key == MLX_KEY_A
+	if (key == MLX_KEY_W || key == MLX_KEY_S || key == MLX_KEY_A || key == MLX_KEY_M
 		|| key == MLX_KEY_D || key == MLX_KEY_LEFT || key == MLX_KEY_RIGHT)
 		return (1);
 	else
 		return (0);
+}
+
+void	remove_map(t_game *game)
+{
+	game->imgs.player->instances->enabled = 0;
+	game->imgs.miniwall_x->instances->enabled = 0;
+	game->imgs.miniwall_y->instances->enabled = 0;
+	game->imgs.minimap->instances->enabled = 0;
 }
