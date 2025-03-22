@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 10:59:02 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/21 21:24:08 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/22 03:35:41 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,12 @@ void	key_action(mlx_key_data_t keydata, void *param)
 	if (player_keys(keydata.key) && (keydata.action == MLX_PRESS
 			|| keydata.action == MLX_REPEAT))
 			moviments(game, keydata.key);
-	if (keydata.key == MLX_KEY_M && keydata.action == MLX_PRESS)
-	{
-		insert_minimap(game);
-		draw_map(game);
-	}
-	if (keydata.key == MLX_KEY_M && keydata.action == MLX_RELEASE)
-		remove_map(game);
+	// if (keydata.key == MLX_KEY_M && keydata.action == MLX_PRESS)
+	// {
+
+	// }
+	// if (keydata.key == MLX_KEY_M && keydata.action == MLX_RELEASE)
+	// 	remove_map(game);
 }
 
 void	close_game(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 21:38:58 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/21 21:16:44 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/22 04:15:29 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	draw_map(t_game *game)
 {
 	int	x;
 	int	y;
+	int	draw_x;
+	int	draw_y;
 
 	x = 0;
 	mlx_image_to_window(game->mlx, game->minimap.img, 10, 10);
@@ -48,17 +50,18 @@ void	draw_map(t_game *game)
 		y = 0;
 		while (game->cub3d.map[x][y])
 		{
+			draw_x = (y * TILE) + MINIMAP_START_X + 20;
+			draw_y = (x * TILE) + MINIMAP_START_Y + 20;
 			if (is_vertical_wall(game, y, x))
-				mlx_image_to_window(game->mlx, game->imgs.miniwall_y, y * TILE + 150, x * TILE + 150);
+				mlx_image_to_window(game->mlx, game->imgs.miniwall_y, draw_x, draw_y);
 			if (is_horizontal_wall(game, y, x))
-				mlx_image_to_window(game->mlx, game->imgs.miniwall_x, y * TILE + 150, x * TILE + 150);
+				mlx_image_to_window(game->mlx, game->imgs.miniwall_x, draw_x, draw_y);
 			if (is_player(game, x, y))
-				mlx_image_to_window(game->mlx, game->imgs.player, y * TILE + 150, x * TILE + 140);
+				mlx_image_to_window(game->mlx, game->imgs.player, draw_x, draw_y);
 			y++;
 		}
 		x++;
 	}
-	// draw_player_square(game, 50, 50);
 }
 
 int	is_horizontal_wall(t_game *game, int x, int y)

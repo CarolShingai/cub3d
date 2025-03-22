@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/21 21:05:20 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/22 03:54:23 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@
 # include "../libs/ft_printf/src/ft_printf.h"
 # include "../libs/MLX42/include/MLX42/MLX42.h"
 
-# define WIDTH  1000
-# define HEIGHT 800
 
 # define ERROR_ARGS "Number of arguments is invalid."
 # define ERROR_FILE_NAME "File is not cub type."
@@ -45,8 +43,13 @@
 # define MLX "ERROR! Problem with mlx."
 
 
-
-# define TILE 15
+# define WIDTH  1000
+# define HEIGHT 800
+# define TILE 18
+#define MINIMAP_START_X 132
+#define MINIMAP_START_Y 150
+#define MINIMAP_END_X 550
+#define MINIMAP_END_Y 500
 
 enum e_is_map
 {

@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 18:44:27 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/21 21:21:24 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/22 03:32:57 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	moviments(t_game *game, keys_t key)
 	{
 		game->view.player_pos.x = new_pos.x;
 		game->view.player_pos.y = new_pos.y;
+		game->imgs.player->instances[0].x = MINIMAP_START_X + (game->view.player_pos.x * TILE);
+		game->imgs.player->instances[0].y = MINIMAP_START_Y + (game->view.player_pos.y * TILE);
 	}
 	if (key == MLX_KEY_LEFT || key == MLX_KEY_RIGHT)
 		camera_rotation(game, key, game->view.rotate_speed);
