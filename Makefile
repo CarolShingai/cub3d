@@ -1,5 +1,5 @@
 NAME = cub3D
-
+NAME_BONUS = cub3D_bonus
 MAKEFLAGS += --no-print-directory
 FLAGS = -Wall -Wextra -Werror -Wunreachable-code -Ofast -g3
 
@@ -24,7 +24,6 @@ SRCS = ${addprefix srcs/, \
 			graphic/moviments_restriction.c \
 			graphic/key_hook.c \
 			graphic/texture.c \
-			graphic/minimap_bonus.c \
 			main.c \
 			data_pipeline/validation.c \
 			data_pipeline/extract.c \
@@ -36,10 +35,35 @@ SRCS = ${addprefix srcs/, \
 			data_pipeline/map_analysis.c \
 }
 
+SRCS_BONUS = ${addprefix srcs_bonus/, \
+			graphic_bonus/error_bonus.c \
+			graphic_bonus/draw_background_bonus.c \
+			graphic_bonus/vector_utils_bonus.c \
+			graphic_bonus/setting_game_bonus.c \
+			graphic_bonus/draw_wall_bonus.c \
+			graphic_bonus/algorithm_dda_bonus.c \
+			graphic_bonus/draw_view_bonus.c \
+			graphic_bonus/moviments_bonus.c \
+			graphic_bonus/moviments_restriction_bonus.c \
+			graphic_bonus/key_hook_bonus.c \
+			graphic_bonus/texture_bonus.c \
+			graphic_bonus/minimap_bonus.c \
+			main_bonus.c \
+			data_pipeline_bonus/validation_bonus.c \
+			data_pipeline_bonus/extract_bonus.c \
+			data_pipeline_bonus/pipeline_bonus.c \
+			data_pipeline_bonus/load_bonus.c \
+			data_pipeline_bonus/utils_bonus.c \
+			data_pipeline_bonus/textures_analysis_bonus.c \
+			data_pipeline_bonus/color_analysis_bonus.c \
+			data_pipeline_bonus/map_analysis_bonus.c \
+}
+
 OBJS = $(SRCS:srcs/%.c=obj/%.o)
 
+OBJS_BONUS = $(SRCS_BONUS:srcs_bonus/%.c=obj_bonus/%.o)
 
-# RULES
+# RULES MANDATORY
 all: $(NAME)
 
 $(NAME): libmlx  libft ft_printf $(OBJS)
@@ -49,6 +73,18 @@ $(NAME): libmlx  libft ft_printf $(OBJS)
 
 obj/%.o: srcs/%.c
 	@mkdir -p obj $(dir $@)
+	@cc $(FLAGS) -c $< -o $@
+
+# RULES BONUS
+bonus: $(NAME_BONUS)
+
+$(NAME_BONUS): libmlx  libft ft_printf $(OBJS_BONUS)
+	@echo "Compiling cub3d"
+	@cc $(FLAGS) $(OBJS_BONUS) $(LIBS) -o $(NAME_BONUS)
+	@echo "$(GREEN)cub3d_bonus is read!✅$(RESET)"
+
+obj_bonus/%.o: srcs_bonus/%.c
+	@mkdir -p obj_bonus $(dir $@)
 	@cc $(FLAGS) -c $< -o $@
 
 # Building libraries
@@ -74,6 +110,7 @@ valgrind: $(NAME)
 clean:
 	@echo "Removing objects..."
 	@rm -rf obj
+	@rm -rf obj_bonus
 	@rm -rf $(LIBMLX)/build
 	@make clean -C $(LIBFT) > /dev/null
 	@make clean -C $(FT_PRINTF) > /dev/null
@@ -83,10 +120,11 @@ clean:
 fclean: clean
 	@echo "Removing Executables..."
 	@rm -rf $(NAME)
+	@rm -rf $(NAME_BONUS)
 	@make fclean -C $(LIBFT)
 	@make fclean -C $(FT_PRINTF)
 	@echo "$(YELLOW)Cleaning complete!$(RESET)"
 
 re: fclean all
 
-.PHONY: all clean fclean re valgrind
+.PHONY: all bonus clean fclean re valgrind

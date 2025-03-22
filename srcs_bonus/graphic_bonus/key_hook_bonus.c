@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_hook.c                                         :+:      :+:    :+:   */
+/*   key_hook_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 10:59:02 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/22 16:14:27 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/22 16:04:22 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../include/cub3d_bonus.h"
 
 void	key_action(mlx_key_data_t keydata, void *param)
 {
@@ -22,6 +22,10 @@ void	key_action(mlx_key_data_t keydata, void *param)
 	if (player_keys(keydata.key) && (keydata.action == MLX_PRESS
 			|| keydata.action == MLX_REPEAT))
 			moviments(game, keydata.key);
+	if (keydata.key == MLX_KEY_M && keydata.action == MLX_PRESS)
+		visible_map(game);
+	if (keydata.key == MLX_KEY_M && keydata.action == MLX_RELEASE)
+		unvisible_map(game);
 }
 
 void	close_game(t_game *game)
@@ -37,4 +41,20 @@ int	player_keys(keys_t key)
 		return (1);
 	else
 		return (0);
+}
+
+void	unvisible_map(t_game *game)
+{
+	game->imgs.minimap->instances->enabled = 0;
+	game->imgs.miniwall_x->enabled = 0;
+	game->imgs.miniwall_y->enabled = 0;
+	game->imgs.player->enabled = 0;
+}
+
+void	visible_map(t_game *game)
+{
+	game->imgs.minimap->instances->enabled = 1;
+	game->imgs.miniwall_x->enabled = 1;
+	game->imgs.miniwall_y->enabled = 1;
+	game->imgs.player->enabled = 1;
 }

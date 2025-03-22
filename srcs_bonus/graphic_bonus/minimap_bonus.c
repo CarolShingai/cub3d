@@ -6,11 +6,11 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 21:38:58 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/22 04:47:27 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/22 16:04:27 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../include/cub3d_bonus.h"
 
 mlx_image_t	*create_image(mlx_t *mlx, char *path)
 {

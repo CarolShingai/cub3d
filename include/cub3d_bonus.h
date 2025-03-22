@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/22 16:12:02 by cshingai         ###   ########.fr       */
+/*   Created: 2025/03/22 14:18:00 by cshingai          #+#    #+#             */
+/*   Updated: 2025/03/22 16:00:39 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include "colors.h"
 # include <stdlib.h>
@@ -177,7 +177,6 @@ typedef struct s_game
 	double		*frame_time;
 }	t_game;
 
-
 // error.c
 void	ft_error(char *msg);
 
@@ -277,5 +276,14 @@ mlx_texture_t	*init_texture(char *path);
 void	load_texture(t_game *game);
 void	clear_textures(t_game *game);
 
+//BONUS
+// minimap_bonus.c
+void	draw_map(t_game *game);
+void	insert_minimap(t_game *game);
+mlx_image_t	*create_image(mlx_t *mlx, char *path);
+int		is_horizontal_wall(t_game *game, int x, int y);
+int 	is_vertical_wall(t_game *game, int x, int y);
+int		is_player(t_game *game, int x, int y);
+void	setting_minimap(t_game *game);
 
 #endif

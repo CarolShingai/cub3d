@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 17:03:05 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/22 16:13:19 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/22 16:03:23 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3d_bonus.h"
 
 // color RGB
 
@@ -41,6 +41,7 @@ void	init_game(t_game *game, t_cub3d *cub3d)
 	set_position(game);
 	load_texture(game);
 	setting_window(game);
+	setting_minimap(game);
 	mlx_loop_hook(game->mlx, &draw_view, game);
 	mlx_key_hook(game->mlx, &key_action, game);
 	mlx_loop(game->mlx);
