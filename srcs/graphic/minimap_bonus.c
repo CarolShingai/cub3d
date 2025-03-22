@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 21:38:58 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/22 04:15:29 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/22 04:47:27 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,12 @@ mlx_image_t	*create_image(mlx_t *mlx, char *path)
 
 void	insert_minimap(t_game *game)
 {
-	game->minimap.img =
+	game->imgs.minimap =
 		create_image(game->mlx, "textures/Lumon_case/minimap/minimap.png");
 	game->imgs.miniwall_x = create_image(game->mlx, "textures/Lumon_case/minimap/minix.png");
 	game->imgs.miniwall_y = create_image(game->mlx, "textures/Lumon_case/minimap/miniy.png");
 	game->imgs.player = create_image(game->mlx, "textures/Lumon_case/minimap/player.png");
+	// game->imgs.minimap->instances->enabled = 1;
 }
 
 void	draw_map(t_game *game)
@@ -44,7 +45,7 @@ void	draw_map(t_game *game)
 	int	draw_y;
 
 	x = 0;
-	mlx_image_to_window(game->mlx, game->minimap.img, 10, 10);
+	mlx_image_to_window(game->mlx, game->imgs.minimap, 10, 10);
 	while(game->cub3d.map[x])
 	{
 		y = 0;
@@ -105,3 +106,22 @@ int	is_player(t_game *game, int x, int y)
 	else
 		return (0);
 }
+
+void	setting_minimap(t_game *game)
+{
+	insert_minimap(game);
+	draw_map(game);
+	game->imgs.minimap->instances->enabled = 0;
+	game->imgs.miniwall_x->enabled = 0;
+	game->imgs.miniwall_y->enabled = 0;
+	game->imgs.player->enabled = 0;
+}
+
+// void	toggle_minimap(t_game *game, int visible)
+// {
+//     game->minimap_visible = visible;
+//     if (game->minimap_visible)
+//         draw_map(game);
+//     else
+//         setting_minimap(game);
+// }

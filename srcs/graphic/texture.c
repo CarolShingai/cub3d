@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 22:00:07 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/21 04:51:40 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/22 04:30:02 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,4 @@ void	clear_textures(t_game *game)
 	mlx_delete_texture(game->texture.west);
 	mlx_delete_texture(game->texture.east);
 }
+

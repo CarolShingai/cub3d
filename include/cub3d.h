@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/22 03:54:23 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/22 04:51:24 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,12 +166,12 @@ typedef struct s_game
 {
 	mlx_t		*mlx;
 	t_imgs		imgs;
-	t_imgs		minimap;
 	t_view		view;
 	t_cub3d		cub3d;
 	t_texture	texture;
 	t_dda		ray;
 	char		pov;
+	int			minimap_visible;
 	int			ceiling;
 	int			floor;
 	double		*frame_time;
@@ -260,6 +260,8 @@ void	clear_image(mlx_image_t *img, uint32_t color);
 void	key_action(mlx_key_data_t keydata, void *param);
 void	close_game(t_game *game);
 int		player_keys(keys_t key);
+void	visible_map(t_game *game);
+void	unvisible_map(t_game *game);
 // moviments.c
 void	moviments(t_game *game, keys_t key);
 void	horizontal_moviments(t_game *game, keys_t key, double m_speed, t_vector *new_pos);
@@ -281,8 +283,9 @@ void	clear_textures(t_game *game);
 void	draw_map(t_game *game);
 void	insert_minimap(t_game *game);
 mlx_image_t	*create_image(mlx_t *mlx, char *path);
-int	is_horizontal_wall(t_game *game, int x, int y);
-int is_vertical_wall(t_game *game, int x, int y);
-int	is_player(t_game *game, int x, int y);
+int		is_horizontal_wall(t_game *game, int x, int y);
+int 	is_vertical_wall(t_game *game, int x, int y);
+int		is_player(t_game *game, int x, int y);
+void	setting_minimap(t_game *game);
 
 #endif
