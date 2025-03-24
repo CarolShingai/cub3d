@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:18:00 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/22 16:00:39 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/24 19:25:42 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@
 
 # define WIDTH  1000
 # define HEIGHT 800
-# define TILE 18
-#define MINIMAP_START_X 132
+# define TILE 12
+#define MINIMAP_START_X 130
 #define MINIMAP_START_Y 150
 #define MINIMAP_END_X 550
 #define MINIMAP_END_Y 500
