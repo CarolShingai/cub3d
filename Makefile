@@ -48,6 +48,8 @@ SRCS_BONUS = ${addprefix srcs_bonus/, \
 			graphic_bonus/key_hook_bonus.c \
 			graphic_bonus/texture_bonus.c \
 			graphic_bonus/minimap_bonus.c \
+			graphic_bonus/collectable_bonus.c \
+			graphic_bonus/draw_collectibles_bonus.c \
 			main_bonus.c \
 			data_pipeline_bonus/validation_bonus.c \
 			data_pipeline_bonus/extract_bonus.c \

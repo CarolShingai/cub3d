@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/22 16:12:02 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/25 17:33:11 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ typedef struct s_texture
 	mlx_texture_t	*east;
 	mlx_texture_t	*west;
 }	t_texture;
-
 
 typedef struct s_colors
 {

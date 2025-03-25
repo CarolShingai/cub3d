@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 19:04:02 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/25 17:35:45 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/25 19:00:17 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	calcule_dist_to_side(t_dda *ray, t_game *game)
 void	algorithm_dda(t_dda *ray, t_game *game)
 {
 	if (game->cub3d.map[ray->map.y][ray->map.x] == 'C')
-		draw_map(game);
+		check_collectible(ray, game);
 	ray->hit_side = -1;
 	while (game->cub3d.map[ray->map.y][ray->map.x] != '1')
 	{

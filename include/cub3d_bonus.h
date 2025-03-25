@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:18:00 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/25 17:36:18 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/25 19:02:13 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 # define MINIMAP_START_Y 130
 # define MINIMAP_END_X 550
 # define MINIMAP_END_Y 500
+# define MAXCOLLECTIBLES 10
 
 enum e_is_map
 {
@@ -74,6 +75,7 @@ enum e_map_config
 	FLOOR,
 	CEILING
 };
+
 
 typedef struct s_imgs
 {
@@ -141,6 +143,12 @@ typedef struct s_wall
 	int		tex_step;
 }	t_wall;
 
+typedef struct s_collectible
+{
+	t_vector	pos;
+	int			collected;
+}	t_collectible;
+
 typedef struct s_view
 {
 	t_vector	player_pos;
@@ -173,6 +181,8 @@ typedef struct s_game
 	t_cub3d		cub3d;
 	t_texture	texture;
 	t_dda		ray;
+	t_collectible	collectibles[MAXCOLLECTIBLES];
+	int			num_collectibles;
 	char		pov;
 	int			minimap_visible;
 	int			ceiling;
@@ -291,7 +301,12 @@ int		is_player(t_game *game, int x, int y);
 void	setting_minimap(t_game *game);
 
 
-
-void	draw_collectible(t_dda *ray, t_game *game);
+//collectable_bonus.c
+void	draw_collectible(t_dda *ray, t_game *game, int index);
+void	init_collectables(t_game *game);
+void	get_collects_pos(t_game *game, t_collectible itens);
+void	collect_item(t_game *game, int x, int y);
+int		count_collectibles(t_game *game);
+void	check_collectible(t_dda *ray, t_game *game);
 
 #endif

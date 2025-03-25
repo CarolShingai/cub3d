@@ -6,13 +6,12 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 22:00:07 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/25 18:03:08 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/25 17:35:42 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-//fazer ft_error
 mlx_texture_t	*init_texture(char *path)
 {
 	mlx_texture_t	*new_img;
@@ -29,7 +28,7 @@ void	load_texture(t_game *game)
 	game->texture.south = init_texture(game->cub3d.config[2]);
 	game->texture.west = init_texture(game->cub3d.config[1]);
 	game->texture.east = init_texture(game->cub3d.config[2]);
-	game->texture.collectible = init_texture("textures/Lumon_case/collectable.png");
+	game->texture.collectible = init_texture("textures/Lumon_case/collectible.png");
 }
 
 void	clear_textures(t_game *game)
@@ -39,4 +38,3 @@ void	clear_textures(t_game *game)
 	mlx_delete_texture(game->texture.west);
 	mlx_delete_texture(game->texture.east);
 }
-
