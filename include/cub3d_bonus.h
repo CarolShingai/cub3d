@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:18:00 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/24 19:25:42 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/25 17:36:18 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@
 # define WIDTH  1000
 # define HEIGHT 800
 # define TILE 12
-#define MINIMAP_START_X 130
-#define MINIMAP_START_Y 150
-#define MINIMAP_END_X 550
-#define MINIMAP_END_Y 500
+# define MINIMAP_START_X 85
+# define MINIMAP_START_Y 130
+# define MINIMAP_END_X 550
+# define MINIMAP_END_Y 500
 
 enum e_is_map
 {
@@ -83,6 +83,7 @@ typedef struct s_imgs
 	mlx_image_t	*minimap;
 	mlx_image_t	*miniwall_x;
 	mlx_image_t	*miniwall_y;
+	mlx_image_t	*block;
 	mlx_image_t	*player;
 }	t_imgs;
 
@@ -92,6 +93,7 @@ typedef struct s_texture
 	mlx_texture_t	*south;
 	mlx_texture_t	*east;
 	mlx_texture_t	*west;
+	mlx_texture_t	*collectible;
 }	t_texture;
 
 
@@ -158,6 +160,7 @@ typedef struct s_cub3d
 	char	**config;
 	char	**map;
 	int		map_size;
+	int		map_width;
 	int		fd_extract;
 	int		fd_load;
 }	t_cub3d;
@@ -283,7 +286,12 @@ void	insert_minimap(t_game *game);
 mlx_image_t	*create_image(mlx_t *mlx, char *path);
 int		is_horizontal_wall(t_game *game, int x, int y);
 int 	is_vertical_wall(t_game *game, int x, int y);
+int		is_blocked_diagonal(t_game *game, int x, int y);
 int		is_player(t_game *game, int x, int y);
 void	setting_minimap(t_game *game);
+
+
+
+void	draw_collectible(t_dda *ray, t_game *game);
 
 #endif

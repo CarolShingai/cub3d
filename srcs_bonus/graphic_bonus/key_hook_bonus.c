@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 10:59:02 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/22 16:04:22 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/25 14:32:26 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	unvisible_map(t_game *game)
 	game->imgs.minimap->instances->enabled = 0;
 	game->imgs.miniwall_x->enabled = 0;
 	game->imgs.miniwall_y->enabled = 0;
+	game->imgs.block->enabled = 0;
 	game->imgs.player->enabled = 0;
 }
 
@@ -56,5 +57,6 @@ void	visible_map(t_game *game)
 	game->imgs.minimap->instances->enabled = 1;
 	game->imgs.miniwall_x->enabled = 1;
 	game->imgs.miniwall_y->enabled = 1;
+	game->imgs.block->enabled = 1;
 	game->imgs.player->enabled = 1;
 }

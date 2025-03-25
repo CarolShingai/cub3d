@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 19:04:39 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/03/22 16:07:05 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/24 21:10:58 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	init_cub3d(t_cub3d *cub3d)
 {
 	cub3d->map = NULL;
 	cub3d->map_size = 0;
+	cub3d->map_width = 0;
 	cub3d->config = ft_calloc(sizeof(char *), 7);
 }
 

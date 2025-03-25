@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:56:06 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/03/22 16:05:14 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/24 21:12:54 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,18 @@ void	read_map(t_cub3d *cub3d, int mode, int fd)
 			break;
 		is_map = check_line(line, is_map, cub3d, mode);
 		if (is_map == IS_MAP && mode == EXTRACT)
+		{
 			cub3d->map_size++;
+			if (ft_strlen(line) > cub3d->map_width)
+			{
+				printf("width\n, %d", cub3d->map_width);
+				cub3d->map_width = ft_strlen(line);
+			}
+		}
 		if (is_map == IS_MAP && mode == LOAD)
 			cub3d->map[i++] = ft_strdup(line);
 		free(line);
-	}
+	}	
 	free(line);
 	error_handling_extract(is_map, cub3d, fd, mode);
 }
