@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_collectibles.c                                :+:      :+:    :+:   */
+/*   draw_collectibles_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:56:38 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/25 19:00:37 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/25 20:20:02 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-void	draw_collectible(t_dda *ray, t_game *game, int index)
+void	draw_collectible(t_dda *ray, t_game *game)
 {
+	printf("draw collectible\n");
 	mlx_texture_t *sprite = game->texture.collectible;
 	t_wall collectible;
 	int y;

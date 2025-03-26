@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 19:04:02 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/25 19:00:17 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/25 20:34:54 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,14 @@ void	calcule_dist_to_side(t_dda *ray, t_game *game)
 //map vazio
 void	algorithm_dda(t_dda *ray, t_game *game)
 {
-	if (game->cub3d.map[ray->map.y][ray->map.x] == 'C')
-		check_collectible(ray, game);
 	ray->hit_side = -1;
 	while (game->cub3d.map[ray->map.y][ray->map.x] != '1')
 	{
+		if (game->cub3d.map[ray->map.y][ray->map.x] == 'C')
+		{
+			// printf("ENTRA CHECK\n");
+			check_collectible(ray, game);
+		}
 		if (ray->dist_to_side.x < ray->dist_to_side.y)
 		{
 			ray->dist_to_side.x += ray->delta_dist.x;

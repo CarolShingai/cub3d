@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:18:00 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/25 19:02:13 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/25 20:18:04 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -302,7 +302,7 @@ void	setting_minimap(t_game *game);
 
 
 //collectable_bonus.c
-void	draw_collectible(t_dda *ray, t_game *game, int index);
+void	draw_collectible(t_dda *ray, t_game *game);
 void	init_collectables(t_game *game);
 void	get_collects_pos(t_game *game, t_collectible itens);
 void	collect_item(t_game *game, int x, int y);

@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 17:03:05 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/25 18:26:00 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/25 20:44:46 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int32_t	main(int argc, char **argv)
 	game.cub3d = cub3d;
 	game.ceiling = 0;
 	game.floor = 0;
+	game.num_collectibles = 0;
 	init_game(&game, &cub3d);
 	return (EXIT_SUCCESS);
 }
