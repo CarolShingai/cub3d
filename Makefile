@@ -85,7 +85,7 @@ $(NAME_BONUS): libmlx  libft ft_printf $(OBJS_BONUS)
 	@cc $(FLAGS) $(OBJS_BONUS) $(LIBS) -o $(NAME_BONUS)
 	@echo "$(GREEN)cub3d_bonus is read!✅$(RESET)"
 
-obj_bonus/%.o: srcs_bonus/%.c
+obj_bonus/%.o: srcs_bonus/%.c include/cub3d_bonus.h
 	@mkdir -p obj_bonus $(dir $@)
 	@cc $(FLAGS) -c $< -o $@
 

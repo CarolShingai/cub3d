@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 17:01:52 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/25 21:04:28 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/26 21:20:44 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	init_collectables(t_game *game)
 	{
 		game->collectibles[i].pos = create_vector(-1, -1);
 		game->collectibles[i].collected = 0;
-		get_collects_pos(game, game->collectibles[i]);
+		get_collects_pos(game, &game->collectibles[i]);
 		i++;
 	}
 }
 
-void	get_collects_pos(t_game *game, t_collectible itens)
+void	get_collects_pos(t_game *game, t_collectible *itens)
 {
 	int	x;
 	int	y;
@@ -41,8 +41,8 @@ void	get_collects_pos(t_game *game, t_collectible itens)
 		{
 			if (game->cub3d.map[x][y] == 'C')
 			{
-				itens.pos = create_vector(x + 0.5,  y + 0.5);
-				itens.collected = 0;
+				itens->pos = create_vector(x + 0.5,  y + 0.5);
+				itens->collected = 0;
 				break ;
 			}
 			y++;
@@ -78,22 +78,32 @@ void	collect_item(t_game *game, int x, int y)
 
 void	check_collectible(t_dda *ray, t_game *game)
 {
-	int i;
+	float	dist;
 
-	i = 0;
-	// printf("num_collectibles: %d %d\n", game->num_collectibles, i);
-	while (i <= game->num_collectibles)
+	dist = sqrt(pow(game->view.player_pos.x - ray->map.x, 2) +
+				pow(game->view.player_pos.y - ray->map.y, 2));
+	if (dist < ray->collectible_dist)
 	{
-		printf("map[%d][%d]: %c\n", ray->map.y, ray->map.x, game->cub3d.map[ray->map.y][ray->map.x]);
-		printf("map[%f][%f]:\n", game->collectibles[i].pos.x, game->collectibles[i].pos.y);
-		if (!game->collectibles[i].collected &&
-			(int)game->collectibles[i].pos.x == ray->map.x &&
-			(int)game->collectibles[i].pos.y == ray->map.y)
-		{
-			printf("collectible\n");
-			game->collectibles[i].collected = 1;
-			draw_collectible(ray, game);
-		}
-		i++;
+		ray->collectible_dist = dist;
+		ray->collectible_pos = create_vector(ray->map.x, ray->map.y);
+		ray->has_collectible = true;
 	}
+}
+
+void check_has_collectibles(t_game *game)
+{
+    for (int i = 0; i < game->num_collectibles; i++)
+    {
+        if (!game->collectibles[i].collected)
+        {
+            float dist = sqrt(pow(game->view.player_pos.x - game->collectibles[i].pos.x, 2) +
+                              pow(game->view.player_pos.y - game->collectibles[i].pos.y, 2));
+
+            if (dist < 0.5) // Distância mínima para coletar
+            {
+                game->collectibles[i].collected = true;
+                // game->score++; // Atualiza pontuação, se houver
+            }
+        }
+    }
 }

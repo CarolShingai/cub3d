@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 19:04:02 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/25 20:34:54 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/26 22:11:10 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ void	draw_rays(t_game *game)
 	t_dda		ray;
 
 	pixel = 0;
+	ray.has_collectible = 0;
+	ray.collectible_dist = HUGE_VALF;
+	ray.is_collect_start = 1;
 	while (pixel < WIDTH)
 	{
 		multiplier = 2 * pixel / (float)WIDTH - 1;
@@ -29,9 +32,26 @@ void	draw_rays(t_game *game)
 		calcule_dist_to_side(&ray, game);
 		algorithm_dda(&ray, game);
 		draw_wall(&ray, game, pixel);
+		if (ray.has_collectible)
+			update_collectible_pos_pixel(&ray, game, pixel);
 		pixel++;
 	}
+	draw_collectible(&ray, game);
 }
+
+void	update_collectible_pos_pixel(t_dda *ray, t_game *game, int pixel)
+{
+	(void)game;
+	if (ray->is_collect_start)
+	{
+		ray->is_collect_start = 0;
+		ray->collec_start = pixel;
+	}
+	else
+		ray->collec_end = pixel;
+	// ray->has_collectible = 0;
+}
+
 
 void	calcule_delta_dist(t_dda *ray)
 {
@@ -81,10 +101,7 @@ void	algorithm_dda(t_dda *ray, t_game *game)
 	while (game->cub3d.map[ray->map.y][ray->map.x] != '1')
 	{
 		if (game->cub3d.map[ray->map.y][ray->map.x] == 'C')
-		{
-			// printf("ENTRA CHECK\n");
 			check_collectible(ray, game);
-		}
 		if (ray->dist_to_side.x < ray->dist_to_side.y)
 		{
 			ray->dist_to_side.x += ray->delta_dist.x;

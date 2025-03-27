@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:18:00 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/25 20:18:04 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/26 22:10:20 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ typedef struct s_imgs
 	mlx_image_t	*miniwall_y;
 	mlx_image_t	*block;
 	mlx_image_t	*player;
+	mlx_image_t	*collectible;
 }	t_imgs;
 
 typedef struct s_texture
@@ -129,6 +130,13 @@ typedef struct s_dda
 	int			hit_side;
 	int			side;
 	float		perpen_dist;
+	// medo
+	bool		has_collectible; // Se encontrou um coletável
+	float		collectible_dist; // Distância do coletável
+	t_vector 	collectible_pos;
+	int is_collect_start;
+	int	collec_start;
+	int	collec_end;
 }	t_dda;
 
 typedef struct s_wall
@@ -302,9 +310,11 @@ void	setting_minimap(t_game *game);
 
 
 //collectable_bonus.c
-void	draw_collectible(t_dda *ray, t_game *game);
+void	update_collectible_pos_pixel(t_dda *ray, t_game *game, int pixel);
+// void draw_collectible(t_game *game);
+void draw_collectible(t_dda *ray, t_game *game);
 void	init_collectables(t_game *game);
-void	get_collects_pos(t_game *game, t_collectible itens);
+void	get_collects_pos(t_game *game, t_collectible *itens);
 void	collect_item(t_game *game, int x, int y);
 int		count_collectibles(t_game *game);
 void	check_collectible(t_dda *ray, t_game *game);
