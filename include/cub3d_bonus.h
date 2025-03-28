@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:18:00 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/27 21:34:18 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/28 20:08:25 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@
 # define MINIMAP_END_X 550
 # define MINIMAP_END_Y 500
 # define MAXCOLLECTIBLES 10
+# define MAX_HEIGHT_COLLECTIBLE 100
 
 enum e_is_map
 {
@@ -196,6 +197,7 @@ typedef struct s_game
 	int			ceiling;
 	int			floor;
 	double		*frame_time;
+	int			key_collect;
 }	t_game;
 
 // error.c
@@ -311,12 +313,15 @@ void	setting_minimap(t_game *game);
 
 //collectable_bonus.c
 void	update_collectible_pos_pixel(t_dda *ray, t_game *game, int pixel);
-// void draw_collectible(t_game *game);
-void draw_collectible(t_dda *ray, t_game *game);
 void	init_collectables(t_game *game);
 void	get_collects_pos(t_game *game, t_collectible *itens);
 void	collect_item(t_game *game, int x, int y);
 int		count_collectibles(t_game *game);
 void	check_collectible(t_dda *ray, t_game *game);
+//draw_collectibles_bonus.c
+void	draw_collectible(t_dda *ray, t_game *game);
+void	collect_dimensions(t_dda *ray, int *draw_starty, int *draw_endy, int *sprite_height);
+void	render_collectible(t_game *game, int draw_starty, int draw_endy, int sprite_height, mlx_texture_t *tex);
+
 
 #endif

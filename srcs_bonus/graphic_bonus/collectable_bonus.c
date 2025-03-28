@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 17:01:52 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/26 21:20:44 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/28 20:09:06 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int	count_collectibles(t_game *game)
 void	collect_item(t_game *game, int x, int y)
 {
 		game->cub3d.map[y][x] = '0';
+		game->ray.has_collectible = false;
+		game->key_collect = 1;
 }
 
 void	check_collectible(t_dda *ray, t_game *game)
@@ -88,22 +90,24 @@ void	check_collectible(t_dda *ray, t_game *game)
 		ray->collectible_pos = create_vector(ray->map.x, ray->map.y);
 		ray->has_collectible = true;
 	}
+	if (dist < 0.5)
+		collect_item(game, ray->map.x, ray->map.y);
 }
 
-void check_has_collectibles(t_game *game)
-{
-    for (int i = 0; i < game->num_collectibles; i++)
-    {
-        if (!game->collectibles[i].collected)
-        {
-            float dist = sqrt(pow(game->view.player_pos.x - game->collectibles[i].pos.x, 2) +
-                              pow(game->view.player_pos.y - game->collectibles[i].pos.y, 2));
+// void check_has_collectibles(t_game *game)
+// {
+//     for (int i = 0; i < game->num_collectibles; i++)
+//     {
+//         if (!game->collectibles[i].collected)
+//         {
+//             float dist = sqrt(pow(game->view.player_pos.x - game->collectibles[i].pos.x, 2) +
+//                               pow(game->view.player_pos.y - game->collectibles[i].pos.y, 2));
 
-            if (dist < 0.5) // Distância mínima para coletar
-            {
-                game->collectibles[i].collected = true;
-                // game->score++; // Atualiza pontuação, se houver
-            }
-        }
-    }
-}
+//             if (dist < 0.5) // Distância mínima para coletar
+//             {
+//                 game->collectibles[i].collected = true;
+//                 // game->score++; // Atualiza pontuação, se houver
+//             }
+//         }
+//     }
+// }
