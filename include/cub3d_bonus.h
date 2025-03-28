@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:18:00 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/26 22:10:20 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/27 21:34:18 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,10 +133,10 @@ typedef struct s_dda
 	// medo
 	bool		has_collectible; // Se encontrou um coletável
 	float		collectible_dist; // Distância do coletável
-	t_vector 	collectible_pos;
-	int is_collect_start;
-	int	collec_start;
-	int	collec_end;
+	t_vector	collectible_pos;
+	int			is_collect_start;
+	int			collec_start;
+	int			collec_end;
 }	t_dda;
 
 typedef struct s_wall
