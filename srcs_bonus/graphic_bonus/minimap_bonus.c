@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 21:38:58 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/27 19:23:29 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/29 03:06:10 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	draw_map(t_game *game)
 			// if (is_blocked_diagonal(game, y, x))
 			// 	mlx_image_to_window(game->mlx, game->imgs.block, draw_x, draw_y);
 			if (is_player(game, x, y))
-				mlx_image_to_window(game->mlx, game->imgs.player, draw_x, draw_y + 10);
+				mlx_image_to_window(game->mlx, game->imgs.player, draw_x, draw_y);
 			y++;
 		}
 		x++;

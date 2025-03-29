@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 17:01:52 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/28 20:09:06 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/29 02:43:25 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	check_collectible(t_dda *ray, t_game *game)
 		ray->collectible_pos = create_vector(ray->map.x, ray->map.y);
 		ray->has_collectible = true;
 	}
-	if (dist < 0.5)
+	if (dist < 0.8)
 		collect_item(game, ray->map.x, ray->map.y);
 }
 

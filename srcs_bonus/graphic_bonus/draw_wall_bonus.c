@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 19:04:11 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/27 22:01:53 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/29 21:19:08 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,31 @@
 
 void	draw_wall(t_dda *ray, t_game *game, int pixel)
 {
-	uint32_t		color;
 	mlx_texture_t	*wall_img;
 	t_wall			wall;
-	int				y;
 
 	wall.wall_height = HEIGHT / ray->perpen_dist;
 	wall.line_starty = fmax(0, (HEIGHT / 2 - wall.wall_height / 2));
 	wall.line_endy = fmin(HEIGHT, (HEIGHT / 2 + wall.wall_height / 2));
-	y = wall.line_starty;
 	set_wall_position(ray);
+	// printf("ray->hit_side: %d\n", ray->hit_side);
 	wall_img = get_texture(ray, game);
 	calc_tex_position(&wall, ray, wall_img, game);
-	while (y < wall.line_endy)
+	draw_texture_column(game, wall_img, pixel, &wall);
+}
+
+void	draw_texture_column(t_game *game, mlx_texture_t *texture, int pixel, t_wall *wall)
+{
+	uint32_t	color;
+	int			y;
+	
+	y = wall->line_starty;
+	while (y < wall->line_endy)
 	{
-		wall.tex_y = (int)((y - (HEIGHT / 2 - wall.wall_height / 2))
-				/ (double)wall.wall_height * wall_img->height);
-		wall.tex_y = fmax(0, fmin(wall.tex_y, wall_img->height - 1));
-		color = get_pixel_color(wall_img, wall.tex_x, wall.tex_y);
+		wall->tex_y = (int)((y - (HEIGHT / 2 - wall->wall_height / 2))
+				/ (double)wall->wall_height * texture->height);
+		wall->tex_y = fmax(0, fmin(wall->tex_y, texture->height - 1));
+		color = get_pixel_color(texture, wall->tex_x, wall->tex_y);
 		mlx_put_pixel(game->imgs.img, pixel, y, color);
 		y++;
 	}
@@ -57,6 +64,8 @@ void	set_wall_position(t_dda *ray)
 
 mlx_texture_t	*get_texture(t_dda *ray, t_game *game)
 {
+	if (game->cub3d.map[ray->map.y][ray->map.x] == 'X')
+		return (game->texture.exit);
 	if (ray->side == NORTH)
 		return (game->texture.north);
 	else if (ray->side == SOUTH)

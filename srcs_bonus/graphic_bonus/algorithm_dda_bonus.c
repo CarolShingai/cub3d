@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 19:04:02 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/28 20:08:42 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/29 21:16:20 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	draw_rays(t_game *game)
 	ray.has_collectible = 0;
 	ray.collectible_dist = HUGE_VALF;
 	ray.is_collect_start = 1;
+	ray.dist_exit = HUGE_VALF;
 	while (pixel < WIDTH)
 	{
 		multiplier = 2 * pixel / (float)WIDTH - 1;
@@ -98,7 +99,8 @@ void	calcule_dist_to_side(t_dda *ray, t_game *game)
 void	algorithm_dda(t_dda *ray, t_game *game)
 {
 	ray->hit_side = -1;
-	while (game->cub3d.map[ray->map.y][ray->map.x] != '1')
+	while (game->cub3d.map[ray->map.y][ray->map.x] != '1' 
+			&& game->cub3d.map[ray->map.y][ray->map.x] != 'X')
 	{
 		if (game->cub3d.map[ray->map.y][ray->map.x] == 'C')
 			check_collectible(ray, game);
@@ -117,10 +119,10 @@ void	algorithm_dda(t_dda *ray, t_game *game)
 	}
 	if (ray->hit_side == 0)
 		ray->perpen_dist = (ray->map.x - game->view.player_pos.x
-				+ (1.0 - ray->step.x) / 2) / ray->ray_dir.x;
+		+ (1.0 - ray->step.x) / 2) / ray->ray_dir.x;
 	else
 		ray->perpen_dist = (ray->map.y - game->view.player_pos.y
-				+ (1.0 - ray->step.y) / 2) / ray->ray_dir.y;
+			+ (1.0 - ray->step.y) / 2) / ray->ray_dir.y;
 }
 
 void	update_ray_map(t_game *game, t_dda *ray)

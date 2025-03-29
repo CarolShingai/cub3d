@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:18:00 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/28 20:08:25 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/29 18:14:44 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ enum e_map_config
 	WEST,
 	EAST,
 	FLOOR,
-	CEILING
+	CEILING,
+	EXIT
 };
 
 
@@ -97,6 +98,7 @@ typedef struct s_texture
 	mlx_texture_t	*south;
 	mlx_texture_t	*east;
 	mlx_texture_t	*west;
+	mlx_texture_t	*exit;
 	mlx_texture_t	*collectible;
 }	t_texture;
 
@@ -138,6 +140,7 @@ typedef struct s_dda
 	int			is_collect_start;
 	int			collec_start;
 	int			collec_end;
+	float			dist_exit;
 }	t_dda;
 
 typedef struct s_wall
@@ -275,6 +278,7 @@ void	set_wall_position(t_dda *ray);
 mlx_texture_t	*get_texture(t_dda *ray, t_game *game);
 void	calc_tex_position(t_wall *wall, t_dda *ray, mlx_texture_t *wall_img, t_game *game);
 uint32_t	get_pixel_color(mlx_texture_t *tex, int x, int y);
+void	draw_texture_column(t_game *game, mlx_texture_t *texture, int pixel, t_wall *wall);
 // draw_view.c
 void	draw_view(void *param);
 void	clear_image(mlx_image_t *img, uint32_t color);
@@ -322,6 +326,7 @@ void	check_collectible(t_dda *ray, t_game *game);
 void	draw_collectible(t_dda *ray, t_game *game);
 void	collect_dimensions(t_dda *ray, int *draw_starty, int *draw_endy, int *sprite_height);
 void	render_collectible(t_game *game, int draw_starty, int draw_endy, int sprite_height, mlx_texture_t *tex);
-
+//exit_bonus.c
+void	check_exit(t_dda *ray, t_game *game);
 
 #endif
