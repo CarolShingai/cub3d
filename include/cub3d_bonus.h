@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:18:00 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/29 18:14:44 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/30 00:04:28 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -327,6 +327,6 @@ void	draw_collectible(t_dda *ray, t_game *game);
 void	collect_dimensions(t_dda *ray, int *draw_starty, int *draw_endy, int *sprite_height);
 void	render_collectible(t_game *game, int draw_starty, int draw_endy, int sprite_height, mlx_texture_t *tex);
 //exit_bonus.c
-void	check_exit(t_dda *ray, t_game *game);
+void	check_exit(t_game *game, t_vector new_pos);
 
 #endif

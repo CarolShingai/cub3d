@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 20:24:32 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/22 16:04:35 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/30 00:06:54 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,12 @@ int	check_collision_mov(t_game *game, t_vector *new_pos, float margin)
 	y = (int)(new_pos->y + margin * verify_signal(new_pos->y
 				- game->view.player_pos.y));
 	if (game->cub3d.map[(int)new_pos->y][x] == '1'
-		|| game->cub3d.map[(int)new_pos->y][x] == ' ')
+		|| game->cub3d.map[(int)new_pos->y][x] == ' ' 
+		|| (game->cub3d.map[(int)new_pos->y][x] == 'X' && game->key_collect == 0))
 		return (1);
 	if (game->cub3d.map[y][(int)new_pos->x] == '1'
-		|| game->cub3d.map[y][(int)new_pos->x] == ' ')
+		|| game->cub3d.map[y][(int)new_pos->x] == ' ' 
+		|| (game->cub3d.map[y][(int)new_pos->x] == 'X' && game->key_collect == 0))
 		return (1);
 	return (0);
 }
