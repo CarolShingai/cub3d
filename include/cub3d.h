@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/25 17:33:11 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/31 15:47:55 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,7 +257,7 @@ void	draw_view(void *param);
 void	clear_image(mlx_image_t *img, uint32_t color);
 // key_hook
 void	key_action(mlx_key_data_t keydata, void *param);
-void	close_game(t_game *game);
+void	clear_game(t_game *game);
 int		player_keys(keys_t key);
 void	visible_map(t_game *game);
 void	unvisible_map(t_game *game);

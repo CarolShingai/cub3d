@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 17:01:52 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/29 02:43:25 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/01 19:03:13 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,20 @@
 void	init_collectables(t_game *game)
 {
 	int i;
+	// t_collectible *new_node;
 
 	i = 0;
+	
 	game->num_collectibles = count_collectibles(game);
-	// printf("num_collectibles: %d\n", game->num_collectibles);
 	while (i <= game->num_collectibles)
 	{
 		game->collectibles[i].pos = create_vector(-1, -1);
 		game->collectibles[i].collected = 0;
 		get_collects_pos(game, &game->collectibles[i]);
+		// new_node = create_node(game->collectibles[i].pos, game);
+		// if (!new_node)
+		// 	ft_error("Error creating collectible node");
+		// add_node(&new_node, game->collectibles[i].pos, game);
 		i++;
 	}
 }
@@ -78,36 +83,13 @@ void	collect_item(t_game *game, int x, int y)
 		game->key_collect = 1;
 }
 
-void	check_collectible(t_dda *ray, t_game *game)
+void	check_collectible_dda(t_dda *ray, t_game *game)
 {
-	float	dist;
-
-	dist = sqrt(pow(game->view.player_pos.x - ray->map.x, 2) +
-				pow(game->view.player_pos.y - ray->map.y, 2));
-	if (dist < ray->collectible_dist)
-	{
-		ray->collectible_dist = dist;
-		ray->collectible_pos = create_vector(ray->map.x, ray->map.y);
-		ray->has_collectible = true;
-	}
-	if (dist < 0.8)
-		collect_item(game, ray->map.x, ray->map.y);
+	(void)game;
+	ray->has_collectible = true;
+	if (ray->dist_to_side.x < ray->dist_to_side.y)
+		ray->collectible_dist = ray->dist_to_side.x;
+	else
+		ray->collectible_dist = ray->dist_to_side.y;
+	ray->collectible_pos = create_vector(ray->map.x, ray->map.y);
 }
-
-// void check_has_collectibles(t_game *game)
-// {
-//     for (int i = 0; i < game->num_collectibles; i++)
-//     {
-//         if (!game->collectibles[i].collected)
-//         {
-//             float dist = sqrt(pow(game->view.player_pos.x - game->collectibles[i].pos.x, 2) +
-//                               pow(game->view.player_pos.y - game->collectibles[i].pos.y, 2));
-
-//             if (dist < 0.5) // Distância mínima para coletar
-//             {
-//                 game->collectibles[i].collected = true;
-//                 // game->score++; // Atualiza pontuação, se houver
-//             }
-//         }
-//     }
-// }

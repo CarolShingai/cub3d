@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 18:44:27 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/29 23:56:50 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/03/31 22:51:53 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	moviments(t_game *game, keys_t key)
 	if (!collision(game, &new_pos))
 	{
 		check_exit(game, new_pos);
+		check_collision_collectable(game, &new_pos, 0.001);
 		game->view.player_pos.x = new_pos.x;
 		game->view.player_pos.y = new_pos.y;
 		game->imgs.player->instances[0].x = MINIMAP_START_X + (game->view.player_pos.x * TILE);

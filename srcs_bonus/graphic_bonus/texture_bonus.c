@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 22:00:07 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/29 23:53:18 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/01 19:05:12 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,6 @@ void	load_texture(t_game *game)
 	game->texture.west = init_texture(game->cub3d.config[1]);
 	game->texture.east = init_texture(game->cub3d.config[0]);
 	game->texture.exit = init_texture("textures/Lumon_case/exit.png");
-	game->texture.collectible = init_texture("textures/Lumon_case/keycard.png");
-}
-
-void	clear_textures(t_game *game)
-{
-	mlx_delete_texture(game->texture.north);
-	mlx_delete_texture(game->texture.south);
-	mlx_delete_texture(game->texture.west);
-	mlx_delete_texture(game->texture.east);
+	game->texture.collectible_0 = init_texture("textures/Lumon_case/keycard.png");
+	// game->texture.collectible_1 = init_texture("textures/Lumon_case/collectable.png");
 }

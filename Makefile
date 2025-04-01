@@ -36,7 +36,7 @@ SRCS = ${addprefix srcs/, \
 }
 
 SRCS_BONUS = ${addprefix srcs_bonus/, \
-			graphic_bonus/error_bonus.c \
+			graphic_bonus/clear_game_bonus.c \
 			graphic_bonus/draw_background_bonus.c \
 			graphic_bonus/vector_utils_bonus.c \
 			graphic_bonus/setting_game_bonus.c \
@@ -49,6 +49,7 @@ SRCS_BONUS = ${addprefix srcs_bonus/, \
 			graphic_bonus/texture_bonus.c \
 			graphic_bonus/minimap_bonus.c \
 			graphic_bonus/collectable_bonus.c \
+			graphic_bonus/collectibles_utils_bonus.c\
 			graphic_bonus/draw_collectibles_bonus.c \
 			graphic_bonus/exit_bonus.c \
 			main_bonus.c \

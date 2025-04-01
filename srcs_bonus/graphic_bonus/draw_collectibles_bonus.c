@@ -6,78 +6,108 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:56:38 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/28 19:48:18 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/01 19:00:47 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-// void draw_collectible(t_dda *ray, t_game *game)
+//colocar uma flag para indicar o que atingiu
+// void draw_sprite(t_dda *ray, t_game *game)
 // {
-// 	int	draw_starty;
-// 	int	draw_endy;
-// 	int	sprite_height;
-
-// 	mlx_texture_t *tex = game->texture.collectible;
-
-// 	collect_dimensions(ray, &draw_starty, &draw_endy, &sprite_height);
-// 	render_collectible(game, draw_starty, draw_endy, sprite_height, tex);
+// 	t_sprite	sprite;
+// 	mlx_texture_t	*sprite_img;
+	
+// 	if (!ray->has_collectible || ray->collectible_dist == HUGE_VALF)
+// 		return;
+// 	sprite_img = game->texture.collectible_0;
+// 	if (!sprite_img)
+// 		return;
+// 	sprite_dimensions(ray, &sprite);
+// 	draw_sprite_column(game, ray, &sprite, sprite_img);
 // }
 
-// void	collect_dimensions(t_dda *ray, int *draw_starty, int *draw_endy, int *sprite_height)
+// void	sprite_dimensions(t_dda *ray, t_sprite *sprite)
 // {
-// 	*sprite_height = HEIGHT / ray->collectible_dist;
-// 	*draw_starty = fmax(0, HEIGHT / 2 - *sprite_height / 2);
-// 	*draw_endy = fmax(0, HEIGHT / 2 - *sprite_height / 2);
+// 	sprite->sprite_height = HEIGHT / ray->collectible_dist;
+// 	sprite->draw_starty = fmax(0, (HEIGHT / 2) - (sprite->sprite_height / 2));
+// 	sprite->draw_endy = fmin(HEIGHT, (HEIGHT / 2) + (sprite->sprite_height / 2));
 // }
 
-// void	render_collectible(t_game *game, int draw_starty, int draw_endy, int sprite_height, mlx_texture_t *tex)
+// void	draw_sprite_column(t_game *game, t_dda *ray, t_sprite *sprite, mlx_texture_t *tex)
 // {
-// 	int	x;
+// 	int	pixel;
 // 	int	y;
-// 	int	tex_x;
-// 	int	tex_y;
-
 // 	uint32_t color;
-// 	x = game->ray.collec_start;
-// 	while(x <= game->ray.collec_end)
+	
+// 	pixel = ray->collec_start;
+// 	while(pixel <= ray->collec_end)
 // 	{
-// 		y = draw_starty;
-// 		while (y < draw_endy)
+// 		y = sprite->draw_starty;
+// 		while (y < sprite->draw_endy)
 // 		{
-// 			tex_x = (x - game->ray.collec_start) * tex->width / (game->ray.collec_start - game->ray.collec_end + 1);
-// 			tex_y = (y - draw_starty) * tex->height / sprite_height;
-// 			color = get_pixel_color(tex, tex_x, tex_y);
-// 			if (color == 0)
-// 				continue;
-// 			mlx_put_pixel(game->imgs.img, x, y, color);
+// 			sprite->tex_x = (pixel - ray->collec_start) * tex->width / (ray->collec_end - ray->collec_start + 1);
+// 			sprite->tex_y = (y - sprite->draw_starty) * tex->height / sprite->sprite_height;
+// 			color = get_pixel_color(tex, sprite->tex_x, sprite->tex_y);
+// 			if (color != 0)
+// 				mlx_put_pixel(game->imgs.img, pixel, y, color);
 // 			y++;
 // 		}
-// 		x++;
+// 		pixel++;
 // 	}
 // }
 
-void draw_collectible(t_dda *ray, t_game *game)
+void draw_collectible(t_dda *ray, t_game *game, int pixel)
 {
-	mlx_texture_t *tex = game->texture.collectible;
+    mlx_texture_t *tex = game->texture.collectible_0;
+    t_wall wall;
 
-	if (!ray->has_collectible || ray->collectible_dist == HUGE_VALF)
+    if (ray->has_collectible == 0 || !tex) 
 		return;
-	if (!tex)
+	if (ray->collectible_dist >= game->z_buffer[pixel])
 		return;
-	int sprite_height = HEIGHT / ray->collectible_dist;
-	int draw_start_y = fmax(0, HEIGHT / 2 - sprite_height / 2);
-	int draw_end_y = fmin(HEIGHT, HEIGHT / 2 + sprite_height / 2);
-		for (int x = ray->collec_start; x <= ray->collec_end; x++)
+    wall.wall_height = HEIGHT / ray->collectible_dist;
+    wall.line_starty = fmax(0, (HEIGHT - wall.wall_height) / 2);
+    wall.line_endy = fmin(HEIGHT, (HEIGHT + wall.wall_height) / 2);
+	hover_effect(game, &wall);
+	if (ray->hit_side == 1)
+        wall.tex_x = (int)((game->view.player_pos.x + 
+			ray->collectible_dist * ray->ray_dir.x) * tex->width) % tex->width;
+	else
+		wall.tex_x = (int)((game->view.player_pos.y + 
+			ray->collectible_dist * ray->ray_dir.y) * tex->width) % tex->width;
+	wall.tex_x = fmax(10, fmin(wall.tex_x, tex->width - 1));
+	draw_transparent_column(game, ray, tex, pixel, &wall);
+}
+
+void	draw_transparent_column(t_game *game, t_dda *ray, mlx_texture_t *texture, int pixel, t_wall *wall)
+{
+	uint32_t	color;
+	int			y;
+	
+	y = wall->line_starty;
+	(void)ray;
+	while (y < wall->line_endy)
+	{
+		if (ray->collectible_dist < game->z_buffer[pixel])
 		{
-			for (int y = draw_start_y; y < draw_end_y; y++)
-			{
-				int tex_x = (x - ray->collec_start) * tex->width / (ray->collec_end - ray->collec_start + 1);
-				int tex_y = (y - draw_start_y) * tex->height / sprite_height;
-				uint32_t color = get_pixel_color(tex, tex_x, tex_y);
-				if (color  == 0)
-					continue ;
-				mlx_put_pixel(game->imgs.img, x, y, color);
-			}
+			wall->tex_y = (int)((y - (HEIGHT / 2 - wall->wall_height / 2))
+					/ (double)wall->wall_height * texture->height);
+			wall->tex_y = fmax(0, fmin(wall->tex_y, texture->height - 1));
+			color = get_pixel_color(texture, wall->tex_x, wall->tex_y);
+			if (color != 0)
+				mlx_put_pixel(game->imgs.img, pixel, y, color);
 		}
+		y++;
+	}
+}
+
+void	hover_effect(t_game *game, t_wall *wall)
+{
+	float	hover_effect;
+	
+	hover_effect = sinf(game->animation.time * game->animation.hover_speed) 
+		* game->animation.hover_height * 30.0f;
+	wall->line_starty = hover_effect;
+	wall->line_endy -= hover_effect;
 }

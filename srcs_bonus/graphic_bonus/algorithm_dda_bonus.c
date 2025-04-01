@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 19:04:02 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/29 21:16:20 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/01 02:26:04 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,36 @@
 
 void	draw_rays(t_game *game)
 {
+	t_dda		ray[WIDTH];
 	int			pixel;
 	t_vector	camera_pixel;
 	float		multiplier;
-	t_dda		ray;
 
 	pixel = 0;
-	ray.has_collectible = 0;
-	ray.collectible_dist = HUGE_VALF;
-	ray.is_collect_start = 1;
-	ray.dist_exit = HUGE_VALF;
+	ray[pixel].has_collectible = 0;
+	ray[pixel].collectible_dist = HUGE_VALF;
+	ray[pixel].is_collect_start = 1;
 	while (pixel < WIDTH)
 	{
 		multiplier = 2 * pixel / (float)WIDTH - 1;
 		camera_pixel = mult_vector(game->view.camera_plane, multiplier);
-		ray.ray_dir = add_vector(game->view.player_dir, camera_pixel);
-		calcule_delta_dist(&ray);
-		calcule_dist_to_side(&ray, game);
-		algorithm_dda(&ray, game);
-		draw_wall(&ray, game, pixel);
-		if (ray.has_collectible)
-			update_collectible_pos_pixel(&ray, game, pixel);
+		ray[pixel].ray_dir = add_vector(game->view.player_dir, camera_pixel);
+		calcule_delta_dist(&ray[pixel]);
+		calcule_dist_to_side(&ray[pixel], game);
+		algorithm_dda(&ray[pixel], game);
+		draw_wall(&ray[pixel], game, pixel);
+		// if (ray.has_collectible) //importante
+		// 	update_collectible_pos_pixel(&ray, game, pixel);//importante
 		pixel++;
 	}
-	draw_collectible(&ray, game);
+	pixel = 0;
+    while (pixel < WIDTH)
+    {
+        if (ray[pixel].has_collectible && ray[pixel].collectible_dist < game->z_buffer[pixel])
+            draw_collectible(&ray[pixel], game, pixel);
+        pixel++;
+    }
+	// draw_sprite(&ray, game);
 }
 
 void	update_collectible_pos_pixel(t_dda *ray, t_game *game, int pixel)
@@ -50,7 +56,6 @@ void	update_collectible_pos_pixel(t_dda *ray, t_game *game, int pixel)
 	}
 	else
 		ray->collec_end = pixel;
-	// ray->has_collectible = 0;
 }
 
 
@@ -95,15 +100,17 @@ void	calcule_dist_to_side(t_dda *ray, t_game *game)
 	}
 }
 
-//map vazio
 void	algorithm_dda(t_dda *ray, t_game *game)
 {
 	ray->hit_side = -1;
-	while (game->cub3d.map[ray->map.y][ray->map.x] != '1' 
-			&& game->cub3d.map[ray->map.y][ray->map.x] != 'X')
+	ray->has_collectible = 0;
+	while (1)
 	{
-		if (game->cub3d.map[ray->map.y][ray->map.x] == 'C')
-			check_collectible(ray, game);
+		if (game->cub3d.map[ray->map.y][ray->map.x] == '1' 
+				|| game->cub3d.map[ray->map.y][ray->map.x] == 'X')
+			break;
+		if (game->cub3d.map[ray->map.y][ray->map.x] == 'C' && !ray->has_collectible )
+				check_collectible_dda(ray, game);
 		if (ray->dist_to_side.x < ray->dist_to_side.y)
 		{
 			ray->dist_to_side.x += ray->delta_dist.x;
@@ -122,7 +129,7 @@ void	algorithm_dda(t_dda *ray, t_game *game)
 		+ (1.0 - ray->step.x) / 2) / ray->ray_dir.x;
 	else
 		ray->perpen_dist = (ray->map.y - game->view.player_pos.y
-			+ (1.0 - ray->step.y) / 2) / ray->ray_dir.y;
+			+ (1.0 - ray->step.y) / 2) / ray->ray_dir.y;		
 }
 
 void	update_ray_map(t_game *game, t_dda *ray)
