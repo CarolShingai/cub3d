@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 19:40:51 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/03/22 16:06:59 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/01 06:02:14 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	check_map_chars(t_cub3d *cub3d)
 	int i;
 	int j;
 	int player;
-	
+
 	i = 0;
 	player = 0;
 	while (i < cub3d->map_size)
@@ -32,7 +32,7 @@ void	check_map_chars(t_cub3d *cub3d)
 		new_line_removal(&cub3d->map[i]);
 		while (cub3d->map[i][j])
 		{
-			if (!ft_strchr("01NSWE", cub3d->map[i][j])
+			if (!ft_strchr("01CNSWEX;", cub3d->map[i][j])
 				&& !ft_is_space(cub3d->map[i][j]))
 				error_handling_and_free(cub3d, INVALID_CHAR);
 			check_and_set_player(cub3d, i, j, &player);
@@ -61,7 +61,7 @@ void	check_map_walls(t_cub3d *cub3d)
 {
 	int i;
 	int j;
-	
+
 	i = 0;
 	while (i < cub3d->map_size)
 	{
@@ -88,7 +88,7 @@ int	check_arround_zeros(t_cub3d *cub3d, int i, int j)
 	else if (j >= ft_strlen(cub3d->map[i - 1])
 		|| j >= ft_strlen(cub3d->map[i + 1]))
 		return (1);
-	else if (ft_is_space(cub3d->map[i - 1][j]) 
+	else if (ft_is_space(cub3d->map[i - 1][j])
 		|| ft_is_space(cub3d->map[i + 1][j])
 		|| ft_is_space(cub3d->map[i][j - 1])
 		|| ft_is_space(cub3d->map[i][j + 1]))

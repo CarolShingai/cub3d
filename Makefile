@@ -36,7 +36,7 @@ SRCS = ${addprefix srcs/, \
 }
 
 SRCS_BONUS = ${addprefix srcs_bonus/, \
-			graphic_bonus/error_bonus.c \
+			graphic_bonus/clear_game_bonus.c \
 			graphic_bonus/draw_background_bonus.c \
 			graphic_bonus/vector_utils_bonus.c \
 			graphic_bonus/setting_game_bonus.c \
@@ -48,6 +48,11 @@ SRCS_BONUS = ${addprefix srcs_bonus/, \
 			graphic_bonus/key_hook_bonus.c \
 			graphic_bonus/texture_bonus.c \
 			graphic_bonus/minimap_bonus.c \
+			graphic_bonus/collectable_bonus.c \
+			graphic_bonus/collectibles_utils_bonus.c\
+			graphic_bonus/draw_collectibles_bonus.c \
+			graphic_bonus/exit_bonus.c \
+			graphic_bonus/sounds_bonus.c \
 			main_bonus.c \
 			data_pipeline_bonus/validation_bonus.c \
 			data_pipeline_bonus/extract_bonus.c \
@@ -83,7 +88,7 @@ $(NAME_BONUS): libmlx  libft ft_printf $(OBJS_BONUS)
 	@cc $(FLAGS) $(OBJS_BONUS) $(LIBS) -o $(NAME_BONUS)
 	@echo "$(GREEN)cub3d_bonus is read!✅$(RESET)"
 
-obj_bonus/%.o: srcs_bonus/%.c
+obj_bonus/%.o: srcs_bonus/%.c include/cub3d_bonus.h
 	@mkdir -p obj_bonus $(dir $@)
 	@cc $(FLAGS) -c $< -o $@
 
@@ -104,7 +109,7 @@ libmlx:
 # valgrind
 valgrind: $(NAME)
 	@valgrind --suppressions=./supressions.sup --leak-check=full \
-	--show-leak-kinds=all --track-origins=yes --track-fds=yes ./$(NAME) ./maps.cub/map2.cub
+	--show-leak-kinds=all --track-origins=yes ./$(NAME_BONUS) ./maps.cub/map_bonus1.cub
 
 # cleaning object files
 clean:

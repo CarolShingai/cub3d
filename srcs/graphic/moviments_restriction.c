@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 20:24:32 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/21 05:07:59 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/01 20:08:15 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	collision(t_game *game, t_vector *new_pos)
 {
 	float	margin;
 
-	margin = 0.2;
+	margin = MARGIN_COLLISION;
 	if (check_collision_mov(game, new_pos, margin))
 		return (1);
 	if (check_collision_camera(game, new_pos, margin))

@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:18:00 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/22 16:00:39 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/02 19:15:27 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,21 @@
 
 # define WIDTH  1000
 # define HEIGHT 800
-# define TILE 18
-#define MINIMAP_START_X 132
-#define MINIMAP_START_Y 150
-#define MINIMAP_END_X 550
-#define MINIMAP_END_Y 500
+# define TILE 12
+# define MINIMAP_START_X 85
+# define MINIMAP_START_Y 130
+# define MINIMAP_END_X 550
+# define MINIMAP_END_Y 500
+# define MAXCOLLECTIBLES 10
+# define MAX_HEIGHT_COLLECTIBLE 100
+
+// GAME PLAYER CONFIGURATION
+# define MOV_SPEED 0.09
+# define ROTATE_SPEED 0.05
+# define FOV 0.66
+# define HOVER_SPEED 2.0f
+# define HOVER_HEIGHT 0.3f
+# define COLISION_MARGIN 0.15f
 
 enum e_is_map
 {
@@ -72,8 +82,10 @@ enum e_map_config
 	WEST,
 	EAST,
 	FLOOR,
-	CEILING
+	CEILING,
+	EXIT
 };
+
 
 typedef struct s_imgs
 {
@@ -83,7 +95,9 @@ typedef struct s_imgs
 	mlx_image_t	*minimap;
 	mlx_image_t	*miniwall_x;
 	mlx_image_t	*miniwall_y;
+	mlx_image_t	*block;
 	mlx_image_t	*player;
+	mlx_image_t	*collectible;
 }	t_imgs;
 
 typedef struct s_texture
@@ -92,6 +106,10 @@ typedef struct s_texture
 	mlx_texture_t	*south;
 	mlx_texture_t	*east;
 	mlx_texture_t	*west;
+	mlx_texture_t	*exit;
+	mlx_texture_t	*collectible_0;
+	mlx_texture_t	*collectible_1;
+	mlx_texture_t	*invisible;
 }	t_texture;
 
 
@@ -125,6 +143,12 @@ typedef struct s_dda
 	int			hit_side;
 	int			side;
 	float		perpen_dist;
+	bool		has_collectible;
+	float		collectible_dist;
+	t_vector	collectible_pos;
+	int			is_collect_start;
+	int			collec_start;
+	int			collec_end;
 }	t_dda;
 
 typedef struct s_wall
@@ -139,6 +163,35 @@ typedef struct s_wall
 	int		tex_step;
 }	t_wall;
 
+typedef struct s_sprite
+{
+	t_vector	pos;
+	int			tex_x;
+	int			tex_y;
+	int			sprite_height;
+	int			sprite_width;
+	int			draw_startx;
+	int			draw_endx;
+	int			draw_starty;
+	int			draw_endy;
+}	t_sprite;
+
+typedef struct s_animation
+{
+	float		time;
+	float		hover_speed;
+	float		hover_height;
+}	t_animation;
+
+typedef struct s_collectible
+{
+	mlx_texture_t			*texture;
+	t_vector			pos;
+	int					collected;
+	int					idx;
+	struct s_collectible	*next;
+}	t_collectible;
+
 typedef struct s_view
 {
 	t_vector	player_pos;
@@ -146,6 +199,7 @@ typedef struct s_view
 	t_vector	camera_plane;
 	double		mov_speed;
 	double		rotate_speed;
+	float		fov;
 }	t_view;
 
 typedef struct s_cub3d
@@ -158,6 +212,7 @@ typedef struct s_cub3d
 	char	**config;
 	char	**map;
 	int		map_size;
+	int		map_width;
 	int		fd_extract;
 	int		fd_load;
 }	t_cub3d;
@@ -170,15 +225,25 @@ typedef struct s_game
 	t_cub3d		cub3d;
 	t_texture	texture;
 	t_dda		ray;
+	t_collectible	collectibles[MAXCOLLECTIBLES];
+	t_animation	animation;
 	char		pov;
+	float		*z_buffer;
+	int			num_collectibles;
 	int			minimap_visible;
 	int			ceiling;
 	int			floor;
+	int			ceiling_color;
+	int			items_collected;
 	double		*frame_time;
+	int			key_collect;
+	int			mov;
 }	t_game;
 
-// error.c
-void	ft_error(char *msg);
+// clear_game.c
+void	ft_error(char *msg, t_game *game);
+void	clear_game(t_game *game);
+void	clear_textures(t_game *game);
 
 // setting_window.c
 void	setting_window(t_game *game);
@@ -252,12 +317,14 @@ void	set_wall_position(t_dda *ray);
 mlx_texture_t	*get_texture(t_dda *ray, t_game *game);
 void	calc_tex_position(t_wall *wall, t_dda *ray, mlx_texture_t *wall_img, t_game *game);
 uint32_t	get_pixel_color(mlx_texture_t *tex, int x, int y);
+void	draw_texture_column(t_game *game, mlx_texture_t *texture, int pixel, t_wall *wall);
 // draw_view.c
 void	draw_view(void *param);
 void	clear_image(mlx_image_t *img, uint32_t color);
+void	reset_zbuffer(t_game *game);
+void	update_time(t_game *game);
 // key_hook
 void	key_action(mlx_key_data_t keydata, void *param);
-void	close_game(t_game *game);
 int		player_keys(keys_t key);
 void	visible_map(t_game *game);
 void	unvisible_map(t_game *game);
@@ -271,19 +338,48 @@ void	camera_rotation(t_game *game, keys_t key, double angle);
 int		collision(t_game *game, t_vector *new_pos);
 int		check_collision_mov(t_game *game, t_vector *new_pos, float margin);
 int		check_collision_camera(t_game *game, t_vector *new_pos, float margin);
+void	check_collision_collectable(t_game *game, t_vector *new_pos, float margin);
 // texture.c
-mlx_texture_t	*init_texture(char *path);
+mlx_texture_t	*init_texture(char *path, t_game *game);
 void	load_texture(t_game *game);
-void	clear_textures(t_game *game);
 
 //BONUS
 // minimap_bonus.c
-void	draw_map(t_game *game);
-void	insert_minimap(t_game *game);
-mlx_image_t	*create_image(mlx_t *mlx, char *path);
-int		is_horizontal_wall(t_game *game, int x, int y);
-int 	is_vertical_wall(t_game *game, int x, int y);
-int		is_player(t_game *game, int x, int y);
-void	setting_minimap(t_game *game);
+void		draw_map(t_game *game);
+void		insert_minimap(t_game *game);
+mlx_image_t	*create_image(mlx_t *mlx, char *path, t_game *game);
+int			is_horizontal_wall(t_game *game, int x, int y);
+int 		is_vertical_wall(t_game *game, int x, int y);
+int			is_blocked_diagonal(t_game *game, int x, int y);
+int			is_player(t_game *game, int x, int y);
+void		setting_minimap(t_game *game);
+void		clear_minimap(t_game *game);
+
+//collectable_bonus.c
+void	update_collectible_pos_pixel(t_dda *ray, t_game *game, int pixel);
+void	init_collectables(t_game *game);
+void	get_collects_pos(t_game *game, t_collectible *itens);
+void	collect_item(t_game *game, int x, int y);
+int		count_collectibles(t_game *game);
+void	check_collectible_dda(t_dda *ray, t_game *game);
+
+// //draw_collectibles_bonus.c
+void	draw_sprite(t_dda *ray, t_game *game);
+void	sprite_dimensions(t_dda *ray, t_sprite *sprite);
+void	draw_sprite_column(t_game *game, t_dda *ray, t_sprite *sprite, mlx_texture_t *tex);
+void	draw_collectible(t_dda *ray, t_game *game, int pixel);
+void	draw_transparent_column(t_game *game, t_dda *ray, mlx_texture_t *texture, int pixel, t_wall *wall);
+void	hover_effect(t_game *game, t_wall *wall);
+
+// collectibles_utils_bonus.c
+t_collectible	*create_node(t_vector pos, t_game *game);
+void	add_node(t_collectible **head, t_vector pos, t_game *game);
+void	free_list(t_collectible **head);
+
+//exit_bonus.c
+void	check_exit(t_game *game, t_vector new_pos);
+
+//sounds_bonus.c
+void	mov_sound(t_game *game);
 
 #endif

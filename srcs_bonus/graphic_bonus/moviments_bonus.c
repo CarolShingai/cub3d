@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 18:44:27 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/22 16:04:31 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/01 19:02:20 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,14 @@ void	moviments(t_game *game, keys_t key)
 {
 	t_vector	new_pos;
 
+	game->mov = 1;
 	new_pos = create_vector(game->view.player_pos.x, game->view.player_pos.y);
 	get_new_pos(game, key, &new_pos);
+	// mov_sound(game);
 	if (!collision(game, &new_pos))
 	{
+		check_exit(game, new_pos);
+		check_collision_collectable(game, &new_pos, 0.001);
 		game->view.player_pos.x = new_pos.x;
 		game->view.player_pos.y = new_pos.y;
 		game->imgs.player->instances[0].x = MINIMAP_START_X + (game->view.player_pos.x * TILE);
@@ -43,44 +47,31 @@ void	get_new_pos(t_game *game, keys_t key, t_vector *new_pos)
 void	vertical_moviments(t_game *game, keys_t key,
 	double m_speed, t_vector *new_pos)
 {
-	// int mov;
-
-	// mov = 0;
 	if (key == MLX_KEY_W)
 	{
 		new_pos->x += game->view.player_dir.x * m_speed;
 		new_pos->y += game->view.player_dir.y * m_speed;
-		// mov = -1;
 	}
 	else if (key == MLX_KEY_S)
 	{
 		new_pos->x -= game->view.player_dir.x * m_speed;
 		new_pos->y -= game->view.player_dir.y * m_speed;
-		// mov = 1;
 	}
-	// game->imgs.player->instances->x += TILE / 4 * mov;
 }
 
 void	horizontal_moviments(t_game *game, keys_t key,
 	double m_speed, t_vector *new_pos)
-	{
-	// 	int mov;
-
-	// mov = 0;
+{
 	if (key == MLX_KEY_A)
 	{
 		new_pos->x -= game->view.camera_plane.x * m_speed;
 		new_pos->y -= game->view.camera_plane.y * m_speed;
-		// mov = -1;
-
 	}
 	else if (key == MLX_KEY_D)
 	{
 		new_pos->x += game->view.camera_plane.x * m_speed;
 		new_pos->y += game->view.camera_plane.y * m_speed;
-		// mov = 1;
 	}
-	// game->imgs.player->instances->y += TILE / 4 * mov;
 }
 
 void	camera_rotation(t_game *game, keys_t key, double angle)

@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 22:29:08 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/22 16:04:09 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/01 19:31:32 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,43 @@
 void	draw_view(void *param)
 {
 	t_game	*game;
-	int		time_frame;
 
-	time_frame = 0;
-	time_frame++;
 	game = (t_game *)param;
+	update_time(game);
+	reset_zbuffer(game);
 	clear_image(game->imgs.img, 0x000000);
 	draw_rays(game);
 }
 
-void	clear_image(mlx_image_t *img, uint32_t color)
+void clear_image(mlx_image_t *img, uint32_t color)
 {
-	size_t		total;
-	size_t		i;
-	uint32_t	*pixels;
+	uint32_t *pixels = (uint32_t *)img->pixels;
+	size_t total = img->width * img->height;
 
-	total = (size_t)img->width * img->height;
-	i = 0;
-	pixels = (uint32_t *)img->pixels;
-	while (i < total)
+	ft_memset_32(pixels, color, total);
+}
+
+void reset_zbuffer(t_game *game)
+{
+	int pixel;
+
+	pixel = 0;
+	while (pixel < WIDTH)
 	{
-		pixels[i] = color;
-		i = i + 1;
+		game->z_buffer[pixel] = HUGE_VALF;
+		pixel++;
 	}
+}
+
+void	update_time(t_game *game)
+{
+	static double	last_time;
+	double			current_time;
+	double			delta_time;
+
+	last_time = 0;
+	current_time = mlx_get_time();
+	delta_time = current_time - last_time;
+	game->animation.time += delta_time;
+	last_time = current_time;
 }
