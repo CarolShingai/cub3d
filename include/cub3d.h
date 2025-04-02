@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/31 15:47:55 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/01 20:13:40 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,15 @@
 # define IMAGE_ERROR "ERROR! Problem loading the image."
 # define MLX "ERROR! Problem with mlx."
 
-
+// Screen size
 # define WIDTH  1000
 # define HEIGHT 800
-# define TILE 18
-#define MINIMAP_START_X 132
-#define MINIMAP_START_Y 150
-#define MINIMAP_END_X 550
-#define MINIMAP_END_Y 500
+
+// Game settings
+# define MOV_SPEED 0.05
+# define ROTATE_SPEED 0.05
+# define FOV 0.66
+# define MARGIN_COLLISION 0.2
 
 enum e_is_map
 {
@@ -145,6 +146,7 @@ typedef struct s_view
 	t_vector	camera_plane;
 	double		mov_speed;
 	double		rotate_speed;
+	float		fov;
 }	t_view;
 
 typedef struct s_cub3d

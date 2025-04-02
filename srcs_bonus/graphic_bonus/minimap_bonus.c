@@ -6,23 +6,26 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 21:38:58 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/29 03:06:10 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/02 19:23:58 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-mlx_image_t	*create_image(mlx_t *mlx, char *path)
+mlx_image_t	*create_image(mlx_t *mlx, char *path, t_game *game)
 {
 	mlx_texture_t	*texture;
 	mlx_image_t		*img;
 
 	texture = mlx_load_png(path);
 	if (!texture)
-		ft_error(TEXTURE_ERROR);
+		ft_error(TEXTURE_ERROR, game);
 	img = mlx_texture_to_image(mlx, texture);
 	if (!img)
-		ft_error(IMAGE_ERROR);
+	{
+		mlx_delete_texture(texture);
+		ft_error(IMAGE_ERROR, game);
+	}
 	mlx_delete_texture(texture);
 	return (img);
 }
@@ -30,11 +33,15 @@ mlx_image_t	*create_image(mlx_t *mlx, char *path)
 void	insert_minimap(t_game *game)
 {
 	game->imgs.minimap =
-		create_image(game->mlx, "textures/Lumon_case/minimap/minimap.png");
-	game->imgs.miniwall_x = create_image(game->mlx, "textures/Lumon_case/minimap/minix.png");
-	game->imgs.miniwall_y = create_image(game->mlx, "textures/Lumon_case/minimap/miniy.png");
-	game->imgs.player = create_image(game->mlx, "textures/Lumon_case/minimap/player.png");
-	game->imgs.block = create_image(game->mlx, "textures/Lumon_case/minimap/block.png");
+		create_image(game->mlx, "textures/Lumon_case/minimap/minimap.png", game);
+	game->imgs.miniwall_x = create_image(game->mlx,
+		"textures/Lumon_case/minimap/minix.png", game);
+	game->imgs.miniwall_y = create_image(game->mlx,
+		"textures/Lumon_case/minimap/miniy.png", game);
+	game->imgs.player = create_image(game->mlx,
+		"textures/Lumon_case/minimap/player.png", game);
+	game->imgs.block = create_image(game->mlx,
+		"textures/Lumon_case/minimap/block2.png", game);
 }
 
 void	draw_map(t_game *game)
@@ -46,10 +53,10 @@ void	draw_map(t_game *game)
 
 	x = 0;
 	mlx_image_to_window(game->mlx, game->imgs.minimap, 0, 0);
-	while(game->cub3d.map[x])
+	while(game->cub3d.map[x] && x < game->cub3d.map_size)
 	{
 		y = 0;
-		while (game->cub3d.map[x][y])
+		while (game->cub3d.map[x][y] && y < game->cub3d.map_width)
 		{
 			draw_x = (y * TILE) + MINIMAP_START_X + 20;
 			draw_y = (x * TILE) + MINIMAP_START_Y + 20;
@@ -57,8 +64,6 @@ void	draw_map(t_game *game)
 				mlx_image_to_window(game->mlx, game->imgs.miniwall_y, draw_x, draw_y);
 			if (is_horizontal_wall(game, y, x))
 				mlx_image_to_window(game->mlx, game->imgs.miniwall_x, draw_x, draw_y);
-			// if (is_blocked_diagonal(game, y, x))
-			// 	mlx_image_to_window(game->mlx, game->imgs.block, draw_x, draw_y);
 			if (is_player(game, x, y))
 				mlx_image_to_window(game->mlx, game->imgs.player, draw_x, draw_y);
 			y++;
@@ -94,9 +99,11 @@ int	is_horizontal_wall(t_game *game, int x, int y)
 
 int	is_vertical_wall(t_game *game, int x, int y)
 {
+	if (y < 0 || y >= game->cub3d.map_size || x < 0 || x >= game->cub3d.map_width)
+		return (0);
 	if (game->cub3d.map[y][x] == '1')
 	{
-		if (y > 0 && y < game->cub3d.map_size - 2)
+		if (y > 0 && y < game->cub3d.map_size - 1)
 		{
 			if (game->cub3d.map[y + 1][x] != '1')
 				return (0);
@@ -117,35 +124,12 @@ int	is_vertical_wall(t_game *game, int x, int y)
 	return (0);
 }
 
-int is_blocked_diagonal(t_game *game, int x, int y)
-{
-	if (game->cub3d.map[y][x] == 1)
-		return (0);
-	if (y > 0 && x > 0 &&
-		game->cub3d.map[y - 1][x] == '1' && game->cub3d.map[y][x - 1] == '1' &&
-		game->cub3d.map[y - 1][x - 1] == '0')
-		return (1);
-	if (y > 0 && x < game->cub3d.map_size - 1 &&
-		game->cub3d.map[y - 1][x] == '1' && game->cub3d.map[y][x + 1] == '1' &&
-		game->cub3d.map[y - 1][x + 1] == '0')
-		return (2);
-	if (y < game->cub3d.map_size - 1 && x > 0 &&
-		game->cub3d.map[y + 1][x] == '1' && game->cub3d.map[y][x - 1] == '1' &&
-		game->cub3d.map[y + 1][x - 1] == '0')
-		return (3);
-	if (y < game->cub3d.map_size - 1 && x < game->cub3d.map_size - 1 &&
-		game->cub3d.map[y + 1][x] == '1' && game->cub3d.map[y][x + 1] == '1' &&
-		game->cub3d.map[y + 1][x + 1] == '0')
-		return (4);
-	return (0);
-}
-
 int	is_player(t_game *game, int x, int y)
 {
 	if (game->cub3d.map[x][y] == 'N' || game->cub3d.map[x][y] == 'S' ||
 		game->cub3d.map[x][y] == 'E' || game->cub3d.map[x][y] == 'W')
 		return (1);
-	else
+		else
 		return (0);
 }
 
@@ -159,3 +143,41 @@ void	setting_minimap(t_game *game)
 	game->imgs.block->enabled = 0;
 	game->imgs.player->enabled = 0;
 }
+
+	void	clear_minimap(t_game *game)
+{
+	if (game->imgs.minimap)
+		mlx_delete_image(game->mlx, game->imgs.minimap);
+	if (game->imgs.miniwall_x)
+		mlx_delete_image(game->mlx, game->imgs.miniwall_x);
+	if (game->imgs.miniwall_y)
+		mlx_delete_image(game->mlx, game->imgs.miniwall_y);
+	if (game->imgs.block)
+		mlx_delete_image(game->mlx, game->imgs.block);
+	if (game->imgs.player)
+		mlx_delete_image(game->mlx, game->imgs.player);
+}
+
+
+	// int is_blocked_diagonal(t_game *game, int x, int y)
+	// {
+	// 	if (game->cub3d.map[y][x] == 1)
+	// 		return (0);
+	// 	if (y > 0 && x > 0 &&
+	// 		game->cub3d.map[y - 1][x] == '1' && game->cub3d.map[y][x - 1] == '1' &&
+	// 		game->cub3d.map[y - 1][x - 1] == '0')
+	// 		return (1);
+	// 	if (y > 0 && x < game->cub3d.map_size - 1 &&
+	// 		game->cub3d.map[y - 1][x] == '1' && game->cub3d.map[y][x + 1] == '1' &&
+	// 		game->cub3d.map[y - 1][x + 1] == '0')
+	// 		return (2);
+	// 	if (y < game->cub3d.map_size - 1 && x > 0 &&
+	// 		game->cub3d.map[y + 1][x] == '1' && game->cub3d.map[y][x - 1] == '1' &&
+	// 		game->cub3d.map[y + 1][x - 1] == '0')
+	// 		return (3);
+	// 	if (y < game->cub3d.map_size - 1 && x < game->cub3d.map_size - 1 &&
+	// 		game->cub3d.map[y + 1][x] == '1' && game->cub3d.map[y][x + 1] == '1' &&
+	// 		game->cub3d.map[y + 1][x + 1] == '0')
+	// 		return (4);
+	// 	return (0);
+	// }

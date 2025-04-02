@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 19:04:11 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/31 18:37:39 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/02 17:51:05 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ void	draw_wall(t_dda *ray, t_game *game, int pixel)
 	draw_texture_column(game, wall_img, pixel, &wall);
 }
 
-void	draw_texture_column(t_game *game, mlx_texture_t *texture, int pixel, t_wall *wall)
+void	draw_texture_column(t_game *game, mlx_texture_t *texture,
+	int pixel, t_wall *wall)
 {
 	uint32_t	color;
 	int			y;
-	
+
 	y = wall->line_starty;
 	while (y < wall->line_endy)
 	{
@@ -87,7 +88,8 @@ void	calc_tex_position(t_wall *wall, t_dda *ray,
 	ray->hit_pos.y = game->view.player_pos.y + (ray->ray_dir.y
 			* ray->perpen_dist);
 	if (game->cub3d.map[ray->map.y][ray->map.x] == 'C')
-		wall->tex_x = (int)(fmod(ray->hit_pos.x + ray->hit_pos.y, 1.0) * wall_img->width);
+		wall->tex_x = (int)(fmod(ray->hit_pos.x + ray->hit_pos.y, 1.0)
+				* wall_img->width);
 	if (ray->hit_side == 1)
 		wall->tex_x = (int)((ray->hit_pos.x - floor(ray->hit_pos.x))
 				* wall_img->width);
@@ -95,19 +97,3 @@ void	calc_tex_position(t_wall *wall, t_dda *ray,
 		wall->tex_x = (int)((ray->hit_pos.y - floor(ray->hit_pos.y))
 				* wall_img->width);
 }
-
-uint32_t	get_pixel_color(mlx_texture_t *tex, int x, int y)
-{
-	int			tex_pos;
-	uint8_t		*color;
-	uint32_t	final_color;
-
-	if (x < 0 || x >= (int)tex->width || y < 0 || y >= (int)tex->height)
-		return (0);
-	tex_pos = (y * tex->width + x) * tex->bytes_per_pixel;
-	color = &tex->pixels[tex_pos];
-	final_color = (color[0] << 24) | (color[1] << 16)
-		| (color[2] << 8) | color[3];
-	return (final_color);
-}
-

@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 17:01:52 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/01 19:03:13 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/02 18:58:46 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,15 @@
 void	init_collectables(t_game *game)
 {
 	int i;
-	// t_collectible *new_node;
 
 	i = 0;
-	
+
 	game->num_collectibles = count_collectibles(game);
 	while (i <= game->num_collectibles)
 	{
 		game->collectibles[i].pos = create_vector(-1, -1);
 		game->collectibles[i].collected = 0;
 		get_collects_pos(game, &game->collectibles[i]);
-		// new_node = create_node(game->collectibles[i].pos, game);
-		// if (!new_node)
-		// 	ft_error("Error creating collectible node");
-		// add_node(&new_node, game->collectibles[i].pos, game);
 		i++;
 	}
 }

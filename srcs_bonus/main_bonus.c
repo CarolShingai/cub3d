@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 17:03:05 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/01 06:06:35 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/01 19:32:32 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ uint32_t get_rgb(int r, int g, int b)
 void	init_game(t_game *game, t_cub3d *cub3d)
 {
 	game->ceiling = get_rgb(cub3d->ceiling_color.blue, cub3d->ceiling_color.green, cub3d->ceiling_color.red);
-	
+
 	set_position(game);
 	init_collectables(game);
 	load_texture(game);
@@ -48,9 +48,8 @@ int32_t	main(int argc, char **argv)
 	game.floor = 0;
 	game.num_collectibles = 0;
 	game.key_collect = 0;
+	game.mov = 0;
 	game.animation.time = 0;
-	game.animation.hover_speed = HOVER_SPEED;
-	game.animation.hover_height = HOVER_HEIGHT;
 	init_game(&game, &cub3d);
 	return (EXIT_SUCCESS);
 }

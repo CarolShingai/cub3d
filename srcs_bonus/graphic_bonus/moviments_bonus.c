@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 18:44:27 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/31 22:51:53 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/01 19:02:20 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ void	moviments(t_game *game, keys_t key)
 {
 	t_vector	new_pos;
 
+	game->mov = 1;
 	new_pos = create_vector(game->view.player_pos.x, game->view.player_pos.y);
 	get_new_pos(game, key, &new_pos);
+	// mov_sound(game);
 	if (!collision(game, &new_pos))
 	{
 		check_exit(game, new_pos);

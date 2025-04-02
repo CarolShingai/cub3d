@@ -52,6 +52,7 @@ SRCS_BONUS = ${addprefix srcs_bonus/, \
 			graphic_bonus/collectibles_utils_bonus.c\
 			graphic_bonus/draw_collectibles_bonus.c \
 			graphic_bonus/exit_bonus.c \
+			graphic_bonus/sounds_bonus.c \
 			main_bonus.c \
 			data_pipeline_bonus/validation_bonus.c \
 			data_pipeline_bonus/extract_bonus.c \
@@ -108,7 +109,7 @@ libmlx:
 # valgrind
 valgrind: $(NAME)
 	@valgrind --suppressions=./supressions.sup --leak-check=full \
-	--show-leak-kinds=all --track-origins=yes --track-fds=yes ./$(NAME) ./maps.cub/map2.cub
+	--show-leak-kinds=all --track-origins=yes ./$(NAME_BONUS) ./maps.cub/map_bonus1.cub
 
 # cleaning object files
 clean:
