@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 22:29:08 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/01 19:31:32 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/02 19:48:22 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,19 @@ void	draw_view(void *param)
 	draw_rays(game);
 }
 
-void clear_image(mlx_image_t *img, uint32_t color)
+void	clear_image(mlx_image_t *img, uint32_t color)
 {
-	uint32_t *pixels = (uint32_t *)img->pixels;
-	size_t total = img->width * img->height;
+	uint32_t	*pixels;
+	size_t		total;
 
+	pixels = (uint32_t *)img->pixels;
+	total = img->width * img->height;
 	ft_memset_32(pixels, color, total);
 }
 
-void reset_zbuffer(t_game *game)
+void	reset_zbuffer(t_game *game)
 {
-	int pixel;
+	int	pixel;
 
 	pixel = 0;
 	while (pixel < WIDTH)

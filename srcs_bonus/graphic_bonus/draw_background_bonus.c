@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:54:31 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/02 19:16:19 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/02 19:51:16 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@ void	draw_ceiling(t_game *game)
 
 void	draw_floor(t_game *game)
 {
-	if (game->cub3d.map[(int)game->view.player_pos.x][(int)game->view.player_pos.y] == ';')
-	 	game->floor = get_rgb(237, 242, 245);
+	if (game->cub3d.map[(int)game->view.player_pos.x]
+		[(int)game->view.player_pos.y] == ';')
+		game->floor = get_rgb(237, 242, 245);
 	else
 		game->floor = get_rgb(game->cub3d.floor_color.blue,
-			game->cub3d.floor_color.green, game->cub3d.floor_color.red);
+				game->cub3d.floor_color.green, game->cub3d.floor_color.red);
 	game->imgs.img_floor = mlx_new_image(game->mlx, WIDTH, HEIGHT / 2);
 	ft_memset_32(game->imgs.img_floor->pixels, game->floor, WIDTH * HEIGHT / 2);
 	mlx_image_to_window(game->mlx, game->imgs.img_floor, 0, HEIGHT / 2);

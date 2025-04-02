@@ -6,23 +6,23 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:56:38 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/02 18:36:06 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/02 20:25:12 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
 //colocar uma flag para indicar o que atingiu
-void draw_sprite(t_dda *ray, t_game *game)
+void	draw_sprite(t_dda *ray, t_game *game)
 {
-	t_sprite	sprite;
+	t_sprite		sprite;
 	mlx_texture_t	*sprite_img;
 
 	if (!ray->has_collectible || ray->collectible_dist == HUGE_VALF)
-		return;
+		return ;
 	sprite_img = game->texture.collectible_0;
 	if (!sprite_img)
-		return;
+		return ;
 	sprite_dimensions(ray, &sprite);
 	draw_sprite_column(game, ray, &sprite, sprite_img);
 }
@@ -36,12 +36,12 @@ void	sprite_dimensions(t_dda *ray, t_sprite *sprite)
 
 void	draw_sprite_column(t_game *game, t_dda *ray, t_sprite *sprite, mlx_texture_t *tex)
 {
-	int	pixel;
-	int	y;
-	uint32_t color;
+	int			pixel;
+	int			y;
+	uint32_t	color;
 
 	pixel = ray->collec_start;
-	while(pixel <= ray->collec_end)
+	while (pixel <= ray->collec_end)
 	{
 		y = sprite->draw_starty;
 		while (y < sprite->draw_endy)
@@ -57,22 +57,22 @@ void	draw_sprite_column(t_game *game, t_dda *ray, t_sprite *sprite, mlx_texture_
 	}
 }
 
-void draw_collectible(t_dda *ray, t_game *game, int pixel)
+void	draw_collectible(t_dda *ray, t_game *game, int pixel)
 {
 	mlx_texture_t	*tex;
-	t_wall wall;
+	t_wall			wall;
 
 	tex = game->texture.collectible_0;
 	if (ray->has_collectible == 0 || !tex)
-		return;
+		return ;
 	if (ray->collectible_dist >= game->z_buffer[pixel])
-		return;
+		return ;
 	wall.wall_height = HEIGHT / ray->collectible_dist;
 	wall.line_starty = fmax(0, (HEIGHT - wall.wall_height) / 2);
 	wall.line_endy = fmin(HEIGHT, (HEIGHT + wall.wall_height) / 2);
 	if (ray->hit_side == 1)
-		wall.tex_x = (int)((game->view.player_pos.x +
-			ray->collectible_dist * ray->ray_dir.x) * tex->width) % tex->width;
+		wall.tex_x = (int)((game->view.player_pos.x
+			+ ray->collectible_dist * ray->ray_dir.x) * tex->width) % tex->width;
 	else
 		wall.tex_x = 0;
 	wall.tex_x = fmax(10, fmin(wall.tex_x, tex->width - 1));

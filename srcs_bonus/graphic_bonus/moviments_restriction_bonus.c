@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 20:24:32 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/01 19:09:49 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/02 19:58:04 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,14 @@ int	check_collision_mov(t_game *game, t_vector *new_pos, float margin)
 	y = (int)(new_pos->y + margin * verify_signal(new_pos->y
 				- game->view.player_pos.y));
 	if (game->cub3d.map[(int)new_pos->y][x] == '1'
-		|| game->cub3d.map[(int)new_pos->y][x] == ' ' 
-		|| (game->cub3d.map[(int)new_pos->y][x] == 'X' && game->key_collect == 0))
+		|| game->cub3d.map[(int)new_pos->y][x] == ' '
+		|| (game->cub3d.map[(int)new_pos->y][x] == 'X'
+		&& game->key_collect == 0))
 		return (1);
 	if (game->cub3d.map[y][(int)new_pos->x] == '1'
-		|| game->cub3d.map[y][(int)new_pos->x] == ' ' 
-		|| (game->cub3d.map[y][(int)new_pos->x] == 'X' && game->key_collect == 0))
+		|| game->cub3d.map[y][(int)new_pos->x] == ' '
+		|| (game->cub3d.map[y][(int)new_pos->x] == 'X'
+		&& game->key_collect == 0))
 		return (1);
 	return (0);
 }
@@ -69,15 +71,16 @@ int	check_collision_camera(t_game *game, t_vector *new_pos, float margin)
 	return (0);
 }
 
-void	check_collision_collectable(t_game *game, t_vector *new_pos, float margin)
+void	check_collision_collectable(t_game *game, t_vector *new_pos,
+		float margin)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = (int)(new_pos->x + margin * verify_signal(new_pos->x
-		- game->view.player_pos.x));
+				- game->view.player_pos.x));
 	y = (int)(new_pos->y + margin * verify_signal(new_pos->y
-		- game->view.player_pos.y));
+				- game->view.player_pos.y));
 	if (game->cub3d.map[y][x] == 'C')
 		collect_item(game, x, y);
 }

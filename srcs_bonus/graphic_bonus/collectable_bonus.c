@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 17:01:52 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/02 18:58:46 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/02 20:07:03 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 void	init_collectables(t_game *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
-
 	game->num_collectibles = count_collectibles(game);
 	while (i <= game->num_collectibles)
 	{
@@ -41,7 +40,7 @@ void	get_collects_pos(t_game *game, t_collectible *itens)
 		{
 			if (game->cub3d.map[x][y] == 'C')
 			{
-				itens->pos = create_vector(x + 0.5,  y + 0.5);
+				itens->pos = create_vector(x + 0.5, y + 0.5);
 				itens->collected = 0;
 				break ;
 			}
@@ -61,7 +60,7 @@ int	count_collectibles(t_game *game)
 	while (game->cub3d.map[++x])
 	{
 		y = 0;
-		while(game->cub3d.map[x][y])
+		while (game->cub3d.map[x][y])
 		{
 			if (game->cub3d.map[x][y] == 'C')
 				count++;

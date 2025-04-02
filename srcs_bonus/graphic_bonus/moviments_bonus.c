@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 18:44:27 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/01 19:02:20 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/02 19:43:56 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,16 @@ void	moviments(t_game *game, keys_t key)
 	game->mov = 1;
 	new_pos = create_vector(game->view.player_pos.x, game->view.player_pos.y);
 	get_new_pos(game, key, &new_pos);
-	// mov_sound(game);
 	if (!collision(game, &new_pos))
 	{
 		check_exit(game, new_pos);
 		check_collision_collectable(game, &new_pos, 0.001);
 		game->view.player_pos.x = new_pos.x;
 		game->view.player_pos.y = new_pos.y;
-		game->imgs.player->instances[0].x = MINIMAP_START_X + (game->view.player_pos.x * TILE);
-		game->imgs.player->instances[0].y = MINIMAP_START_Y + (game->view.player_pos.y * TILE);
+		game->imgs.player->instances[0].x = MINIMAP_START_X
+			+ (game->view.player_pos.x * TILE);
+		game->imgs.player->instances[0].y = MINIMAP_START_Y
+			+ (game->view.player_pos.y * TILE);
 	}
 	if (key == MLX_KEY_LEFT || key == MLX_KEY_RIGHT)
 		camera_rotation(game, key, game->view.rotate_speed);

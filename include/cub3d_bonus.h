@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:18:00 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/02 19:15:27 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/02 20:23:47 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -298,6 +298,7 @@ void	calcule_delta_dist(t_dda *ray);
 void	calcule_dist_to_side(t_dda *ray, t_game *game);
 void	algorithm_dda(t_dda *ray, t_game *game);
 void	update_ray_map(t_game *game, t_dda *ray);
+void    calc_perpen_dist(t_dda *ray, t_game *game);
 
 // vector_utils.c
 t_vector	add_vector(t_vector v1, t_vector v2);
