@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:18:00 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/02 20:23:47 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/02 21:44:11 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,13 +176,6 @@ typedef struct s_sprite
 	int			draw_endy;
 }	t_sprite;
 
-typedef struct s_animation
-{
-	float		time;
-	float		hover_speed;
-	float		hover_height;
-}	t_animation;
-
 typedef struct s_collectible
 {
 	mlx_texture_t			*texture;
@@ -226,7 +219,6 @@ typedef struct s_game
 	t_texture	texture;
 	t_dda		ray;
 	t_collectible	collectibles[MAXCOLLECTIBLES];
-	t_animation	animation;
 	char		pov;
 	float		*z_buffer;
 	int			num_collectibles;

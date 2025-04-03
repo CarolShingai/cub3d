@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 19:04:02 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/02 20:21:37 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/02 21:52:17 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	draw_rays(t_game *game)
 		calcule_dist_to_side(&ray[pixel], game);
 		algorithm_dda(&ray[pixel], game);
 		draw_wall(&ray[pixel], game, pixel);
-		if (ray[pixel].has_collectible) //importante
-			update_collectible_pos_pixel(&ray[pixel], game, pixel);//importante
+		// if (ray[pixel].has_collectible) //importante
+		// 	update_collectible_pos_pixel(&ray[pixel], game, pixel);//importante
 		pixel++;
 	}
 	pixel = 0;
@@ -58,6 +58,7 @@ void	update_collectible_pos_pixel(t_dda *ray, t_game *game, int pixel)
 		ray->collec_end = pixel;
 }
 
+
 void	calcule_delta_dist(t_dda *ray)
 {
 	if (ray->ray_dir.x == 0)
@@ -67,7 +68,7 @@ void	calcule_delta_dist(t_dda *ray)
 	if (ray->ray_dir.y == 0)
 		ray->delta_dist.y = HUGE_VALF;
 	else
-		ray->delta_dist.y = fabsf(1 / ray->ray_dir.y);
+	ray->delta_dist.y = fabsf(1 / ray->ray_dir.y);
 }
 
 void	calcule_dist_to_side(t_dda *ray, t_game *game)
@@ -108,9 +109,8 @@ void	algorithm_dda(t_dda *ray, t_game *game)
 		if (game->cub3d.map[ray->map.y][ray->map.x] == '1'
 				|| game->cub3d.map[ray->map.y][ray->map.x] == 'X')
 			break;
-		if (game->cub3d.map[ray->map.y][ray->map.x] == 'C'
-				&& !ray->has_collectible)
-			check_collectible_dda(ray, game);
+		if (game->cub3d.map[ray->map.y][ray->map.x] == 'C' && !ray->has_collectible )
+				check_collectible_dda(ray, game);
 		if (ray->dist_to_side.x < ray->dist_to_side.y)
 		{
 			ray->dist_to_side.x += ray->delta_dist.x;
@@ -131,10 +131,10 @@ void	calc_perpen_dist(t_dda *ray, t_game *game)
 {
 	if (ray->hit_side == 0)
 		ray->perpen_dist = (ray->map.x - game->view.player_pos.x
-				+ (1 - ray->step.x) / 2) / ray->ray_dir.x;
+		+ (1.0 - ray->step.x) / 2) / ray->ray_dir.x;
 	else
 		ray->perpen_dist = (ray->map.y - game->view.player_pos.y
-				+ (1 - ray->step.y) / 2) / ray->ray_dir.y;
+			+ (1.0 - ray->step.y) / 2) / ray->ray_dir.y;
 }
 
 void	update_ray_map(t_game *game, t_dda *ray)

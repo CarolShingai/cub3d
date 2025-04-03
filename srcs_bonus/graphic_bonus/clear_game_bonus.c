@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 17:17:09 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/02 19:42:37 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/02 21:58:33 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,16 @@ void	clear_game(t_game *game)
 
 void	clear_textures(t_game *game)
 {
-	mlx_delete_texture(game->texture.north);
-	mlx_delete_texture(game->texture.south);
-	mlx_delete_texture(game->texture.west);
-	mlx_delete_texture(game->texture.east);
-	mlx_delete_texture(game->texture.exit);
-	mlx_delete_texture(game->texture.collectible_0);
+	if (game->texture.north)
+		mlx_delete_texture(game->texture.north);
+	if (game->texture.south)
+		mlx_delete_texture(game->texture.south);
+	if (game->texture.west)
+		mlx_delete_texture(game->texture.west);
+	if (game->texture.east)
+		mlx_delete_texture(game->texture.east);
+	if (game->texture.exit)
+		mlx_delete_texture(game->texture.exit);
+	if (game->texture.collectible_0)
+		mlx_delete_texture(game->texture.collectible_0);
 }

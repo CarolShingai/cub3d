@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 17:03:05 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/01 19:32:32 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/02 21:46:14 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int32_t	main(int argc, char **argv)
 	game.num_collectibles = 0;
 	game.key_collect = 0;
 	game.mov = 0;
-	game.animation.time = 0;
 	init_game(&game, &cub3d);
 	return (EXIT_SUCCESS);
 }
