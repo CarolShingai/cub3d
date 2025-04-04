@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/01 20:13:40 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/03 21:58:18 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ typedef struct s_game
 
 
 // error.c
-void	ft_error(char *msg);
+void	ft_error(char *msg, t_game *game);
 
 // setting_window.c
 void	setting_window(t_game *game);
@@ -274,7 +274,7 @@ int		collision(t_game *game, t_vector *new_pos);
 int		check_collision_mov(t_game *game, t_vector *new_pos, float margin);
 int		check_collision_camera(t_game *game, t_vector *new_pos, float margin);
 // texture.c
-mlx_texture_t	*init_texture(char *path);
+mlx_texture_t	*init_texture(char *path, t_game *game);
 void	load_texture(t_game *game);
 void	clear_textures(t_game *game);
 
