@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:56:38 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/02 22:15:15 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/03 21:52:12 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ void	draw_collectible(t_dda *ray, t_game *game, int pixel)
 			ray->collectible_dist * ray->ray_dir.x) * tex->width) % tex->width;
 	else
 		wall.tex_x = 0;
-		// wall.tex_x = (int)((game->view.player_pos.y +
-		// 	ray->collectible_dist * ray->ray_dir.y) * tex->width) % tex->width;
 	wall.tex_x = fmax(10, fmin(wall.tex_x, tex->width - 1));
 	draw_transparent_column(game, ray, tex, pixel, &wall);
 }
@@ -85,6 +83,11 @@ void	draw_transparent_column(t_game *game, t_dda *ray, mlx_texture_t *texture, i
 {
 	uint32_t	color;
 	int			y;
+	// int			draw_starty;
+	// int			draw_endy;
+
+	// draw_starty = fmax(0, (HEIGHT / 2) - (wall->wall_height / 2));
+	// draw_endy = fmin(HEIGHT, (HEIGHT / 2) + (wall->wall_height / 2));
 
 	y = wall->line_starty;
 	(void)ray;
@@ -92,6 +95,8 @@ void	draw_transparent_column(t_game *game, t_dda *ray, mlx_texture_t *texture, i
 	{
 		if (ray->collectible_dist < game->z_buffer[pixel])
 		{
+			// wall->tex_x = (pixel - ray->collec_start) * texture->width / (ray->collec_end - ray->collec_start + 1);
+			// wall->tex_y = (y - draw_starty) * texture->height / wall->wall_height;
 			wall->tex_y = (int)((y - (HEIGHT / 2 - wall->wall_height / 2))
 					/ (double)wall->wall_height * texture->height);
 			wall->tex_y = fmax(0, fmin(wall->tex_y, texture->height - 1));

@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:18:00 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/02 21:44:11 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/03 21:35:53 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -339,11 +339,14 @@ void	load_texture(t_game *game);
 //BONUS
 // minimap_bonus.c
 void		draw_map(t_game *game);
-void		insert_minimap(t_game *game);
-mlx_image_t	*create_image(mlx_t *mlx, char *path, t_game *game);
 int			is_horizontal_wall(t_game *game, int x, int y);
 int 		is_vertical_wall(t_game *game, int x, int y);
+int			has_wall_above(t_game *game, int x, int y);
+int			has_wall_below(t_game *game, int x, int y);
 int			is_blocked_diagonal(t_game *game, int x, int y);
+// minimap_utils_bonus.c
+void		insert_minimap(t_game *game);
+mlx_image_t	*create_image(mlx_t *mlx, char *path, t_game *game);
 int			is_player(t_game *game, int x, int y);
 void		setting_minimap(t_game *game);
 void		clear_minimap(t_game *game);

@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:04:03 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/02 20:05:23 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/03 21:41:14 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	setting_minimap(t_game *game)
 	game->imgs.player->enabled = 0;
 }
 
-	void	clear_minimap(t_game *game)
+void	clear_minimap(t_game *game)
 {
 	if (game->imgs.minimap)
 		mlx_delete_image(game->mlx, game->imgs.minimap);
@@ -44,4 +44,37 @@ void	setting_minimap(t_game *game)
 		mlx_delete_image(game->mlx, game->imgs.block);
 	if (game->imgs.player)
 		mlx_delete_image(game->mlx, game->imgs.player);
+}
+
+mlx_image_t	*create_image(mlx_t *mlx, char *path, t_game *game)
+{
+	mlx_texture_t	*texture;
+	mlx_image_t		*img;
+
+	texture = mlx_load_png(path);
+	if (!texture)
+		ft_error(TEXTURE_ERROR, game);
+	img = mlx_texture_to_image(mlx, texture);
+	if (!img)
+	{
+		mlx_delete_texture(texture);
+		ft_error(IMAGE_ERROR, game);
+	}
+	mlx_delete_texture(texture);
+	return (img);
+}
+
+void	insert_minimap(t_game *game)
+{
+	game->imgs.minimap
+		= create_image(game->mlx,
+			"textures/Lumon_case/minimap/minimap.png", game);
+	game->imgs.miniwall_x = create_image(game->mlx,
+			"textures/Lumon_case/minimap/minix.png", game);
+	game->imgs.miniwall_y = create_image(game->mlx,
+			"textures/Lumon_case/minimap/miniy.png", game);
+	game->imgs.player = create_image(game->mlx,
+			"textures/Lumon_case/minimap/player.png", game);
+	game->imgs.block = create_image(game->mlx,
+			"textures/Lumon_case/minimap/block2.png", game);
 }
