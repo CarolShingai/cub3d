@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_analysis_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 19:40:51 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/04/05 12:17:54 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/05 16:14:47 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	map_analysis(t_cub3d *cub3d)
 
 void	check_map_chars(t_cub3d *cub3d)
 {
-	int i;
-	int j;
-	int player;
+	int	i;
+	int	j;
+	int	player;
 
 	i = 0;
 	player = 0;
@@ -59,8 +59,8 @@ void	check_and_set_player(t_cub3d *cub3d, int i, int j, int *player)
 
 void	check_map_walls(t_cub3d *cub3d)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < cub3d->map_size)

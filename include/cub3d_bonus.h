@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:18:00 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/05 12:15:35 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/05 16:20:13 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,6 +266,7 @@ void			check_color(t_cub3d *cub3d);
 void			error_handling_and_free(t_cub3d *cub3d, char *message);
 int				check_three_colors(char *str);
 int				convert_color(char *str, int type, t_cub3d *cub3d);
+void			set_colors_bonus(t_colors colors, int type, t_cub3d *cub3d);
 //map_analysis
 void			map_analysis(t_cub3d *cub3d);
 void			check_map_chars(t_cub3d *cub3d);

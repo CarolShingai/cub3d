@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 21:39:41 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/03/11 22:03:30 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:57:44 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_free_all(t_cub3d *cub3d)
 
 int	file_opening(char *file_path, t_cub3d *cub3d)
 {
-	int	fd;
+	int		fd;
 	char	*message;
 
 	fd = open(file_path, O_RDONLY | __O_DIRECTORY);
@@ -87,10 +87,4 @@ void	error_handling_extract(int is_map, t_cub3d *cub3d, int fd, int mode)
 		ft_free_config(cub3d);
 		error_handling(ERROR_MAP_MISSING);
 	}
-}
-
-void	error_handling_and_free(t_cub3d *cub3d, char *message)
-{
-	ft_free_all(cub3d);
-	error_handling(message);
 }

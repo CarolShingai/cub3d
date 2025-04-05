@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 19:04:39 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/03/13 19:04:36 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/05 16:07:41 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,19 @@ void	init_cub3d(t_cub3d *cub3d)
 
 void	run_pipeline(int argc, char **argv, t_cub3d *cub3d)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	init_cub3d(cub3d);
 	check_args_and_file(argc, argv);
 	extract(argv[1], cub3d);
 	close(cub3d->fd_extract);
-	printf("%d\n", cub3d->map_size);
 	load(cub3d, argv[1]);
 	data_analysis(cub3d);
-	while (i < cub3d->map_size)
-	{
-		printf("linha %d %s", i, cub3d->map[i]);
-		i++;
-	}
-	printf("\n");
-	i = 0;
-	while (i < 7)
-	{
-		if (cub3d->config[i])
-			printf("config %d %s\n", i, cub3d->config[i]);
-		i++;
-	}
-	printf("teste/n");
+}
+
+void	error_handling_and_free(t_cub3d *cub3d, char *message)
+{
+	ft_free_all(cub3d);
+	error_handling(message);
 }

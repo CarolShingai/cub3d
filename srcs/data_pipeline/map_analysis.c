@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 19:40:51 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/03/11 22:15:16 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:50:38 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	map_analysis(t_cub3d *cub3d)
 
 void	check_map_chars(t_cub3d *cub3d)
 {
-	int i;
-	int j;
-	int player;
-	
+	int	i;
+	int	j;
+	int	player;
+
 	i = 0;
 	player = 0;
 	while (i < cub3d->map_size)
@@ -59,9 +59,9 @@ void	check_and_set_player(t_cub3d *cub3d, int i, int j, int *player)
 
 void	check_map_walls(t_cub3d *cub3d)
 {
-	int i;
-	int j;
-	
+	int	i;
+	int	j;
+
 	i = 0;
 	while (i < cub3d->map_size)
 	{
@@ -88,7 +88,7 @@ int	check_arround_zeros(t_cub3d *cub3d, int i, int j)
 	else if (j >= ft_strlen(cub3d->map[i - 1])
 		|| j >= ft_strlen(cub3d->map[i + 1]))
 		return (1);
-	else if (ft_is_space(cub3d->map[i - 1][j]) 
+	else if (ft_is_space(cub3d->map[i - 1][j])
 		|| ft_is_space(cub3d->map[i + 1][j])
 		|| ft_is_space(cub3d->map[i][j - 1])
 		|| ft_is_space(cub3d->map[i][j + 1]))

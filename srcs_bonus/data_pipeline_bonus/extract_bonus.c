@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:56:06 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/03/24 21:12:54 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/05 16:18:47 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,20 @@ void	read_map(t_cub3d *cub3d, int mode, int fd)
 	char	*line;
 	int		is_map;
 	int		i;
-	
+
 	is_map = NO_MAP;
 	i = 0;
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line || is_map == END_MAP || is_map == ERROR_CONFIG)
-			break;
+			break ;
 		is_map = check_line(line, is_map, cub3d, mode);
 		if (is_map == IS_MAP && mode == EXTRACT)
 		{
 			cub3d->map_size++;
 			if (ft_strlen(line) > cub3d->map_width)
-			{
-				printf("width\n, %d", cub3d->map_width);
 				cub3d->map_width = ft_strlen(line);
-			}
 		}
 		if (is_map == IS_MAP && mode == LOAD)
 			cub3d->map[i++] = ft_strdup(line);
@@ -54,15 +51,16 @@ int	check_line(char *line, int map_was, t_cub3d *cub3d, int mode)
 	int	i;
 
 	i = 0;
-	while(line[i])
+	while (line[i])
 	{
 		if (ft_is_space(line[i]) || line[i] == '\n')
 			i++;
-		else if (map_was == NO_MAP && line[i + 1] 
-				&& check_config(line[i], line[i + 1]) >= 0)
+		else if (map_was == NO_MAP && line[i + 1]
+			&& check_config(line[i], line[i + 1]) >= 0)
 		{
 			if (mode == EXTRACT)
-				return (save_config_to_array(line, cub3d, check_config(line[i], line[i + 1])));
+				return (save_config_to_array(line, cub3d,
+						check_config(line[i], line[i + 1])));
 			return (NO_MAP);
 		}
 		else if (line[i])
@@ -86,7 +84,7 @@ int	check_config(char c1, char c2)
 	else if (c1 == 'F' && c2 == ' ')
 		return (FLOOR);
 	else if (c1 == 'C' && c2 == ' ')
-		return(CEILING);
+		return (CEILING);
 	return (-1);
 }
 
