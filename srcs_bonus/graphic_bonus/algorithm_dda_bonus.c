@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 19:04:02 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/04 21:04:39 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/05 03:42:47 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,7 @@ void	algorithm_dda(t_dda *ray, t_game *game)
 		if (game->cub3d.map[ray->map.y][ray->map.x] == '1'
 				|| game->cub3d.map[ray->map.y][ray->map.x] == 'X')
 			break ;
-		if (game->cub3d.map[ray->map.y][ray->map.x] == 'C'
-				&& !ray->has_collectible)
+		if (is_collectible(ray, game) && !ray->has_collectible)
 			check_collectible_dda(ray, game);
 		if (ray->dist_to_side.x < ray->dist_to_side.y)
 		{

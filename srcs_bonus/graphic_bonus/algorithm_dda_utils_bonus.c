@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 19:52:52 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/04 20:01:20 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/05 10:54:28 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,11 @@ void	update_ray_map(t_game *game, t_dda *ray)
 	ray->map.y = game->view.player_pos.y;
 }
 
-void	update_collectible_pos_pixel(t_dda *ray, t_game *game, int pixel)
+int	is_collectible(t_dda *ray, t_game *game)
 {
-	(void)game;
-	if (ray->is_collect_start)
-	{
-		ray->is_collect_start = 0;
-		ray->collec_start = pixel;
-	}
-	else
-		ray->collec_end = pixel;
+	if (game->cub3d.map[ray->map.y][ray->map.x] == 'C')
+		return (1);
+	if (game->cub3d.map[ray->map.y][ray->map.x] == 'B')
+		return (1);
+	return (0);
 }

@@ -6,29 +6,29 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:56:38 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/04 21:05:12 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/05 04:13:01 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d_bonus.h"
 
-// mlx_texture_t	*get_collectible_texture(t_dda *ray, t_game *game)
-// {
-// 	if (game->cub3d.map[ray->map.y][ray->map.x] == 'B')
-// 		return (game->texture.collectible_1);
-// 	else
-// 		return (game->texture.collectible_0);
-// }
+mlx_texture_t	*get_collectible_texture(t_dda *ray, t_game *game)
+{
+	if (game->cub3d.map[ray->collec_y][ray->collec_x] == 'B')
+		return (game->texture.collectible_1);
+	else
+		return (game->texture.collectible_0);
+}
 
 void	draw_collectible(t_dda *ray, t_game *game, int pixel)
 {
 	mlx_texture_t	*tex;
 	t_wall			wall;
 
-	tex = game->texture.collectible_0;
+	tex = get_collectible_texture(ray, game);
 	if (ray->has_collectible == 0 || !tex)
 		return ;
-	if (ray->collectible_dist >= game->z_buffer[pixel])
+	if (ray->collectible_dist >= game->z_buffer[pixel] - 0.01)
 		return ;
 	wall.wall_height = HEIGHT / ray->collectible_dist;
 	wall.line_starty = fmax(0, (HEIGHT - wall.wall_height) / 2);

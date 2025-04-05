@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:18:00 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/04 20:34:32 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/05 04:05:25 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,8 +147,8 @@ typedef struct s_dda
 	float		collectible_dist;
 	t_vector	collectible_pos;
 	int			is_collect_start;
-	int			collec_start;
-	int			collec_end;
+	int			collec_x;
+	int			collec_y;
 }	t_dda;
 
 typedef struct s_wall
@@ -275,9 +275,11 @@ void			draw_rays(t_game *game);
 void			calcule_delta_dist(t_dda *ray);
 void			calcule_dist_to_side(t_dda *ray, t_game *game);
 void			algorithm_dda(t_dda *ray, t_game *game);
-void			update_ray_map(t_game *game, t_dda *ray);
 void			calc_perpen_dist(t_dda *ray, t_game *game);
+// algorithm_dda_utils_bonus.c
+void			update_ray_map(t_game *game, t_dda *ray);
 void			init_rays(t_dda *ray, int pixel);
+int				is_collectible(t_dda *ray, t_game *game);
 // vector_utils.c
 t_vector		add_vector(t_vector v1, t_vector v2);
 t_vector		sub_vector(t_vector v1, t_vector v2);
