@@ -42,6 +42,7 @@ SRCS_BONUS = ${addprefix srcs_bonus/, \
 			graphic_bonus/setting_game_bonus.c \
 			graphic_bonus/draw_wall_bonus.c \
 			graphic_bonus/algorithm_dda_bonus.c \
+			graphic_bonus/algorithm_dda_utils_bonus.c \
 			graphic_bonus/draw_view_bonus.c \
 			graphic_bonus/moviments_bonus.c \
 			graphic_bonus/moviments_restriction_bonus.c \

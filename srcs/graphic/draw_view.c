@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 22:29:08 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/02 21:48:26 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/04 18:38:15 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	draw_view(void *param)
 {
 	t_game	*game;
-	
+
 	game = (t_game *)param;
 	clear_image(game->imgs.img, 0x000000);
 	draw_rays(game);

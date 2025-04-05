@@ -6,23 +6,22 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 17:03:05 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/02 21:46:14 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/04 20:19:15 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
 
 // color RGB
-
-uint32_t get_rgb(int r, int g, int b)
+uint32_t	get_rgb(int r, int g, int b)
 {
 	return (255 << 24 | r << 16 | g << 8 | b);
 }
 
 void	init_game(t_game *game, t_cub3d *cub3d)
 {
-	game->ceiling = get_rgb(cub3d->ceiling_color.blue, cub3d->ceiling_color.green, cub3d->ceiling_color.red);
-
+	game->ceiling = get_rgb(cub3d->ceiling_color.blue,
+			cub3d->ceiling_color.green, cub3d->ceiling_color.red);
 	set_position(game);
 	init_collectables(game);
 	load_texture(game);

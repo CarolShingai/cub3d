@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 22:00:07 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/02 19:45:34 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/04 20:57:37 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	load_texture(t_game *game)
 	game->texture.exit = init_texture("textures/Lumon_case/exit.png", game);
 	game->texture.collectible_0 = init_texture
 		("textures/Lumon_case/keycard.png", game);
+	game->texture.collectible_1 = init_texture
+		("textures/Lumon_case/book.png", game);
 }
 
 uint32_t	get_pixel_color(mlx_texture_t *tex, int x, int y)
