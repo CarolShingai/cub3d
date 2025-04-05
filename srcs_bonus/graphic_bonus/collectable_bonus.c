@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 17:01:52 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/05 04:12:22 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/05 12:22:22 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	get_collects_pos(t_game *game, t_collectible *itens)
 		y = 0;
 		while (game->cub3d.map[x][y])
 		{
-			if (game->cub3d.map[x][y] == 'C' || game->cub3d.map[x][y] == 'B')
+			if (game->cub3d.map[x][y] == 'C' || game->cub3d.map[x][y] == 'B'
+			|| game->cub3d.map[x][y] == 'K' || game->cub3d.map[x][y] == 'A')
 			{
 				itens->pos = create_vector(x + 0.5, y + 0.5);
 				itens->collected = 0;
@@ -62,7 +63,8 @@ int	count_collectibles(t_game *game)
 		y = 0;
 		while (game->cub3d.map[x][y])
 		{
-			if (game->cub3d.map[x][y] == 'C' ||	game->cub3d.map[x][y] == 'B')
+			if (game->cub3d.map[x][y] == 'C' || game->cub3d.map[x][y] == 'B'
+				|| game->cub3d.map[x][y] == 'A')
 				count++;
 			y++;
 		}
@@ -72,9 +74,10 @@ int	count_collectibles(t_game *game)
 
 void	collect_item(t_game *game, int x, int y)
 {
-		game->cub3d.map[y][x] = '0';
-		game->ray.has_collectible = false;
+	if (game->cub3d.map[y][x] == 'K')
 		game->key_collect = 1;
+	game->cub3d.map[y][x] = '0';
+	game->ray.has_collectible = false;
 }
 
 void	check_collectible_dda(t_dda *ray, t_game *game)

@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:56:38 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/05 04:13:01 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/05 12:19:10 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@ mlx_texture_t	*get_collectible_texture(t_dda *ray, t_game *game)
 {
 	if (game->cub3d.map[ray->collec_y][ray->collec_x] == 'B')
 		return (game->texture.collectible_1);
+	if (game->cub3d.map[ray->collec_y][ray->collec_x] == 'A')
+		return (game->texture.collectible_2);
+	if (game->cub3d.map[ray->collec_y][ray->collec_x] == 'K')
+		return (game->texture.key);
 	else
 		return (game->texture.collectible_0);
 }

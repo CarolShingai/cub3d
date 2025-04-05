@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:18:00 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/05 04:05:25 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/05 12:15:35 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ typedef struct s_texture
 	mlx_texture_t	*exit;
 	mlx_texture_t	*collectible_0;
 	mlx_texture_t	*collectible_1;
+	mlx_texture_t	*collectible_2;
+	mlx_texture_t	*key;
 	mlx_texture_t	*invisible;
 }	t_texture;
 

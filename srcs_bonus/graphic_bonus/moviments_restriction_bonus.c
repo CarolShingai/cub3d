@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 20:24:32 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/05 04:48:33 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/05 12:20:23 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	check_collision_collectable(t_game *game, t_vector *new_pos,
 				- game->view.player_pos.x));
 	y = (int)(new_pos->y + margin * verify_signal(new_pos->y
 				- game->view.player_pos.y));
-	if (game->cub3d.map[y][x] == 'C' || game->cub3d.map[y][x] == 'B')	
+	if (game->cub3d.map[y][x] == 'C' || game->cub3d.map[y][x] == 'B'
+		|| game->cub3d.map[y][x] == 'K' || game->cub3d.map[y][x] == 'A')
 		collect_item(game, x, y);
 }
