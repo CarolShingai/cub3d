@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 22:00:07 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/05 12:40:25 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/06 22:44:41 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ mlx_texture_t	*init_texture(char *path, t_game *game)
 
 void	load_texture(t_game *game)
 {
-	game->texture.north = init_texture(game->cub3d.config[3], game);
-	game->texture.south = init_texture(game->cub3d.config[2], game);
-	game->texture.west = init_texture(game->cub3d.config[1], game);
-	game->texture.east = init_texture(game->cub3d.config[0], game);
+	game->texture.north = init_texture(game->cub3d.config[NORTH], game);
+	game->texture.south = init_texture(game->cub3d.config[SOUTH], game);
+	game->texture.west = init_texture(game->cub3d.config[WEST], game);
+	game->texture.east = init_texture(game->cub3d.config[EAST], game);
 	game->texture.exit = init_texture("textures/Lumon_case/exit.png", game);
 	game->texture.collectible_0 = init_texture
 		("textures/Lumon_case/vipcard.png", game);

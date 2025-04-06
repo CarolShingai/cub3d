@@ -6,7 +6,7 @@
 /*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 19:52:52 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/05 12:18:35 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/06 22:41:48 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	init_rays(t_dda *ray, int pixel)
 {
+	if (pixel < 0)
+		pixel += 1;
 	ray[pixel].has_collectible = 0;
 	ray[pixel].collectible_dist = HUGE_VALF;
 	ray[pixel].is_collect_start = 1;

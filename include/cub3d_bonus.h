@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:18:00 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/05 16:20:13 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/04/06 22:43:16 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ The values must be between 0 and 255."
 # define MINIMAP_START_Y 130
 # define MINIMAP_END_X 550
 # define MINIMAP_END_Y 500
-# define MAXCOLLECTIBLES 10
+# define MAXCOLLECTIBLES 100
 # define MAX_HEIGHT_COLLECTIBLE 100
 
 // GAME PLAYER CONFIGURATION

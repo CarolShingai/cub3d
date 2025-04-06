@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 19:04:39 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/04/05 16:22:24 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/04/06 22:42:27 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@ void	init_cub3d(t_cub3d *cub3d)
 
 void	run_pipeline(int argc, char **argv, t_cub3d *cub3d)
 {
-	int	i;
-
-	i = 0;
 	init_cub3d(cub3d);
 	check_args_and_file(argc, argv);
 	extract(argv[1], cub3d);
