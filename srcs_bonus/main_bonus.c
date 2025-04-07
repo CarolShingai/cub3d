@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 17:03:05 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/04 20:19:15 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/07 19:01:39 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,14 @@ void	init_game(t_game *game, t_cub3d *cub3d)
 	mlx_terminate(game->mlx);
 }
 
-int32_t	main(int argc, char **argv)
+int32_t	main(int argc, char **argv, char **env)
 {
 	t_game	game;
 	t_cub3d	cub3d;
 
 	run_pipeline(argc, argv, &cub3d);
 	game.cub3d = cub3d;
+	game.env = env;
 	game.z_buffer = malloc(sizeof(float) * WIDTH);
 	game.ceiling = 0;
 	game.floor = 0;

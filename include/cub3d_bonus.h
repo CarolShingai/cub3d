@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:18:00 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/07 18:42:14 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/04/07 19:01:19 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,6 +222,7 @@ typedef struct s_game
 	double			*frame_time;
 	int				key_collect;
 	int				mov;
+	char			**env;
 }	t_game;
 
 // clear_game.c
