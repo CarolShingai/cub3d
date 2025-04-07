@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:48:10 by cshingai          #+#    #+#             */
-/*   Updated: 2025/03/06 23:07:14 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/04/07 19:36:50 by cshingai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		ft_memcmp(void *str1, const void *str2, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, void *src, size_t n);
 void	*ft_memset(void *ptr, int n, size_t x);
-void	*ft_memset_32(void *ptr,__uint32_t n, size_t x);
+void	*ft_memset_32(void *ptr, __uint32_t n, size_t x);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
@@ -72,13 +72,12 @@ int		ft_tolower(int c);
 int		ft_toupper(int c);
 int		ft_is_space(char c);
 //get next line
-char		*get_next_line(int fd);
-char		*ft_transform(t_gnl *root, int len);
-void		ft_insert_end(t_gnl **root, char c);
-void		ft_dealloc(t_gnl **root);
-int			ft_build_line(t_find *file, t_gnl **root, int bytes);
-int			ft_read_file(int fd, t_find *file, t_gnl **root);
-int			ft_lstchr(t_gnl *root);
-
+char	*get_next_line(int fd);
+char	*ft_transform(t_gnl *root, int len);
+void	ft_insert_end(t_gnl **root, char c);
+void	ft_dealloc(t_gnl **root);
+int		ft_build_line(t_find *file, t_gnl **root, int bytes);
+int		ft_read_file(int fd, t_find *file, t_gnl **root);
+int		ft_lstchr(t_gnl *root);
 
 #endif
