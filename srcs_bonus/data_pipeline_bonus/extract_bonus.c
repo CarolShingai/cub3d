@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:56:06 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/04/05 16:18:47 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/04/07 18:40:42 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	read_map(t_cub3d *cub3d, int mode, int fd)
 	while (1)
 	{
 		line = get_next_line(fd);
-		if (!line || is_map == END_MAP || is_map == ERROR_CONFIG)
+		if (!line || is_map == ERROR_MAP || is_map == ERROR_CONFIG)
 			break ;
 		is_map = check_line(line, is_map, cub3d, mode);
 		if (is_map == IS_MAP && mode == EXTRACT)
@@ -43,7 +43,8 @@ void	read_map(t_cub3d *cub3d, int mode, int fd)
 		free(line);
 	}	
 	free(line);
-	error_handling_extract(is_map, cub3d, fd, mode);
+	if (is_map != END_MAP)
+		error_handling_extract(is_map, cub3d, fd, mode);
 }
 
 int	check_line(char *line, int map_was, t_cub3d *cub3d, int mode)
@@ -64,9 +65,13 @@ int	check_line(char *line, int map_was, t_cub3d *cub3d, int mode)
 			return (NO_MAP);
 		}
 		else if (line[i])
+		{
+			if (map_was == END_MAP)
+				return (ERROR_MAP);
 			return (IS_MAP);
+		}
 	}
-	if (map_was == IS_MAP)
+	if (map_was == IS_MAP || map_was == END_MAP)
 		return (END_MAP);
 	return (NO_MAP);
 }

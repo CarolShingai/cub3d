@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/05 16:02:08 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/04/07 18:34:51 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define ERROR_MALLOC "Malloc failed."
 # define DUPLICATE_CONFIG "Duplicate parameter. North, South, East, West, \
 Floor and Ceiling must be unique."
+# define AFTER_MAP "Map should be the last parameter"
 # define CONFIG_MISSING "North, South, East, West, Floor and Ceiling \
 must be set."
 # define IS_A_DIRECTORY "The map and textures must be files not directories"
@@ -59,7 +60,8 @@ enum e_is_map
 	NO_MAP,
 	IS_MAP,
 	END_MAP,
-	ERROR_CONFIG
+	ERROR_CONFIG,
+	ERROR_MAP
 };
 
 enum e_pipe_mode

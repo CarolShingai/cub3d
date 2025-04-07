@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 21:39:41 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/04/05 16:20:42 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/04/07 18:42:00 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,12 @@ void	error_handling_extract(int is_map, t_cub3d *cub3d, int fd, int mode)
 		close(fd);
 		ft_free_config(cub3d);
 		error_handling(DUPLICATE_CONFIG);
+	}
+	if (is_map == ERROR_MAP)
+	{
+		close(fd);
+		ft_free_config(cub3d);
+		error_handling(AFTER_MAP);
 	}
 	if (cub3d->map_size == 0 && mode == LOAD)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cshingai <cshingai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:18:00 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/06 22:43:16 by cshingai         ###   ########.fr       */
+/*   Updated: 2025/04/07 18:42:14 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 Floor and Ceiling must be unique."
 # define CONFIG_MISSING "North, South, East, West, Floor and Ceiling \
 must be set."
+# define AFTER_MAP "Map should be the last parameter"
 # define IS_A_DIRECTORY "The map and textures must be files not directories"
 # define VERIFY_NAME "Check the name of the files"
 # define CONFIG_COLOR "Color must be in the format R,G,B without spaces. \
@@ -68,7 +69,8 @@ enum e_is_map
 	NO_MAP,
 	IS_MAP,
 	END_MAP,
-	ERROR_CONFIG
+	ERROR_CONFIG,
+	ERROR_MAP
 };
 
 enum e_pipe_mode
