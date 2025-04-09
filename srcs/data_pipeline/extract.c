@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:56:06 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/04/07 18:34:33 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/04/08 22:02:46 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	read_map(t_cub3d *cub3d, int mode, int fd)
 	while (1)
 	{
 		line = get_next_line(fd);
-		if (!line || is_map == ERROR_MAP || is_map == ERROR_CONFIG)
+		if (!line || is_map == ERROR_MAP || is_map == ERROR_CONFIG || is_map == INVALID_CONFIG)
 			break ;
 		is_map = check_line(line, is_map, cub3d, mode);
 		if (is_map == IS_MAP && mode == EXTRACT)
@@ -39,8 +39,9 @@ void	read_map(t_cub3d *cub3d, int mode, int fd)
 		free(line);
 	}
 	free(line);
+ // MISSING_CONFIG se o mapa não for encontrado
 	if (is_map != END_MAP)
-		error_handling_extract(is_map, cub3d, fd, mode);
+		error_handling_extract(is_map, cub3d, fd);
 }
 
 int	check_line(char *line, int map_was, t_cub3d *cub3d, int mode)
@@ -52,10 +53,11 @@ int	check_line(char *line, int map_was, t_cub3d *cub3d, int mode)
 	{
 		if (ft_is_space(line[i]) || line[i] == '\n')
 			i++;
-		else if (map_was == NO_MAP && line[i + 1]
-			&& check_config(line[i], line[i + 1]) >= 0)
+		else if (map_was == NO_MAP && check_exist_config(cub3d))
 		{
-			if (mode == EXTRACT)
+			if (!line[i + 1] || check_config(line[i], line[i + 1]) == -1)
+				return (INVALID_CONFIG);
+			else if (mode == EXTRACT)
 				return (save_config_to_array(line, cub3d,
 						check_config(line[i], line[i + 1])));
 			return (NO_MAP);
@@ -63,7 +65,12 @@ int	check_line(char *line, int map_was, t_cub3d *cub3d, int mode)
 		else if (line[i])
 		{
 			if (map_was == END_MAP)
+			{
+				printf("aqui tbm");
 				return (ERROR_MAP);
+			}
+			printf("entrei aqui agora\n");
+			printf("linha: %s\n", line);
 			return (IS_MAP);
 		}
 	}
@@ -99,4 +106,18 @@ int	save_config_to_array(char *line, t_cub3d *cub3d, int config)
 	cub3d->config[config] = ft_strdup(temp[1]);
 	ft_free_array_str(temp);
 	return (NO_MAP);
+}
+
+int	check_exist_config(t_cub3d *cub3d)
+{
+	int	i;
+
+	i = NORTH;
+	while (i <= CEILING)
+	{
+		if (!cub3d->config[i])
+			return (1);
+		i++;
+	}
+	return (0);
 }
