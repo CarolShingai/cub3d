@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:26:12 by cshingai          #+#    #+#             */
-/*   Updated: 2025/04/08 21:47:08 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/04/07 18:34:51 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 # define ERROR_MALLOC "Malloc failed."
 # define DUPLICATE_CONFIG "Duplicate parameter. North, South, East, West, \
 Floor and Ceiling must be unique."
-# define ERROR_INVALID_CONFIG "Invalid parameter. NO, SO, EA, WE, F and C must be set."
 # define AFTER_MAP "Map should be the last parameter"
 # define CONFIG_MISSING "North, South, East, West, Floor and Ceiling \
 must be set."
@@ -62,9 +61,7 @@ enum e_is_map
 	IS_MAP,
 	END_MAP,
 	ERROR_CONFIG,
-	ERROR_MAP,
-	MISSING_CONFIG,
-	INVALID_CONFIG
+	ERROR_MAP
 };
 
 enum e_pipe_mode
@@ -197,7 +194,6 @@ uint32_t		get_rgb(int r, int g, int b);
 void			error_handling(char *message);
 void			check_args_and_file(int argc, char **argv);
 void			check_file_name(char *file_name);
-int				check_exist_config(t_cub3d *cub3d);
 //pipeline
 void			init_cub3d(t_cub3d *cub3d);
 void			run_pipeline(int argc, char **argv, t_cub3d *cub3d);
@@ -208,7 +204,8 @@ int				file_opening(char *file_path, t_cub3d *cub3d);
 int				check_line(char *line, int map_was, t_cub3d *cub3d, int mode);
 int				check_config(char c1, char c2);
 int				save_config_to_array(char *line, t_cub3d *cub3d, int config);
-void			error_handling_extract(int is_map, t_cub3d *cub3d, int fd);
+void			error_handling_extract(int is_map, t_cub3d *cub3d,
+					int fd, int mode);
 //load
 void			load(t_cub3d *cub3d, char *file_path);
 void			set_array(t_cub3d *cub3d);

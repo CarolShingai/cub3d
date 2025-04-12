@@ -6,7 +6,7 @@
 /*   By: lsouza-r <lsouza-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 21:39:41 by lsouza-r          #+#    #+#             */
-/*   Updated: 2025/04/08 21:46:29 by lsouza-r         ###   ########.fr       */
+/*   Updated: 2025/04/07 18:30:34 by lsouza-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	file_opening(char *file_path, t_cub3d *cub3d)
 	return (fd);
 }
 
-void	error_handling_extract(int is_map, t_cub3d *cub3d, int fd)
+void	error_handling_extract(int is_map, t_cub3d *cub3d, int fd, int mode)
 {
 	if (is_map == ERROR_CONFIG)
 	{
@@ -81,23 +81,16 @@ void	error_handling_extract(int is_map, t_cub3d *cub3d, int fd)
 		ft_free_config(cub3d);
 		error_handling(DUPLICATE_CONFIG);
 	}
-	else if (is_map == INVALID_CONFIG)
-	{
-		close(fd);
-		ft_free_config(cub3d);
-		error_handling(ERROR_INVALID_CONFIG);
-	}
-	else if (is_map == ERROR_MAP)
+	if (is_map == ERROR_MAP)
 	{
 		close(fd);
 		ft_free_config(cub3d);
 		error_handling(AFTER_MAP);
 	}
-	else if (is_map == NO_MAP)
+	if (cub3d->map_size == 0 && mode == LOAD)
 	{
 		close(fd);
 		ft_free_config(cub3d);
-		// ft_free_array_str(cub3d->map);
 		error_handling(ERROR_MAP_MISSING);
 	}
 }
