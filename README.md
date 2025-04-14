@@ -6,7 +6,7 @@
 Cub3D is a project of 42 School common core, where is simulated a 3D environment using Raycasting, a tecnic famous by the game Wolfenstein 3D. Everthing as done in parteneship with [luana-r](https://github.com/luana-r).
 
 ## ✨ABOUT THE PROJECT
-The game was developed in C, using the MLX42 library. It offers a first-person experience set within a closed map, inspired by the series *Severance*. The game explores concepts of perception, depth and dualiatily. The project was mysterious an important.
+The game was developed in C, using the MLX42 library. It offers a first-person experience set within a closed map, inspired by the series *Severance*. The game explores concepts of perception, depth and dualiatily. The project was mysterious and important.
 
 ## Technologies
 - Language: C
@@ -48,3 +48,6 @@ make bonus
 - Camera rotation - `←`/`→`
 - Quit Game - `ESC`
 - Visualize Mini Map - `M`
+
+## Appreciation
+I would like to thank Luana for such amazing partnership.
