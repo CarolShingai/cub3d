@@ -25,13 +25,20 @@ sudo apt-get install libglfw3-dev
 ```bash
 git clone git@github.com:CarolShingai/cub3d.git
 ```
-## Compile And Execution
+## Compile
 ```bash
 -> Mandatory Part
 make
 ./cub3D ./maps.cub/["the map choiced"]
 -> Bonus Part
 make bonus
+./cub3D_bonus ./maps.cub/["the map chose"]
+```
+## Execution
+```bash
+-> Mandatory Part
+./cub3D ./maps.cub/["the map choiced"]
+-> Bonus Part
 ./cub3D_bonus ./maps.cub/["the map chose"]
 ```
 ## Controls
