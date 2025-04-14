@@ -29,7 +29,7 @@ git clone git@github.com:CarolShingai/cub3d.git
 ```bash
 -> Mandatory Part
 make
-./cub3D ./maps.cub/["the map choiced"]
+./cub3D ./maps.cub/["the map chose"]
 -> Bonus Part
 make bonus
 ./cub3D_bonus ./maps.cub/["the map chose"]
