@@ -1,3 +1,7 @@
+<p align="center">
+<img src="cub_bonus.gif" width="800px" alt="cub3D Bonus Severance"/><br>
+</p>
+
 # 🎮CUBD3D
 Cub3D is a project of 42 School common core, where is simulated a 3D environment using Raycasting, a tecnic famous by the game Wolfenstein 3D. Everthing as done in parteneship with [luana-r](https://github.com/luana-r).
 
@@ -15,10 +19,6 @@ The game was developed in C, using the MLX42 library. It offers a first-person e
 - Mini Map (bonus
 - Colission with walls
 - Exit (bonus), avaliable after collect the keycard.
-
-<p align="center">
-<img src="cub_gif.webm" width="800px" alt="cub3D Bonus Severance"/><br>
-</p>
 
 ## Requirements
 This project requires 'libglfw3-dev' to be installed on your computer."
