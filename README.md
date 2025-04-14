@@ -1,5 +1,5 @@
 <p align="center">
-<img src="cub_bonus.gif" width="800px" alt="cub3D Bonus Severance"/><br>
+<img src="cub3d_bonus.gif" width="800px" alt="cub3D Bonus Severance"/><br>
 </p>
 
 # 🎮CUBD3D
