@@ -17,7 +17,7 @@ The game was developed in C, using the MLX42 library. It offers a first-person e
 - Exit (bonus), avaliable after collect the keycard.
 
 <p align="center">
-<img src="https://github.com/CarolShingai/cub3d/cub_gif.webm" width="800px" alt="cub3D Bonus Severance"/><br>
+<img src="cub_gif.webm" width="800px" alt="cub3D Bonus Severance"/><br>
 </p>
 
 ## Requirements
